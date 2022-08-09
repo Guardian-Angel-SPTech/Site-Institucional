@@ -1,0 +1,312 @@
+/* Configurações de Fonte, Body e Transição do HTML */
+
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap');
+
+body{
+    margin: 0;
+    background-color: #f1f0f0;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+/* Fim Configurações */
+
+/* Criação Container */
+
+.container{
+    display: flex;
+    width: 90%;
+}
+
+/* Inicio Menu */
+
+.navbar{
+    background-color: #f1f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 100%;
+    border-bottom: 2px solid #0a2342;
+}
+
+.navbar .container{
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.menu-superior{
+    display: flex;
+    flex-direction: row;
+    background-color: #0a2342;
+    color: #f1f0f0;
+    height: 20px;
+    width: 100%;
+    justify-content: end;
+}
+
+.menu-superior p{
+    margin: 0px;
+}
+
+.menu-superior a{
+    margin-left: 25px;
+    margin-right: 25px;
+    font-family: 'Inria Sans';
+}
+
+.menu-inferior{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+
+.navbar img{
+    height: auto;
+}
+
+.navbar a{
+    text-decoration: none;
+}
+
+.nav-item{
+    margin-right: 50px;
+}
+
+.cont-esq{
+    display: flex;
+}
+
+.cont-mei{
+    display: flex;
+    flex-direction: row;
+}
+
+.cont-dir{
+    display: flex;
+    align-items: center;
+}
+
+.nav-item a{
+    color: #0a2342;
+    font-weight: bold;
+    font-size: 1.4vw;
+    font-family: 'Inria Sans';
+}
+
+.btn-download{
+    height: 40px;
+    width: 140px;
+    background-color: #f1f0f0;
+    border: 3px solid #0a2342;
+    border-radius: 5px;
+    color: #0a2342;
+    font-weight: bold;
+    font-size: 1.4vw;
+    font-family: 'Inria Sans';
+}
+
+.nav-list{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn-download:hover{
+    background-color: #0a2342;
+    border: 3px solid #0a2342;
+    border-radius: 5px;
+    color: #f1f1f1;
+    font-weight: bold;
+    font-size: 1.4vw;
+    font-family: 'Inria Sans';
+    cursor: pointer;
+}
+
+/* Fim Menu */
+
+/* Inicio Banner */
+
+.banner{
+    background-image: url('../images/call-center.jpeg');
+    background-position: center;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    border-bottom: 3px solid #EEC643;
+    flex-direction: row;
+}
+
+.frase-banner{
+    margin: 0;
+    margin-bottom: 25px;
+    color: #0a2342;
+    font-weight: bold;
+    font-size: 3vw;
+    font-family: 'Inria Sans';
+}
+
+.banner-esq{
+    width: 50%;
+}
+
+.banner-dir{
+    display: flex;
+    width: 50%;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* Fim Banner */
+
+/* Inicio Corpo Pagina */
+
+.corpo{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Inicio Seção de Cards do Software */
+
+.area-cards{
+    /* margin-top: 80px; */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    background-color: #0a2342;
+    /* border-radius: 25px; */
+    border-top: 3px solid #EEC643;
+    border-bottom: 3px solid #EEC643;
+    align-items: center;
+}
+
+.cont-cards{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 450px;
+}
+
+.card{
+    height: 85%;
+    width: 100%;
+    margin: 25px;
+    border-radius: 5px;
+    border: 3px solid #EEC643;
+    background-color: #f1f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.area-cards h1{
+    font-family: 'Inria Sans';
+    color: #EEC643;
+    font-size: 48px;
+    padding-top: 20px;
+    padding-bottom: 12px;
+    text-decoration: underline;
+}
+
+.card img{
+    height: 120px;
+    width: auto;
+}
+
+.card h1{
+    font-family: 'Inria Sans';
+    color: #000000;
+    font-size: 32px;
+    text-decoration: none;
+}
+
+.card p{
+    font-family: 'Inria Sans';
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/* Fim Seção de Cards do Software */
+
+/* Inicio Sobre Empresa */
+
+.area-empresa{
+    display: flex;
+    flex-direction: row;
+    margin-top: 80px;
+}
+
+.empresa-esq{
+    display: flex;
+    width: 40%;
+    height: auto;
+}
+
+.empresa-dir{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: auto;
+    background-color: #f1f0f0;
+    border-radius: 25px;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.empresa-esq img{
+    width: 100%;
+    height: auto;
+}
+
+.empresa-dir h1{
+    color: #000;
+    font-family: 'Inria Sans';
+    text-align: center;
+    font-size: 48px;
+    text-decoration: underline;
+}
+
+.empresa-dir p{
+    margin-left: 25px;
+    color: #000;
+    font-family: 'Inria Sans';
+    font-size: 18px;
+}
+
+/* Fim Sobre Empresa */
+
+/* Fim Corpo Página */
+
+/* Inicio Footer/Rodapé */
+
+footer{
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #0a2342;
+}
+
+footer .container{
+    justify-content: center;
+    align-items: center;
+}
+
+footer h1{
+    margin: 0;
+    color: #f1f0f0;
+    font-family: 'Inria Sans';
+    font-size: 20px;
+}
+
+/* Fim Footer/Rodapé */
