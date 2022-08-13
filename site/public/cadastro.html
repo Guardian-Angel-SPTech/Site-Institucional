@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Guardian Angel - Home</title>
-        <link rel="shortcut icon" href="images/icone-aba.jpg" type="image/x-icon">
+        <link rel="shortcut icon" href="assets/imgs/icone-aba.jpg" type="image/x-icon">
         <link rel="stylesheet" href="css/styleGuardian.css">
     </head>
     <body>
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="menu-inferior">
                     <div class="cont-esq">
-                        <a href="index.html"><img src="images/logo_v3.png"></a>
+                        <a href="index.html"><img src="assets/imgs/logo_v3.png"></a>
                     </div>
                     <div class="cont-mei">
                         <ul class="nav-list">
@@ -45,7 +45,7 @@
 
         <div class="corpo-cadastro">
             <div class="cadastro-esq">
-                <img src="images/arte1.jpg">
+                <img src="assets/imgs/arte1.jpg">
             </div>
             <div class="cadastro-dir">
                 <div class="form-cadastro">
@@ -122,20 +122,20 @@
             if (resposta.ok) {
                 // cardErro.style.display = "block";
 
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
+               // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                alert('passei aqui ok!!');
                 setTimeout(() => {
                     window.location = "login.html";
                 }, "2000")
                 
                 limparFormulario();
-                // finalizarAguardar();
+               // finalizarAguardar();
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
+            //finalizarAguardar();
         });
 
         return false;
