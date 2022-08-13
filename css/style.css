@@ -515,9 +515,21 @@ html{
 
 .form-cadastro button:hover{
     background-color: #ffffff;
-    color: #0a2342;
+    color: #000;
     border: 3px solid #0a2342;
     cursor: pointer;
+}
+
+.tag-a-cadastro-login{
+    text-decoration: none;
+    color: #5b88c0;
+    font-weight: bold;
+}
+
+
+.tag-a-cadastro-login:hover{
+    transition: 0.7s;
+    color: #b89934;
 }
 
 /* Fim Tela Cadastro */
