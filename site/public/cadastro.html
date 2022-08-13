@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Guardian Angel - Home</title>
+        <link rel="shortcut icon" href="images/icone-aba.jpg" type="image/x-icon">
+        <link rel="stylesheet" href="css/styleGuardian.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="menu-superior">
+                <a href="cadastro.html">Cadastro</a>
+                <p>|</p>
+                <a href="login.html">Login</a>
+            </div>
+            <div class="container">
+                <div class="menu-inferior">
+                    <div class="cont-esq">
+                        <a href="index.html"><img src="images/logo_v3.png"></a>
+                    </div>
+                    <div class="cont-mei">
+                        <ul class="nav-list">
+                            <li class="nav-item">
+                                <a href="#software">Nosso Produto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#empresa">Quem Somos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#requisitos">Requisitos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a>Contato</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cont-dir">
+                        <button class="btn-download">Download</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="corpo-cadastro">
+            <div class="cadastro-esq">
+                <img src="images/arte1.jpg">
+            </div>
+            <div class="cadastro-dir">
+                <div class="form-cadastro">
+                    <h1>Cadastre-se</h1>
+                    <p>Assine nosso serviço para sua empresa e garanta um suporte de maior qualidade</p>
+                    <label for="inp-cnpj">CNPJ</label>
+                    <input type="text" id="inp_cnpj">
+                    <label for="inp_empresa">Empresa</label>
+                    <input type="text" id="inp_empresa">
+                    <div class="campo-senha">
+                        <div class="div-senha">
+                            <label for="inp_senha">Senha</label>
+                            <input type="password" id="inp_senha">
+                        </div>
+                        <div class="div-senha">
+                            <label for="inp_conf_senha">Confirmar Senha</label>
+                            <input type="password" id="inp_conf_senha">
+                        </div>
+                    </div>
+                    <button onclick="cadastrar()">Cadastre-se</button>
+                    <p>Já possui cadastro? faça o <a class="tag-a-cadastro-login" href="login.html">login</a></p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container">
+                <h1>Guardian Angel | Pesquisa e Inovação SPTech 2022</h1>
+            </div>
+        </footer>
+        
+    </body>
+</html>
+<script>
+    function cadastrar() {
+        // aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var cnpjVar = inp_cnpj.value;
+        var empresaVar = inp_empresa.value;
+        var senhaVar = inp_senha.value;
+        var confirmacaoSenhaVar = inp_conf_senha.value;
+
+        if (cnpjVar == "" || empresaVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            // cardErro.style.display = "block"
+            // mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            alert('Todos os campos em branco')
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+            console.log('Nenhum campo em branco')
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                cnpjServer: cnpjVar,
+                empresaServer: empresaVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) { 
+            console.log('passou do fetch')
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        // cardErro.style.display = "none"
+        console.log('aqui no ultimo')
+    }
+
+</script>
