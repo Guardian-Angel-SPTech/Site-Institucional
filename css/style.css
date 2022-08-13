@@ -1,10 +1,10 @@
 /* Configurações de Fonte, Body e Transição do HTML */
 
-@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&family=Jost&display=swap');
 
 body{
     margin: 0;
-    background-color: #f1f0f0;
+    background-color: #ffffff;
 }
 
 html{
@@ -87,6 +87,7 @@ html{
 
 .navbar a{
     text-decoration: none;
+    color: #ffffff;
 }
 
 .nav-item{
@@ -291,15 +292,17 @@ html{
     color: #000;
     font-family: 'Inria Sans';
     text-align: center;
-    font-size: 48px;
+    font-size: 32px;
     text-decoration: underline;
 }
 
 .empresa-dir p{
-    margin-left: 25px;
+    margin-left: 150px;
     color: #000;
     font-family: 'Inria Sans';
-    font-size: 18px;
+    font-size: 16px;
+    margin-right: 150px;
+    text-align: justify;
 }
 
 /* Fim Sobre Empresa */
@@ -411,6 +414,113 @@ html{
 /* Fim Requisitos */
 
 /* Fim Corpo Página */
+
+/* Inicio Tela Cadastro */
+
+.corpo-cadastro{
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.cadastro-esq{
+    display: flex;
+    height: 100%;
+    width: 50%;
+}
+
+.cadastro-dir{
+    display: flex;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-cadastro{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: auto;
+    /* justify-content: center; */
+}
+
+.cadastro-dir h1{
+    font-family: 'Inria Sans';
+    font-weight: 700;
+    color: #0a2342;
+    font-size: 48px;
+}
+
+.cadastro-dir p{
+    font-family: 'Jost';
+    color: #444444;
+    font-size: 20px;
+}
+
+.cadastro-dir label{
+    font-family: 'Jost';
+    font-weight: bold;
+    font-size: 22px;
+    color: #444444;
+    margin-top: 20px;
+}
+
+.cadastro-dir input{
+    background-color: #D9D9D9;
+    /* padding: 15px; */
+    height: 35px;
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+}
+
+.campo-senha{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.campo-senha input{
+    width: 100%;
+}
+
+.div-senha{
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+    height: auto;
+}
+
+.cadastro-esq img{
+    height: auto;
+    width: 100%;
+}
+
+.form-cadastro button{
+    background-color: #0a2342;
+    color: #ffffff;
+    width: 100%;
+    border-radius: 20px;
+    font-family: 'Jost';
+    font-weight: bold;
+    font-size: 24px;
+    border: 3px solid #0a2342;
+    margin-top: 40px;
+}
+
+.form-cadastro button:hover{
+    background-color: #ffffff;
+    color: #0a2342;
+    border: 3px solid #0a2342;
+    cursor: pointer;
+}
+
+/* Fim Tela Cadastro */
 
 /* Inicio Footer/Rodapé */
 
