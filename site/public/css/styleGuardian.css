@@ -11,6 +11,12 @@ html{
     scroll-behavior: smooth;
 }
 
+.wave{
+    aspect-ratio: 960/120;
+    width: 100%;
+    height: auto;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
   }
@@ -30,6 +36,7 @@ html{
 .container{
     display: flex;
     width: 90%;
+    flex-direction: column;
 }
 
 /* Inicio Menu */
@@ -160,11 +167,12 @@ html{
 }
 .frase-banner{
     margin: 0;
-    margin-bottom: 25px;
+    margin-bottom: 12px;
     color: #0a2342;
     font-weight: bold;
-    font-size: 3vw;
+    font-size: 2.5vw;
     font-family: 'Inria Sans';
+    font-weight: bold;
 }
 
 .banner-esq{
@@ -176,6 +184,9 @@ html{
     width: 50%;
     align-items: flex-end;
     justify-content: center;
+    background-image: url('../assets/imgs/wave-banner.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 /* Fim Banner */
@@ -201,7 +212,7 @@ html{
     background-color: #0a2342;
     /* border-radius: 25px; */
     border-top: 3px solid #EEC643;
-    border-bottom: 3px solid #EEC643;
+    /* border-bottom: 3px solid #EEC643; */
     align-items: center;
 }
 
@@ -226,12 +237,13 @@ html{
 }
 
 .area-cards h1{
-    font-family: 'Inria Sans';
+    font-family: 'Jost';
+    font-weight: 700;
     color: #EEC643;
-    font-size: 48px;
+    font-size: 42px;
     padding-top: 20px;
     padding-bottom: 12px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .card img{
@@ -253,6 +265,15 @@ html{
     margin-right: 15px;
 }
 
+.curva-software {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
 /* Fim Seção de Cards do Software */
 
 /* Inicio Sobre Empresa */
@@ -261,6 +282,13 @@ html{
     display: flex;
     flex-direction: row;
     margin-top: 80px;
+    justify-content: center;
+}
+
+.area-empresa .container{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .empresa-esq{
@@ -276,32 +304,36 @@ html{
     flex-direction: column;
     width: 60%;
     height: auto;
-    background-color: #f1f0f0;
+    /* background-color: #f1f0f0; */
     border-radius: 25px;
     /* border-top: 2px solid #000;
     border-bottom: 2px solid #000; */
 }
 
 .empresa-esq img{
-    height: 230px;
+    height: 200px;
     width: auto;
 }
 
 .empresa-dir h1{
     color: #000;
-    font-family: 'Inria Sans';
+    font-family: 'Jost';
+    font-weight: 700;
     text-align: center;
-    font-size: 32px;
-    text-decoration: underline;
+    font-size: 42px;
+    /* text-decoration: underline; */
+    margin-top: 0;
 }
 
 .empresa-dir p{
-    margin-left: 150px;
+    /* margin-left: 150px; */
     color: #000;
     font-family: 'Inria Sans';
     font-size: 16px;
-    margin-right: 150px;
-    text-align: justify;
+    /* margin-right: 150px; */
+    /* text-align: justify; */
+    padding-left: 15%;
+    padding-right: 15%;
 }
 
 /* Fim Sobre Empresa */
@@ -316,18 +348,20 @@ html{
     /* align-items: center; */
     /* padding-top: 100px; */
     padding-bottom: 80px;
-    margin-top: 80px;
-    border-top: 3px solid #EEC643;
-    border-bottom: 3px solid #EEC643;
+    /* margin-top: 80px; */
+    /* border-top: 3px solid #EEC643; */
+    /* border-bottom: 3px solid #EEC643; */
+    align-items: center;
 }
 
 .req-titulo{
-    font-family: 'Inria Sans';
+    font-family: 'Jost';
+    font-weight: 700;
     color: #EEC643;
-    font-size: 48px;
+    font-size: 42px;
     padding-top: 12px;
     padding-bottom: 12px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-align: center;
 }
 
@@ -345,6 +379,11 @@ html{
     margin-top: 50px;
 }
 
+.cards-requisitos img{
+    width: 15%;
+    height: auto;
+}
+
 .requisitos-esq{
     display: flex;
     flex-direction: column;
@@ -360,7 +399,7 @@ html{
 
 .requisitos-esq h1{
     font-family: 'Inria Sans';
-    margin-top: 0;
+    /* margin-top: 0; */
     font-size: 6vh;
 }
 
@@ -396,7 +435,7 @@ html{
 
 .requisitos-dir h1{
     font-family: 'Inria Sans';
-    margin-top: 0;
+    /* margin-top: 0; */
     font-size: 6vh;
 }
 
@@ -536,11 +575,12 @@ html{
 /* Inicio Footer/Rodapé */
 
 footer{
-    margin-top: 50px;
+    /* margin-top: 50px; */
     display: flex;
     width: 100%;
     height: 60px;
     background-color: #0a2342;
+    justify-content: center;
 }
 
 footer .container{
