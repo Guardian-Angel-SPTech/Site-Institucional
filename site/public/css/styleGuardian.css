@@ -316,7 +316,7 @@ html{
 }
 
 .empresa-dir h1{
-    color: #000;
+    color: #0a2342;
     font-family: 'Jost';
     font-weight: 700;
     text-align: center;
@@ -451,6 +451,51 @@ html{
 
 /* Fim Requisitos */
 
+/* Inicio Area Contato */
+
+.area-contato{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.area-contato .container{
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.contato-esq{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.contato-dir{
+    border: 3px solid #EEC643;
+    display: flex;
+    border-radius: 5px;
+}
+
+.contato-esq p{
+    font-family: 'Jost';
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.area-contato h1{
+    font-family: 'Jost';
+    font-weight: 700;
+    color: #EEC643;
+    font-size: 42px;
+    padding-top: 20px;
+    padding-bottom: 12px;
+    /* text-decoration: underline; */
+}
+
+/* Fim Area Contato */
+
 /* Fim Corpo Página */
 
 /* Inicio Tela Cadastro */
@@ -575,17 +620,19 @@ html{
 /* Inicio Footer/Rodapé */
 
 footer{
-    /* margin-top: 50px; */
+    margin-top: 0;
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 60px;
     background-color: #0a2342;
-    justify-content: center;
+    justify-content: start;
+    align-items: center;
 }
 
 footer .container{
     justify-content: center;
     align-items: center;
+    height: 60px;
 }
 
 footer h1{
