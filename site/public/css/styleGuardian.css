@@ -472,16 +472,42 @@ html{
     align-items: flex-end;
 }
 
-.contato-dir{
-    border: 3px solid #EEC643;
-    display: flex;
-    border-radius: 5px;
+.contato-esq img{
+    width: 100%;
+    height: auto;
 }
 
-.contato-esq p{
+.contato-dir{
+    /* border: 3px solid #EEC643; */
+    display: flex;
+    border-radius: 5px;
+    flex-direction: column;
+}
+
+.telefone{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.email{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contato-dir img{
+    height: 30px;
+    width: auto;
+}
+
+.contato-dir p{
     font-family: 'Jost';
     font-size: 30px;
     font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-left: 20px;
 }
 
 .area-contato h1{
@@ -505,13 +531,15 @@ html{
     width: 100%;
     height: auto;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cadastro-esq{
     display: flex;
     height: 100%;
     width: 50%;
+    justify-content: center;
 }
 
 .cadastro-dir{
@@ -535,27 +563,28 @@ html{
     font-family: 'Inria Sans';
     font-weight: 700;
     color: #0a2342;
-    font-size: 48px;
+    font-size: 42px;
+    margin-bottom: 0;
 }
 
 .cadastro-dir p{
     font-family: 'Jost';
     color: #444444;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .cadastro-dir label{
     font-family: 'Jost';
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     color: #444444;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .cadastro-dir input{
     background-color: #D9D9D9;
     /* padding: 15px; */
-    height: 35px;
+    height: 32px;
     width: 100%;
     border-radius: 10px;
     border: none;
@@ -581,7 +610,7 @@ html{
 
 .cadastro-esq img{
     height: auto;
-    width: 100%;
+    width: 90%;
 }
 
 .form-cadastro button{
@@ -591,14 +620,14 @@ html{
     border-radius: 20px;
     font-family: 'Jost';
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     border: 3px solid #0a2342;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .form-cadastro button:hover{
     background-color: #ffffff;
-    color: #000;
+    color: #0a2342;
     border: 3px solid #0a2342;
     cursor: pointer;
 }
