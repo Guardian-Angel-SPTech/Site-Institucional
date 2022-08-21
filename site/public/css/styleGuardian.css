@@ -161,6 +161,7 @@ html{
     background-position: center;
     height: 500px;
     width: 100%;
+    background-size: cover;
     display: flex;
     /* border-bottom: 3px solid #EEC643; */
     flex-direction: row;
@@ -384,6 +385,24 @@ html{
     height: auto;
 }
 
+/* Inicio Teste Blob */
+
+.div-blob{
+    background-image: url('../assets/imgs/blob.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-blob h1{
+    font-family: 'Jost';
+}
+
+/* Fim Teste Blob */
+
 .requisitos-esq{
     display: flex;
     flex-direction: column;
@@ -391,6 +410,8 @@ html{
     height: auto;
     width: 38vw;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     border: 3px solid #EEC643;
     border-radius: 10px;
     padding-top: 50px;
@@ -427,6 +448,8 @@ html{
     height: auto;
     width: 38vw;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     border: 3px solid #EEC643;
     border-radius: 10px;
     padding-top: 50px;
@@ -470,6 +493,7 @@ html{
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+    width: 50%;
 }
 
 .contato-esq img{
@@ -482,6 +506,7 @@ html{
     display: flex;
     border-radius: 5px;
     flex-direction: column;
+    width: 50%;
 }
 
 .telefone{
@@ -512,8 +537,8 @@ html{
 
 .area-contato h1{
     font-family: 'Jost';
-    font-weight: 700;
-    color: #EEC643;
+    font-weight: bold;
+    color: #0a2342;
     font-size: 42px;
     padding-top: 20px;
     padding-bottom: 12px;
@@ -672,3 +697,76 @@ footer h1{
 }
 
 /* Fim Footer/Rodapé */
+
+/* Seção de medias */
+
+/* Responsável por deixar o site responsivo */
+
+@media (min-width: 576px) {
+
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+
+    /* Inicio Area Requisitos */
+    .cards-requisitos h1{
+        font-size: 4.5vh;
+    }
+
+    .card img{
+        height: 90px;
+        width: auto;
+    }
+
+    .req-texto{
+        font-size: 2.5vw;;
+    }
+
+    /* Fim Area Requisitos */
+
+    /* Inicio Area Empresa */
+
+    .empresa-dir p{
+        font-size: 20px;
+    }
+
+    p{
+        font-size: 17px;
+    }
+
+    li{
+        font-size: 20px;
+    }
+
+    /* Fim Area Empresa */
+
+    /* Inicio Area Contato */
+
+    .contato-dir p{
+        font-size: 20px;
+    }
+
+    .contato-dir img{
+        height: 20px;
+        width: auto;
+    }
+
+    .mapa{
+        width: auto;
+        height: 160px;
+    }
+
+    /* Fim Area Contato */
+}
+
+@media (min-width: 1200px) {
+
+}
+
+@media (min-width: 1400px) {
+
+}
