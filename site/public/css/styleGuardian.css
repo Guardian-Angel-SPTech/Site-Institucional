@@ -707,10 +707,255 @@ footer h1{
 
 /* Responsável por deixar o site responsivo */
 
+@media (min-width: 350px) {
+    .navbar img{
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar .cont-mei{
+        display: none;
+    }
+
+    .navbar button{
+        display: none;
+    }
+
+    .navbar .container{
+        align-items: center;
+    }
+
+    /* inicio area banner */
+
+    .banner-esq{
+        width: 15%;
+    }
+
+    .banner-dir{
+        display: flex;
+        width: 85%;
+        align-items: flex-end;
+        justify-content: center;
+        background-image: url('../assets/imgs/wave-banner.svg');
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+
+    .frase-banner{
+        font-size: 3.20vw;
+    }
+
+    /* fim area banner */
+
+    .area-cards{
+        height: auto;
+        text-align: center;
+    }
+
+    .area-cards h1{
+        font-size: 28px;
+    }
+
+    .cont-cards{
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+    }
+
+    .card{
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 70%;
+        border-radius: 50px;
+    }
+    
+    .card p{
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .card h1{
+        font-size: 24px;
+    }
+
+    .card img{
+        height: 80px;
+        width: auto;
+    }
+
+    .area-empresa{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .area-empresa .container{
+        flex-direction: column;
+    }
+
+    .area-empresa img{
+        height: 100px;
+        width: auto;
+        margin-bottom: 30px;
+    }
+
+    .area-empresa h1{
+        font-size: 36px;
+    }
+
+    .area-empresa p{
+        font-size: 14px;
+        padding: 0;
+        text-align: center;
+    }
+
+    /* Inicio Area Requisitos */
+
+    .cards-requisitos{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cards-requisitos h1{
+        font-size: 3.5vh;
+    }
+
+    .req-titulo{
+        font-size: 28px;
+    }
+
+    .req-texto{
+        font-size: 4vw;;
+    }
+
+    .requisitos-esq{
+        width: 80vw;
+        margin-bottom: 10px;
+    }
+
+    .requisitos-mei{
+        width: 80vw;
+        height: 3px;
+    }
+
+    .requisitos-dir{
+        width: 80vw;
+        margin-top: 10px;
+    }
+
+    .li-lista-min{
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .li-lista-rec{
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Fim Area Requisitos */
+
+    .contato-esq{
+        display: none;
+    }
+
+    .contato-dir{
+        width: 80%;
+        align-items: center;
+    }
+
+    .mapa{
+        width: 100%;
+    }
+
+    /* Inicio Area Contato */
+
+    .area-contato{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .area-contato .container{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .contato-esq img{
+        width: 100%;
+        height: auto;
+    }
+
+    .telefone{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .email{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .contato-dir img{
+        height: 20px;
+        width: auto;
+    }
+
+    .contato-dir p{
+        font-family: 'Jost';
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        margin-left: 20px;
+    }
+
+    .area-contato h1{
+        font-family: 'Jost';
+        font-weight: bold;
+        color: #0a2342;
+        font-size: 36px;
+        padding-top: 20px;
+        padding-bottom: 12px;
+        /* text-decoration: underline; */
+    }
+
+    /* Fim Area Contato */
+
+    footer{
+        text-align: center;
+    }
+
+    footer h1{
+        font-size: 12px;
+    }
+}
+
 @media (min-width: 576px) {
+
+    .banner{
+        justify-content: end;
+    }
+    
+
     .navbar img{
         display: none;
     }
+
+    .navbar .cont-mei{
+        display: block;
+    }
+
+    .navbar button{
+        display: block;
+    }
+
+    .navbar .container{
+        align-items: center;
+    }
+
 
     /* inicio area banner */
 
@@ -732,6 +977,10 @@ footer h1{
 
     .area-cards{
         height: auto;
+    }
+
+    .area-cards h1{
+        font-size: 42px;
     }
 
     .cont-cards{
@@ -892,6 +1141,10 @@ footer h1{
     }
 
     /* Fim Area Contato */
+
+    footer h1{
+        font-size: 18px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1100,6 +1353,17 @@ footer h1{
 
 @media (min-width: 992px) {
 
+    .banner{
+        background-image: url('../assets/imgs/call-center.jpeg');
+        background-position: center;
+        height: 500px;
+        width: 100%;
+        background-size: cover;
+        display: flex;
+        /* border-bottom: 3px solid #EEC643; */
+        flex-direction: row;
+    }
+
     .frase-banner{
         margin: 0;
         margin-bottom: 12px;
@@ -1108,6 +1372,20 @@ footer h1{
         font-size: 2.5vw;
         font-family: 'Inria Sans';
         font-weight: bold;
+    }
+
+    .banner-esq{
+        width: 50%;
+    }
+    
+    .banner-dir{
+        display: flex;
+        width: 50%;
+        align-items: flex-end;
+        justify-content: center;
+        background-image: url('../assets/imgs/wave-banner.svg');
+        background-repeat: no-repeat;
+        background-position: bottom;
     }
 
     /* Inicio Area Requisitos */
@@ -1224,6 +1502,16 @@ footer h1{
 
 @media (min-width: 1200px) {
 
+    .banner{
+        background-image: url('../assets/imgs/call-center.jpeg');
+        background-position: center;
+        height: 500px;
+        width: 100%;
+        background-size: cover;
+        display: flex;
+        /* border-bottom: 3px solid #EEC643; */
+        flex-direction: row;
+    }
     .frase-banner{
         margin: 0;
         margin-bottom: 12px;
@@ -1233,7 +1521,11 @@ footer h1{
         font-family: 'Inria Sans';
         font-weight: bold;
     }
-
+    
+    .banner-esq{
+        width: 50%;
+    }
+    
     .banner-dir{
         display: flex;
         width: 50%;
@@ -1243,11 +1535,7 @@ footer h1{
         background-repeat: no-repeat;
         background-position: bottom;
     }
-
-    .card img{
-        height: 120px;
-        width: auto;
-    }
+    
 
     /* Inicio Requisitos */
 
