@@ -152,6 +152,10 @@ html{
     cursor: pointer;
 }
 
+.icon-menu{
+    display: none;
+}
+
 /* Fim Menu */
 
 /* Inicio Banner */
@@ -701,6 +705,11 @@ footer h1{
     font-size: 20px;
 }
 
+.dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
 /* Fim Footer/Rodapé */
 
 /* Seção de medias */
@@ -708,9 +717,22 @@ footer h1{
 /* Responsável por deixar o site responsivo */
 
 @media (min-width: 350px) {
-    .navbar img{
+    /* .navbar img{
         display: flex;
         align-items: center;
+    } */
+
+    .icon-menu {
+        display: block;
+    }
+
+    .navbar{
+        height: 120px;
+    }
+
+    .navbar img{
+        height: 50px;
+        width: auto;
     }
 
     .navbar .cont-mei{
@@ -725,7 +747,24 @@ footer h1{
         align-items: center;
     }
 
+    .menu-inferior{
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .nav-item a{
+        font-size: 4.4vw;
+    }
+
+    .nav-item{
+        margin-top: 12px;
+    }
+
     /* inicio area banner */
+
+    .banner{
+        height: 350px;
+    }
 
     .banner-esq{
         width: 15%;
@@ -931,6 +970,15 @@ footer h1{
     footer h1{
         font-size: 12px;
     }
+
+    .dropdown{
+        display: none;
+    }
+
+    .menu-aberto{
+        height: 270px;
+    }
+
 }
 
 @media (min-width: 576px) {
@@ -940,9 +988,9 @@ footer h1{
     }
     
 
-    .navbar img{
+    /* .navbar img{
         display: none;
-    }
+    } */
 
     .navbar .cont-mei{
         display: block;
@@ -1149,7 +1197,7 @@ footer h1{
 
 @media (min-width: 768px) {
     .navbar img{
-        display: block;
+        /* display: block; */
     }
 
     /* inicio area banner */
@@ -1352,6 +1400,131 @@ footer h1{
 }
 
 @media (min-width: 992px) {
+
+    /* COLOCAR MENU AQ */
+
+    /* Inicio Menu */
+
+    .navbar{
+        position: sticky;
+        top: 0px;
+        background-color: #f1f0f0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 120px;
+        width: 100%;
+        border-bottom: 2px solid #0a2342;
+    }
+
+    .logo-menu{
+        display: block;
+    }
+
+    .icon-menu{
+        display: none;
+    }
+
+    .navbar .container{
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .menu-superior{
+        display: flex;
+        flex-direction: row;
+        background-color: #0a2342;
+        color: #f1f0f0;
+        height: 20px;
+        width: 100%;
+        justify-content: end;
+    }
+
+    .menu-superior p{
+        margin: 0px;
+    }
+
+    .menu-superior a{
+        margin-left: 25px;
+        margin-right: 25px;
+        font-family: 'Inria Sans';
+    }
+
+    .menu-inferior{
+        display: flex;
+        flex-direction: row;
+        height: 100px;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .navbar img{
+        height: 80px;
+        width: auto;
+    }
+
+    .navbar a{
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .nav-item{
+        margin-right: 50px;
+    }
+
+    .cont-esq{
+        display: flex;
+    }
+
+    .cont-mei{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .cont-dir{
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-item a{
+        color: #0a2342;
+        font-weight: bold;
+        font-size: 1.4vw;
+        font-family: 'Inria Sans';
+    }
+
+    .btn-download{
+        height: 40px;
+        width: 140px;
+        background-color: #f1f0f0;
+        border: 3px solid #0a2342;
+        border-radius: 5px;
+        color: #0a2342;
+        font-weight: bold;
+        font-size: 1.4vw;
+        font-family: 'Inria Sans';
+    }
+
+    .nav-list{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .btn-download:hover{
+        background-color: #0a2342;
+        border: 3px solid #0a2342;
+        border-radius: 5px;
+        color: #f1f1f1;
+        font-weight: bold;
+        font-size: 1.4vw;
+        font-family: 'Inria Sans';
+        cursor: pointer;
+    }
+
+    /* Fim Menu */
 
     .banner{
         background-image: url('../assets/imgs/call-center.jpeg');

@@ -52,14 +52,13 @@ statusComponente varchar(10),
 nomeComponente varchar(20)
 );
 
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO Empresa (cnpj, email, nomeEmpresa)
+	VALUES ('18406388000190', 'icefrezzy@gmail.com', 'Ice Frezzy');
+    
+INSERT INTO Maquina (nomeMaquina, MAC, statusMaquina, fkEmpresa)
+	VALUES ('Maquina Operador 01', '72-7F-BA-D4-EC-D3', 'OK', 1);
+    
+INSERT INTO Componente (statusComponente, nomeComponente)
+	VALUES ('Ativo', 'Memória RAM'),
+			('Ativo', 'CPU'),
+            ('Ativo', 'Disco');
