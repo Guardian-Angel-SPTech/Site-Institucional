@@ -976,7 +976,39 @@ footer h1{
     }
 
     .menu-aberto{
-        height: 270px;
+        height: 275px;
+    }
+
+    /* Tela Cadastro */
+
+    .cadastro-esq{
+        display: none;
+    }
+
+    .cadastro-dir{
+        width: 100%;
+    }
+
+    .campo-senha{
+        flex-direction: column;
+    }
+
+    .div-senha{
+        width: 100%;
+    }
+
+    .campo-senha{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .div-senha{
+        display: flex;
+        flex-direction: column;
+        width: 47%;
+        height: auto;
     }
 
 }
@@ -1671,6 +1703,24 @@ footer h1{
     }
 
     /* Fim Area Contato */
+
+    /* Tela Cadastro */
+
+    .cadastro-esq{
+        display: flex;
+        height: 100%;
+        width: 50%;
+        justify-content: center;
+    }
+
+    .cadastro-dir{
+        display: flex;
+        height: 100%;
+        width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (min-width: 1200px) {

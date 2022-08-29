@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/styleGuardian.css">
     </head>
     <body>
-        <nav class="navbar">
+        <nav class="navbar" id="navbar">
             <div class="menu-superior">
                 <a href="cadastro.html">Cadastro</a>
                 <p>|</p>
@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="menu-inferior">
                     <div class="cont-esq">
-                        <a href="index.html"><img src="assets/imgs/logo_v3.png"></a>
+                        <a href="index.html"><img src="assets/imgs/logo_v3.png" class="logo-menu"></a>
                     </div>
                     <div class="cont-mei">
                         <ul class="nav-list">
@@ -32,13 +32,32 @@
                                 <a href="#requisitos">Requisitos</a>
                             </li>
                             <li class="nav-item">
-                                <a>Contato</a>
+                                <a href="#contato">Contato</a>
                             </li>
                         </ul>
                     </div>
                     <div class="cont-dir">
                         <button class="btn-download">Download</button>
+                        <img src="assets/imgs/icon-menu.png" class="icon-menu" id="btn-menu" onclick="clicarBotao()">
                     </div>
+                </div>
+            </div>
+            <div class="container dropdown" id="dropdown">
+                <div>
+                    <ul class="nav-list dropdown" id="lista-dropdown">
+                        <li class="nav-item">
+                            <a href="#software">Nosso Produto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#empresa">Quem Somos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#requisitos">Requisitos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contato">Contato</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -70,3 +89,5 @@
         
     </body>
 </html>
+
+<script src="js/menu-dropdown.js"></script>
