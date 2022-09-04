@@ -981,6 +981,10 @@ footer h1{
 
     /* Tela Cadastro */
 
+    .dropcadastro{
+        display: none;
+    }
+
     .cadastro-esq{
         display: none;
     }
@@ -1228,9 +1232,6 @@ footer h1{
 }
 
 @media (min-width: 768px) {
-    .navbar img{
-        /* display: block; */
-    }
 
     /* inicio area banner */
 
@@ -1824,20 +1825,7 @@ footer h1{
 
     /* Fim Teste Blob */
 
-    .requisitos-esq{
-        display: flex;
-        flex-direction: column;
-        background-color: #f1f0f0;
-        height: auto;
-        width: 38vw;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        border: 3px solid #EEC643;
-        border-radius: 10px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
+    
 
     .requisitos-esq h1{
         font-family: 'Inria Sans';
