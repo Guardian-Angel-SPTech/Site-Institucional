@@ -69,22 +69,44 @@
             <div class="cadastro-dir">
                 <div class="form-cadastro">
                     <h1>Cadastre-se</h1>
-                    <p>Assine nosso serviço para sua empresa e garanta um suporte de maior qualidade</p>
-                    <label for="inp-cnpj">CNPJ</label>
-                    <input type="text" id="inp_cnpj">
-                    <label for="inp_empresa">Empresa</label>
-                    <input type="text" id="inp_empresa">
-                    <div class="campo-senha">
-                        <div class="div-senha">
-                            <label for="inp_senha">Senha</label>
-                            <input type="password" id="inp_senha">
+                    <p>Para contar com nosso serviço você precisa informar os dados da empresa e do funcionário que será responsável por administrar nosso produto dentro dessa empresa</p>
+                    <section id="dados_empresa">
+                        <p class="dados-quem">Dados da Empresa:</p>
+                        <label for="inp_cnpj">CNPJ</label>
+                        <input type="text" id="inp_cnpj">
+                        <label for="inp_empresa">Empresa</label>
+                        <input type="text" id="inp_empresa">
+                        <button onclick="proximoPasso()">Próximo</button>
+                    </section>
+                    <section id="dados_usuario">
+                        <p class="dados-quem">Dados do Usuário:</p>
+                        <label for="inp_nome">Nome:</label>
+                        <input type="text" id="inp_nome">
+                        <div class="campo-senha">
+                            <div class="div-senha">
+                                <label for="inp_cpf">CPF:</label>
+                                <input type="text" id="inp_cpf">
+                            </div>
+                            <div class="div-senha">
+                                <label for="inp_email">Email:</label>
+                                <input type="email" id="inp_email">
+                            </div>
                         </div>
-                        <div class="div-senha">
-                            <label for="inp_conf_senha">Confirmar Senha</label>
-                            <input type="password" id="inp_conf_senha">
+                        <div class="campo-senha">
+                            <div class="div-senha">
+                                <label for="inp_senha">Senha</label>
+                                <input type="password" id="inp_senha">
+                            </div>
+                            <div class="div-senha">
+                                <label for="inp_conf_senha">Confirmar Senha</label>
+                                <input type="password" id="inp_conf_senha">
+                            </div>
                         </div>
-                    </div>
-                    <button onclick="cadastrar()">Cadastre-se</button>
+                        <div class="linha-botao">
+                            <button onclick="passoAnterior()">Anterior</button>
+                            <button onclick="cadastrar()">Cadastre-se</button>
+                        </div>
+                    </section>
                     <p>Já possui cadastro? faça o <a class="tag-a-cadastro-login" href="login.html">login</a></p>
                 </div>
             </div>
@@ -100,6 +122,7 @@
 </html>
 
 <script src="js/menu-dropdown.js"></script>
+<script src="js/passos-cadastro.js"></script>
 
 <script>
     function cadastrar() {
@@ -107,6 +130,8 @@
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
+
+        //LEMBRAR DE PEGAR OS DADOS DOS '2 FORMULÁRIOS' PARA REALIZAR O INSERT NOS 2 BANCOS
         var cnpjVar = inp_cnpj.value;
         var empresaVar = inp_empresa.value;
         var senhaVar = inp_senha.value;

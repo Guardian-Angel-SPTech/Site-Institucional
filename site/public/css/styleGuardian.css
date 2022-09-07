@@ -678,6 +678,32 @@ html{
     color: #b89934;
 }
 
+.linha-botao{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.linha-botao button{
+    width: 45%;
+}
+
+.dados-quem{
+    font-weight: bold;
+    font-size: 24px !important;
+    color: #0a2342 !important;
+}
+
+#dados_usuario{
+    display: none;
+}
+
+#dados_empresa{
+    display: flex;
+    flex-direction: column;
+}
+
 /* Fim Tela Cadastro */
 
 /* Inicio Footer/Rodapé */
