@@ -1,8 +1,14 @@
-const leftBtn = document.getElementById("btn-l-aside")
+let btn0 = document.getElementsByClassName("menu-collapse")[0]
+let btn1 = document.getElementsByClassName("menu-collapse")[1]
+let btn2 = document.getElementsByClassName("menu-collapse")[2]
 
-leftBtn.addEventListener('click', () => {
-    const list = document.getElementsByClassName("list-collapse")[0]
-    const arrow = document.getElementById("btn-arrow")
+btn0.addEventListener('click', collapse(0))
+btn1.addEventListener('click', collapse(1))
+btn2.addEventListener('click', collapse(2))
+
+function collapse(i) {
+    const list = document.getElementsByClassName("list-collapse")[i]
+    const arrow = document.getElementsByClassName("btn-arrow")[i]
 
     if (list.style.height != "0px") {
 
@@ -26,5 +32,4 @@ leftBtn.addEventListener('click', () => {
 
         lisclearTimeout(list);
     }
-
-})
+}

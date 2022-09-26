@@ -16,12 +16,18 @@ img{
     user-select: none;
 }
 
+main{
+    margin: 0 0 0 200px ;
+    width: calc(100% - 400px);
+}
+
 :hover{
     transition: 300ms;
 }
 
-/* ---------------------------- ÍNICIO - ASIDE ---------------------------- */
-.side-bar{
+
+/* ---------------------------- ÍNICIO - LEFT ASIDE ---------------------------- */
+.l-side-bar{
     background-color: #7e90a6;
     width: 200px;
     height: 100vh;
@@ -69,7 +75,7 @@ img{
     background-color: #9b9292;
 }
 
-.menu-collapse > img {
+.btn-arrow {
     --height: 35px;
     position: absolute;
     height: var(--height);
@@ -112,4 +118,18 @@ img{
 #exit:hover{
     background-color: #ac2b27;
 }
-/* ---------------------------- FIM - ASIDE ---------------------------- */
+/* ---------------------------- FIM - LEFT ASIDE ---------------------------- */
+
+
+/* ---------------------------- ÍNICIO - RIGHT ASIDE ---------------------------- */
+.r-side-bar{
+    background-color: #d9d9d9;
+    --width: 200px;
+    width: var(--width);
+    height: 70vh;
+    position: fixed;
+    bottom: 0;
+    left: calc(100% - var(--width));
+}
+
+/* ---------------------------- FIM - RIGHT ASIDE ---------------------------- */

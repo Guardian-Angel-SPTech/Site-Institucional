@@ -14,19 +14,20 @@
 
 <body>
     <!-- Barra de navegação lateral -->
-    <aside class="side-bar">
+    <aside class="l-side-bar">
         <section class="wrapper">
             <figure class="logo">
                 <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel">
             </figure>
 
-            <label>Olá, <span id="hello_message">cargo</span></label>
+            <label>Olá, <span id="hello-message1">cargo</span></label>
 
             <div>
-                <button type="button" class="menu-collapse" id="btn-l-aside">
+                <button type="button" class="menu-collapse">
                     Funcionários
-                    <img id="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
+                
                 <ul class="list-collapse">
                     <li id="1">Funcionário 1</li>
                 </ul>
@@ -37,9 +38,41 @@
 
     </aside>
 
+    <aside class="r-side-bar">
+        <section class="wrapper">
+            <div>
+                <button type="button" class="menu-collapse">
+                    Funcionários
+                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+                </button>
+                
+                <ul class="list-collapse">
+                    <li id="1">Funcionário 1</li>
+                </ul>
+            </div>
+
+            <div>
+                <button type="button" class="menu-collapse">
+                    Funcionários
+                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+                </button>
+                <ul class="list-collapse">
+                    <li id="1">Funcionário 1</li>
+                </ul>
+            </div>
+        </section>
+    </aside>
+
     <main>
-        <!-- Conteúdo da página -->
-        <section class="page-content">
+        <label>Olá, <span id="hello-message2">cargo</span>! Bem vindo ao seu portal!</label>
+        
+        <section class="dashboard">
+            <article class="fill">
+                <div style="position: relative; height:100%; width:100%">
+                    <canvas id="chart-1" width="1000" height="281"></canvas>
+                </div>
+            </article>
+
         </section>
     </main>
 </body>
