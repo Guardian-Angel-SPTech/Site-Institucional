@@ -1,0 +1,69 @@
+.dashboard{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.controlled {
+    color: #025302;
+    background-color: #06c40691;
+}
+
+.moderate {
+    color: #535202;
+    background-color: #c4c10691;
+}
+
+.danger {
+    color: #530202;
+    background-color: #c4060691;
+}
+
+/* Tabela com informações da fazenda */
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    background-color: #e5d0d0;
+}
+
+.box h2 {
+    text-align: center;
+    font-size: 27px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+}
+
+:is(.box) table, th, td, thead {
+    height: 20px;
+    font-size: 15px;
+    text-align: center;
+    border: #00000021 1px solid;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #000;
+}
+
+.table-container {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+tr {
+    height: 30px;
+}
+
+td, th {
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+}

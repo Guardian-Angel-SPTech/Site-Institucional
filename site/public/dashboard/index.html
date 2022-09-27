@@ -23,11 +23,11 @@
             <label>Olá, <span id="hello-message1">cargo</span></label>
 
             <div>
-                <button type="button" class="menu-collapse">
+                <button type="button" id="carlos" class="menu-collapse">
                     Funcionários
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-                
+
                 <ul class="list-collapse">
                     <li id="1">Funcionário 1</li>
                 </ul>
@@ -45,7 +45,7 @@
                     Funcionários
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-                
+
                 <ul class="list-collapse">
                     <li id="1">Funcionário 1</li>
                 </ul>
@@ -65,18 +65,20 @@
 
     <main>
         <label>Olá, <span id="hello-message2">cargo</span>! Bem vindo ao seu portal!</label>
-        
-        <section class="dashboard">
-            <article class="fill">
-                <div style="position: relative; height:100%; width:100%">
-                    <canvas id="chart-1" width="1000" height="281"></canvas>
-                </div>
-            </article>
 
+        <section class="dashboard">
+            <div style="position: relative; height:100%; width:40%">
+                <canvas id="chart-1" width="100%" height="100%"></canvas>
+            </div>
+
+            <div class="process">
+                <section id="process-table" class="table-container"></section>
+            </div>
         </section>
     </main>
 </body>
 
 <script src="js/global.js"></script>
+<script src="js/dashboard.js"></script>
 
 </html>
