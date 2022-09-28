@@ -10,9 +10,6 @@ function tablesInit(){
     processTableId.innerHTML = ` 
         <!-- Tabela das áreas mais instáveis -->
         <article>
-            <h2>
-                Lista de processos
-            </h2>
             <table>
                 <tbody id="table1">
                     <tr>
@@ -43,50 +40,71 @@ function tables() {
 
 // Gráficos
 function chart1() {
-    const chart = document.getElementById('chart-1').getContext('2d')
-
+    const chart = document.getElementById('chart-1').getContext('2d');
     // Dados para testes
-    const ram = []
-    const label = []
+    let cpu = []
+    let ram = []
+    let disco = []
+    let label = []
     const limit = parseInt(Math.random() * 4) + 3
 
     for (let i = 1; i <= limit; i++) {
+        cpu.push(parseInt(Math.random() * 99) + 1)
         ram.push(parseInt(Math.random() * 99) + 1)
-        label.push('Ram ' + i)
+        disco.push(parseInt(Math.random() * 99) + 1)
+        label.push('Tempo ' + i)
     }
 
     const chartConfig = new Chart(chart, {
         type: 'line',
         data: {
-            labels: label,
             datasets: [{
                 label: 'Ram',
                 data: ram,
+                // this dataset is drawn below
+                order: 2,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    '#00ff570f'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    '#00ff57'
                 ],
-                borderWidth: 3
-            }]
+                borderWidth: 1
+            }, {
+                label: 'Cpu',
+                data: cpu,
+                type: 'line',
+                // this dataset is drawn on top
+                order: 1,
+                backgroundColor: [
+                    '#ff2e000f'
+                ],
+                borderColor: [
+                    '#ff2e00'
+                ],
+                borderWidth: 2
+            }, {
+                label: 'Disco',
+                data: disco,
+                type: 'line',
+                // this dataset is drawn on top
+                order: 3,
+                backgroundColor: [
+                    '#00a3ff0f'
+                ],
+                borderColor: [
+                    '#00a3ff'
+                ],
+                borderWidth: 2
+            }],
+            labels: label
         },
         options: {
             scales: {
                 y: {
                     beginAtZero: true
                 }
-            },
+            }
         }
     });
 }
@@ -137,8 +155,8 @@ function plotarGrafico(resposta, fkSensor) {
                 data: []
             },
             {
-                yAxisID: 'y-temperatura',
-                label: 'Temperatura',
+                yAxisID: 'y-ram',
+                label: 'ram',
                 borderColor: '#FFF',
                 backgroundColor: '#32b9cd8f',
                 fill: true,
@@ -151,7 +169,7 @@ function plotarGrafico(resposta, fkSensor) {
         const registro = resposta[i];
         dados.labels.push(registro.horario);
         dados.datasets[0].data.push(registro.ram);
-        dados.datasets[1].data.push(registro.temperatura);
+        dados.datasets[1].data.push(registro.ram);
     }
 
     console.log(JSON.stringify(dados));
@@ -174,7 +192,7 @@ function plotarGrafico(resposta, fkSensor) {
                     type: 'linear',
                     display: true,
                     position: 'left',
-                    id: 'y-temperatura',
+                    id: 'y-ram',
                     ticks: {
                         beginAtZero: true,
                         max: 50,
@@ -226,8 +244,8 @@ function atualizarGrafico(fkSensor, dados) {
                 dados.datasets[0].data.shift();  // apagar o primeiro de ram
                 dados.datasets[0].data.push(novoRegistro[0].ram); // incluir uma nova medida de ram
 
-                dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+                dados.datasets[1].data.shift();  // apagar o primeiro de ram
+                dados.datasets[1].data.push(novoRegistro[0].ram); // incluir uma nova medida de ram
 
                 window.grafico_linha.update();
 
