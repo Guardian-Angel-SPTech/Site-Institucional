@@ -72,10 +72,10 @@
                     <section id="dados_empresa">
                         <p class="dados-quem">Dados da Empresa:</p>
                         <label for="inp_cnpj">CNPJ</label>
-                        <input type="text" id="inp_cnpj">
+                        <input type="number" id="inp_cnpj">
                         <label for="inp_empresa">Empresa</label>
                         <input type="text" id="inp_empresa">
-                        <button onclick="proximoPasso()">Próximo</button>
+                        <button id="btn_proximo">Próximo</button>
                     </section>
                     <section id="dados_usuario">
                         <p class="dados-quem">Dados do Usuário:</p>
@@ -102,8 +102,8 @@
                             </div>
                         </div>
                         <div class="linha-botao">
-                            <button onclick="passoAnterior()">Anterior</button>
-                            <button onclick="cadastrar()">Cadastre-se</button>
+                            <button id="btn_voltar">Anterior</button>
+                            <button id="btn_cadastrar">Cadastre-se</button>
                         </div>
                     </section>
                     <p>Já possui cadastro? Faça seu <a class="tag-a-cadastro-login" href="login.html">login.</a></p>
@@ -121,76 +121,4 @@
 </html>
 
 <script src="js/menu-dropdown.js"></script>
-<script src="js/passos-cadastro.js"></script>
-
-<script>
-    function cadastrar() {
-        // aguardar();
-
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-
-        //LEMBRAR DE PEGAR OS DADOS DOS '2 FORMULÁRIOS' PARA REALIZAR O INSERT NOS 2 BANCOS
-        var cnpjVar = inp_cnpj.value;
-        var empresaVar = inp_empresa.value;
-        var senhaVar = inp_senha.value;
-        var confirmacaoSenhaVar = inp_conf_senha.value;
-
-        if (cnpjVar == "" || empresaVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            // cardErro.style.display = "block"
-            // mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            alert('Todos os campos em branco')
-
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-            console.log('Nenhum campo em branco')
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                cnpjServer: cnpjVar,
-                empresaServer: empresaVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) { 
-            console.log('passou do fetch')
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                // cardErro.style.display = "block";
-
-               // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-                alert('passei aqui ok!!');
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-                
-                limparFormulario();
-               // finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            //finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        // cardErro.style.display = "none"
-        console.log('aqui no ultimo')
-    }
-
-</script>
+<script src="js/cadastro.js"></script>

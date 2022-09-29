@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const router = express.Router();
 
-var usuarioController = require("../controllers/usuarioController");
+const usuarioController = require("../controllers/usuarioController");
 
 router.get("/", function (req, res) {
     usuarioController.testar(req, res);
@@ -16,9 +16,16 @@ router.post("/cadastrar", function (req, res) {
     usuarioController.cadastrar(req, res);
 })
 
-// Recebendo os dados do html e direcionando para a função registrar de usuarioController.js
-router.post("/registrar", function (req, res) {
-    usuarioController.registrar(req, res);
+router.post("/registrarusuario", function (req, res) {
+    usuarioController.registrarusuario(req, res);
+})
+
+router.post("/listarusuario", function (req, res) {
+    usuarioController.listarusuario(req, res);
+})
+
+router.post("/excluirusuario", function (req, res) {
+    usuarioController.excluirusuario(req, res);
 })
 
 router.post("/autenticar", function (req, res) {

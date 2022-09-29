@@ -1,31 +1,22 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(idUsuario) {
+function buscarUltimasMedidas(fkSensor, limite_linhas) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top ${limite_linhas}
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        momento,
-                        CONVERT(varchar, momento, 108) as momento_grafico
-                    from medida
-                    where fk_aquario = ${idUsuario}
-                    order by id desc`;
+        instrucaoSql = `SELECT TOP ${limite_linhas}
+        temperatura, umidade, horario,
+                        CONVERT(varchar, horario, 108) as horario
+                    FROM dadosSensor
+                    WHERE fkSensor = ${fkSensor}
+                    ORDER BY idDado DESC`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = 
-        `SELECT idRegistro as registro, peso as peso from registro
-        WHERE fkUsuario = ${idUsuario};`
-    
-        // `select 
-        // dht11_temperatura as temperatura, 
-        // dht11_umidade as umidade,
-        //                 momento,
-        //                 DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-        //             from medida
-        //             where fk_aquario = ${idUsuario}
-        //             order by id desc limit ${limite_linhas}`;
+        instrucaoSql = `SELECT 
+        temperatura, umidade, DATE_FORMAT(horario,'%H:%i:%s') AS horario
+                    FROM dadosSensor
+                    WHERE fkSensor = ${fkSensor}
+                    ORDER BY idDado DESC LIMIT ${limite_linhas}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -35,33 +26,25 @@ function buscarUltimasMedidas(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal(idUsuario) {
+function buscarMedidasEmTempoReal(fkSensor) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 1
-        dht11_temperatura as temperatura, 
-        dht11_umidade as umidade,  
-                        CONVERT(varchar, momento, 108) as momento_grafico, 
-                        fk_aquario 
-                        from medida where fk_aquario = ${idUsuario} 
-                    order by id desc`;
+        instrucaoSql = `SELECT TOP 1
+        temperatura, umidade, 
+                        CONVERT(varchar, horario, 108) as horario, 
+                        fkSensor 
+                        FROM dadosSensor WHERE fkSensor = ${fkSensor} 
+                    ORDER BY idDado DESC`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql =
-        // `select 
-        // dht11_temperatura as temperatura, 
-        // dht11_umidade as umidade,
-        //                 DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico, 
-        //                 fk_aquario 
-        //                 from medida where fk_aquario = ${idUsuario} 
-        //             order by id desc limit 1`;
-
-        // `select peso from registro where fkUsuario = ${idUsuario} order by iDRegistro desc;`
-
-        `SELECT idRegistro as registro, peso as peso from registro
-        WHERE fkUsuario = ${idUsuario} `;
+        instrucaoSql = `SELECT 
+        temperatura, umidade,
+                        DATE_FORMAT(horario,'%H:%i:%s') as horario, 
+                        fkSensor 
+                        FROM dadosSensor WHERE fkSensor = ${fkSensor} 
+                    ORDER BY idDado DESC limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return

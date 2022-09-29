@@ -19,16 +19,26 @@ html{
 
 ::-webkit-scrollbar {
     width: 8px;
-  }
+}
 
-  ::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     background-color: #5b88c0;
-  } 
+} 
 
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: #0a2342;
-  }
+}
 
+/* Tirando a seta do input:number no Chrome, Safari, Edge, Opera*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* Tirando a seta do input:number no Firefox*/
+input[type=number] {
+    -moz-appearance: textfield;
+}
 /* Fim Configurações */
 
 /* Criação Container */
