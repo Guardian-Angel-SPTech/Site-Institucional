@@ -80,9 +80,9 @@ function validarCnpj() {
 }
 
 function validarNomeEmpresa() {
-    const name = document.getElementById('inp_empresa').value
+    const nome = document.getElementById('inp_empresa').value
 
-    if (name == '') {
+    if (nome == '') {
         alert("Campo Empresa vazio")
         return false
     }
@@ -107,6 +107,21 @@ function voltarCampo() {
     secao_empresa.style.display = "flex";
     secao_empresa.style.flexDirection = "column";
     secao_usuario.style.display = "none";
+}
+
+// Validando nome
+function validarNome() {
+    const nome = document.getElementById('inp_nome').value
+    const regex = /^[a-z].* {1,}[a-z]{1,}/gi
+
+    // Validando a quantidade de palavra e caracteres
+    if (nome == '') {
+        return false
+    } else if (regex.test(nome)) {
+        return true
+    } else {
+        return false
+    }
 }
 
 function validarSenha() {
@@ -145,7 +160,6 @@ function validarConfimarSenha() {
 function validarEmail() {
     const email = document.getElementById('inp_email').value
     const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
-    // Essa expressão não garante a veracidade 100% de um email, para ser 100% precisa mandar confirmação por email
 
     // Validando email se os caracteres do email é válido
     if (email == '') {
@@ -159,20 +173,6 @@ function validarEmail() {
     }
 }
 
-// Validando nome
-function validarName() {
-    const name = document.getElementById('inp_name').value
-    const regex = /^[a-z].* {1,}[a-z]{1,}/gi
-
-    // Validando a quantidade de palavra e caracteres
-    if (name == '') {
-        return false
-    } else if (regex.test(name)) {
-        return true
-    } else {
-        return false
-    }
-}
 
 // Enviando os dados para o banco
 function register() {
@@ -180,8 +180,8 @@ function register() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    const nameUser = inp_name.value;
-    const nameCorp = inp_name_corp.value;
+    const nomeUser = inp_nome.value;
+    const nomeCorp = inp_nome_corp.value;
     const cnpj = inp_cnpj.value;
     const email = inp_email.value;
     const position = 'Chefe';
@@ -196,8 +196,8 @@ function register() {
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
-            nameServer: nameUser,
-            nameCorpServer: nameCorp,
+            nomeServer: nomeUser,
+            nomeCorpServer: nomeCorp,
             emailServer: email,
             cnpjServer: cnpj,
             positionServer: position,
