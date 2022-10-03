@@ -1,38 +1,17 @@
 const processTableId = document.getElementById("process-table")
 const processStatus = ['danger', 'moderate', 'controlled']
-const process = [1, 2, 3, 4, 5]
 chart1()
 
-processTableId.addEventListener('load', tablesInit())
-function tablesInit(){
-
-    // Redefinindo tabelas
-    processTableId.innerHTML = ` 
-        <!-- Tabela das áreas mais instáveis -->
-        <article>
-            <table>
-                <tbody id="table1">
-                    <tr>
-                        <th>Processo</th>
-                        <th>Uso (%)</th>
-                    </tr>
-                </tbody>
-            </table>
-        </article>
-        `
-
-    tables()
-}
-
+processTableId.addEventListener('load', tables())
 function tables() {
-    // Criando a tabela das máquinas mais estáveis
+    // Preenchendo a tabela com os processos
+    const process = [1, 2, 3, 4, 5]
     const processTable1 = document.getElementById("table1")
     for (let i = 0; i < process.length; i++) {
-        let status = parseInt(Math.random() * 3); // Gerando o status aleatóriamente
         processTable1.insertAdjacentHTML("beforeEnd", `
                 <tr>
                     <td>Processo ${process[i]}</td>
-                    <td>13</td>
+                    <td>Uso ${i+1} %</td>
                 </tr>
         `)
     }
