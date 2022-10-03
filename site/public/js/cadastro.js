@@ -109,7 +109,6 @@ function voltarCampo() {
     secao_usuario.style.display = "none";
 }
 
-// Validando nome
 function validarNome() {
     const nome = document.getElementById('inp_nome').value
     const regex = /^[a-z].* {1,}[a-z]{1,}/gi
@@ -124,39 +123,45 @@ function validarNome() {
     }
 }
 
-function validarSenha() {
-    const senha = document.getElementById('inp_senha').value
-    const regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,20}$/
+function validarCPF() {
+    const cpf = document.getElementById("inp_cpf")
 
-    // Verificando se a senha é forte com regex
-    if (senha == '') {
-        return false
-    }
-
-    if (regex.test(senha)) {
-        return true
-    } else {
-        return false
-    }
+	cpf = cpf.replace(/[^\d]+/g,'');	
+	if(cpf == '') return false;	
+	// Elimina CPFs invalidos conhecidos	
+	if (cpf.length != 11 || 
+		cpf == "00000000000" || 
+		cpf == "11111111111" || 
+		cpf == "22222222222" || 
+		cpf == "33333333333" || 
+		cpf == "44444444444" || 
+		cpf == "55555555555" || 
+		cpf == "66666666666" || 
+		cpf == "77777777777" || 
+		cpf == "88888888888" || 
+		cpf == "99999999999")
+			return false;		
+	// Valida 1o digito	
+	add = 0;	
+	for (i=0; i < 9; i ++)		
+		add += parseInt(cpf.charAt(i)) * (10 - i);	
+		rev = 11 - (add % 11);	
+		if (rev == 10 || rev == 11)		
+			rev = 0;	
+		if (rev != parseInt(cpf.charAt(9)))		
+			return false;		
+	// Valida 2o digito	
+	add = 0;	
+	for (i = 0; i < 10; i ++)		
+		add += parseInt(cpf.charAt(i)) * (11 - i);	
+	rev = 11 - (add % 11);	
+	if (rev == 10 || rev == 11)	
+		rev = 0;	
+	if (rev != parseInt(cpf.charAt(10)))
+		return false;		
+	return true;   
 }
 
-// Checando se as duas senhas são iguais
-function validarConfimarSenha() {
-    const senha = document.getElementById('inp_senha').value
-    const senhaConf = document.getElementById('inp_senha_conf').value
-
-    if (senhaConf.length >= 6) {
-        if (senha == senhaConf) {
-            return true
-        } else {
-            return false
-        }
-    } else {
-        return false
-    }
-}
-
-// Validando email
 function validarEmail() {
     const email = document.getElementById('inp_email').value
     const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
@@ -173,18 +178,39 @@ function validarEmail() {
     }
 }
 
+function validarConfimarSenha() {
+    const senha = document.getElementById('inp_senha').value
+    const senhaConf = document.getElementById('inp_conf_senha').value
+
+    if (senhaConf.length >= 6) {
+        if (senha == senhaConf) {
+            return true
+        } else {
+            return false
+        }
+    } else {
+        return false
+    }
+}
+
+function checarCadastro(){
+    if (!validarNome() | !validarCPF() | !validarEmail() | !validarEmail() | !validarConfimarSenha()) {
+        return false
+    }
+
+    cadastrar()
+}
 
 // Enviando os dados para o banco
-function register() {
-    wait()
+function cadastrar() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     const nomeUser = inp_nome.value;
-    const nomeCorp = inp_nome_corp.value;
+    const nomeEmpresa = inp_empresa.value;
     const cnpj = inp_cnpj.value;
     const email = inp_email.value;
-    const position = 'Chefe';
+    const cargo = 'Chefe';
     const senha = inp_senha.value;
 
     // Enviando o valor da nova input
@@ -196,11 +222,11 @@ function register() {
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
-            nomeServer: nomeUser,
-            nomeCorpServer: nomeCorp,
+            nomeUserServer: nomeUser,
+            nomeEmpresaServer: nomeEmpresa,
             emailServer: email,
             cnpjServer: cnpj,
-            positionServer: position,
+            cargoServer: cargo,
             senhaServer: senha,
         })
     }).then(function (resposta) {
@@ -215,99 +241,8 @@ function register() {
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        phrase = "Houve um erro ao tentar realizar o cadastro!"
-        stopWait()
-        modalErro(phrase)
+        alert("Houve um erro ao tentar realizar o cadastro!")
     });
-
-    return false;
-}
-
-function wait() {
-    let loading = document.getElementById('loading_gif')
-    btn_prev.style.opacity = '0'
-    btn_next.style.opacity = '0'
-    loading.style.display = 'block'
-}
-
-function stopWait() {
-    let loading = document.getElementById('loading_gif')
-    loading.style.display = 'none'
-    btn_prev.style.opacity = '1'
-    btn_next.style.opacity = '1'
-}
-
-function modalSucess() {
-    let modal_message = document.getElementById('modal_message')
-    let title = document.getElementById('title_message')
-    let message = document.getElementById('message')
-    let img = document.getElementById('modal_loading_gif')
-
-    modal_message.style.opacity = "1"
-    img.style.display = "block"
-    title.innerHTML = "Cadastro realizado com sucesso"
-    message.innerHTML = "Redirecionando"
-
-    setTimeout(() => {
-        modal_message.style.opacity = "0"
-    }, 2000);
-}
-
-function modalErro(phrase) {
-    let modal_message = document.getElementById('modal_message')
-    let title = document.getElementById('title_message')
-    let message = document.getElementById('message')
-    let img = document.getElementById('modal_loading_gif')
-
-    modal_message.style.opacity = "1"
-    img.style.display = "none"
-    title.innerHTML = phrase
-    message.innerHTML = ""
-
-    setTimeout(() => {
-        modal_message.style.opacity = "0"
-    }, 2000);
-}
-
-function login(email, senha) {
-    fetch("/usuarios/autenticar", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            emailServer: email,
-            senhaServer: senha
-        })
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO login()!")
-
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json[0]);
-                console.log(JSON.stringify(json[0]));
-
-                sessionStorage.ID_USUARIO = json[0].idUsuario;
-                sessionStorage.EMAIL_USUARIO = json[0].email;
-                sessionStorage.NOME_USUARIO = json[0].nomeUsuario;
-                sessionStorage.CARGO_USUARIO = json[0].cargo;
-
-                sessionStorage.ID_EMPRESA = json[0].idEmpresa;
-                sessionStorage.NOME_EMPRESA = json[0].nomeEmpresa;
-                sessionStorage.CNPJ_EMPRESA = json[0].cnpj;
-
-                modalSucess()
-                setTimeout(() => {
-                    window.location = "dashboard/index.html";
-                }, 1000);
-            });
-        }
-
-    }).catch(function (erro) {
-        console.log(erro);
-    })
 
     return false;
 }

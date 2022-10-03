@@ -26,15 +26,15 @@ function listar(req, res) {
 
 function entrar(req, res) {
     const email = req.body.emailServer;
-    const pass = req.body.passServer;
+    const senha = req.body.senhaServer;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (pass == undefined) {
+    } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
         
-        usuarioModel.entrar(email, pass)
+        usuarioModel.entrar(email, senha)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -60,30 +60,30 @@ function entrar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    const nameUser = req.body.nameServer;
-    const nameCorp = req.body.nameCorpServer;
+    const nomeUser = req.body.nameServer;
+    const nomeEmpresa = req.body.nomeEmpresaServer;
     const cnpj = req.body.cnpjServer;
     const email = req.body.emailServer;
-    const position = req.body.positionServer;
-    const pass = req.body.passServer;
+    const cargo = req.body.cargoServer;
+    const senha = req.body.senhaServer;
 
     // Faça as validações dos valores
-    if (nameUser == undefined) {
+    if (nomeUser == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } else if (nameCorp == undefined) {
+    } else if (nomeEmpresa == undefined) {
         res.status(400).send("O nome da empresa está undefined!");
     } else if (cnpj == undefined) {
         res.status(400).send("Seu CNPJ está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (position == undefined) {
+    } else if (cargo == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (pass == undefined) {
+    } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
         
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nameUser, nameCorp, cnpj, email, position, pass)
+        // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrar(nomeUser, nomeEmpresa, cnpj, email, cargo, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -102,26 +102,26 @@ function cadastrar(req, res) {
 }
 
 function registrarusuario(req, res) {
-    const nameUser = req.body.nameServer;
+    const nomeUser = req.body.nameServer;
     const email = req.body.emailServer;
-    const position = req.body.positionServer;
+    const cargo = req.body.cargoServer;
     const idEmpresa = req.body.idEmpresaServer;
-    const pass = req.body.passServer;
+    const senha = req.body.senhaServer;
 
     // Faça as validações dos valores
-    if (nameUser == undefined) {
+    if (nomeUser == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (position == undefined) {
+    } else if (cargo == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (idEmpresa == undefined) {
         res.status(400).send("idEmpresa está undefined!");
-    } else if (pass == undefined) {
+    } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {     
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.registrarusuario(nameUser, email, position, pass, idEmpresa)
+        // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.registrarusuario(nomeUser, email, cargo, senha, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -171,7 +171,7 @@ function excluirusuario(req, res) {
     if (idUsuario == undefined) {
         res.status(400).send("idUsuario está undefined!");
     } else {
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
         usuarioModel.excluirusuario(idUsuario)
             .then(
                 function (resultado) {
