@@ -25,23 +25,23 @@ function listar(req, res) {
 }
 
 function entrar(req, res) {
-    const email = req.body.emailServer;
+    const cnpj = req.body.cnpjServer;
     const senha = req.body.senhaServer;
 
-    if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+    if (cnpj == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
         
-        usuarioModel.entrar(email, senha)
+        usuarioModel.entrar(cnpj, senha)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
 
                     if (resultado.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
+                        res.status(403).send("CNPJ e/ou senha inválido(s)");
                     } else {
                         console.log(resultado);
                         res.json(resultado[0]);
@@ -60,11 +60,12 @@ function entrar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    const nomeUser = req.body.nameServer;
+    const nomeUser = req.body.nomeUserServer;
     const nomeEmpresa = req.body.nomeEmpresaServer;
-    const cnpj = req.body.cnpjServer;
     const email = req.body.emailServer;
-    const cargo = req.body.cargoServer;
+    const cpf = req.body.cpfServer;
+    const cnpj = req.body.cnpjServer;
+    const acesso = req.body.acessoServer;
     const senha = req.body.senhaServer;
 
     // Faça as validações dos valores
@@ -72,18 +73,20 @@ function cadastrar(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (nomeEmpresa == undefined) {
         res.status(400).send("O nome da empresa está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("O cpf está undefined!");
     } else if (cnpj == undefined) {
         res.status(400).send("Seu CNPJ está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (cargo == undefined) {
-        res.status(400).send("Seu email está undefined!");
+    } else if (acesso == undefined) {
+        res.status(400).send("Seu acesso está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
         
         // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nomeUser, nomeEmpresa, cnpj, email, cargo, senha)
+        usuarioModel.cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -104,7 +107,7 @@ function cadastrar(req, res) {
 function registrarusuario(req, res) {
     const nomeUser = req.body.nameServer;
     const email = req.body.emailServer;
-    const cargo = req.body.cargoServer;
+    const acesso = req.body.acessoServer;
     const idEmpresa = req.body.idEmpresaServer;
     const senha = req.body.senhaServer;
 
@@ -113,7 +116,7 @@ function registrarusuario(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (cargo == undefined) {
+    } else if (acesso == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (idEmpresa == undefined) {
         res.status(400).send("idEmpresa está undefined!");
@@ -121,7 +124,7 @@ function registrarusuario(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {     
         // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.registrarusuario(nomeUser, email, cargo, senha, idEmpresa)
+        usuarioModel.registrarusuario(nomeUser, email, acesso, senha, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);

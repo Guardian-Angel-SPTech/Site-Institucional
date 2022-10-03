@@ -93,14 +93,12 @@ function validarNomeEmpresa() {
 function proximoCampo() {
 
     if (!validarCnpj() | !validarNomeEmpresa()) {
-        return false
+        return
     }
 
     secao_empresa.style.display = "none";
     secao_usuario.style.display = "flex";
     secao_usuario.style.flexDirection = "column";
-
-    return true
 }
 
 function voltarCampo() {
@@ -111,55 +109,70 @@ function voltarCampo() {
 
 function validarNome() {
     const nome = document.getElementById('inp_nome').value
-    const regex = /^[a-z].* {1,}[a-z]{1,}/gi
 
     // Validando a quantidade de palavra e caracteres
     if (nome == '') {
         return false
-    } else if (regex.test(nome)) {
-        return true
     } else {
-        return false
+        return true
     }
 }
 
 function validarCPF() {
-    const cpf = document.getElementById("inp_cpf")
+    let strCPF = document.getElementById('inp_cpf').value;
+    let Soma;
+    let Resto;
+    strCPF = strCPF.replace(/[^\d]+/g, '');
+    Soma = 0;
 
-	cpf = cpf.replace(/[^\d]+/g,'');	
-	if(cpf == '') return false;	
-	// Elimina CPFs invalidos conhecidos	
-	if (cpf.length != 11 || 
-		cpf == "00000000000" || 
-		cpf == "11111111111" || 
-		cpf == "22222222222" || 
-		cpf == "33333333333" || 
-		cpf == "44444444444" || 
-		cpf == "55555555555" || 
-		cpf == "66666666666" || 
-		cpf == "77777777777" || 
-		cpf == "88888888888" || 
-		cpf == "99999999999")
-			return false;		
-	// Valida 1o digito	
-	add = 0;	
-	for (i=0; i < 9; i ++)		
-		add += parseInt(cpf.charAt(i)) * (10 - i);	
-		rev = 11 - (add % 11);	
-		if (rev == 10 || rev == 11)		
-			rev = 0;	
-		if (rev != parseInt(cpf.charAt(9)))		
-			return false;		
-	// Valida 2o digito	
-	add = 0;	
-	for (i = 0; i < 10; i ++)		
-		add += parseInt(cpf.charAt(i)) * (11 - i);	
-	rev = 11 - (add % 11);	
-	if (rev == 10 || rev == 11)	
-		rev = 0;	
-	if (rev != parseInt(cpf.charAt(10)))
-		return false;		
-	return true;   
+    if (strCPF == '') {
+        alert("Campo vazio")
+        return false;
+    }
+    if (strCPF == "00000000000" ||
+        strCPF == "11111111111" ||
+        strCPF == "22222222222" ||
+        strCPF == "33333333333" ||
+        strCPF == "44444444444" ||
+        strCPF == "55555555555" ||
+        strCPF == "66666666666" ||
+        strCPF == "77777777777" ||
+        strCPF == "88888888888" ||
+        strCPF == "99999999999") {
+
+        alert("Cpf inválido")
+        return false;
+    }
+
+    for (i = 1; i <= 9; i++) {
+        Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+        Resto = (Soma * 10) % 11;
+    }
+
+    if ((Resto == 10) || (Resto == 11)) {
+        Resto = 0;
+    }
+
+    if (Resto != parseInt(strCPF.substring(9, 10))) {
+        alert("Cpf inválido")
+        return false;
+    }
+
+    Soma = 0;
+    for (i = 1; i <= 10; i++) {
+        Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+        Resto = (Soma * 10) % 11;
+    }
+
+    if ((Resto == 10) || (Resto == 11)) {
+        Resto = 0;
+    }
+    if (Resto != parseInt(strCPF.substring(10, 11))) {
+        alert("Cpf inválido")
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function validarEmail() {
@@ -168,12 +181,14 @@ function validarEmail() {
 
     // Validando email se os caracteres do email é válido
     if (email == '') {
+        alert('Email vazio')
         return false
     }
 
     if (regex.test(email)) {
         return true
     } else {
+        alert('Email inválido')
         return false
     }
 }
@@ -182,18 +197,15 @@ function validarConfimarSenha() {
     const senha = document.getElementById('inp_senha').value
     const senhaConf = document.getElementById('inp_conf_senha').value
 
-    if (senhaConf.length >= 6) {
-        if (senha == senhaConf) {
-            return true
-        } else {
-            return false
-        }
+    if (senha == senhaConf) {
+        return true
     } else {
+        alert('As senhas não conferem')
         return false
     }
 }
 
-function checarCadastro(){
+function checarCadastro() {
     if (!validarNome() | !validarCPF() | !validarEmail() | !validarEmail() | !validarConfimarSenha()) {
         return false
     }
@@ -208,9 +220,10 @@ function cadastrar() {
     // Agora vá para o método fetch logo abaixo
     const nomeUser = inp_nome.value;
     const nomeEmpresa = inp_empresa.value;
-    const cnpj = inp_cnpj.value;
     const email = inp_email.value;
-    const cargo = 'Chefe';
+    const cpf = inp_cpf.value;
+    const cnpj = inp_cnpj.value;
+    const acesso = '1';
     const senha = inp_senha.value;
 
     // Enviando o valor da nova input
@@ -225,8 +238,9 @@ function cadastrar() {
             nomeUserServer: nomeUser,
             nomeEmpresaServer: nomeEmpresa,
             emailServer: email,
+            cpfServer: cpf,
             cnpjServer: cnpj,
-            cargoServer: cargo,
+            acessoServer: acesso,
             senhaServer: senha,
         })
     }).then(function (resposta) {
@@ -235,7 +249,7 @@ function cadastrar() {
 
         if (resposta.ok) {
             // Logando o usuário e mandando para o dashboard/index
-            login(email, senha)
+            login(cnpj, senha)
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
         }
@@ -243,6 +257,60 @@ function cadastrar() {
         console.log(`#ERRO: ${resposta}`);
         alert("Houve um erro ao tentar realizar o cadastro!")
     });
+
+    return false;
+}
+
+function login(cnpj, senha) {
+    console.log("FORM LOGIN: ", cnpj);
+    console.log("FORM SENHA: ", senha);
+
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            cnpjServer: cnpj,
+            senhaServer: senha
+        })
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO login()!")
+
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json[0]);
+                console.log(JSON.stringify(json[0]));
+
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.CPF_USUARIO = json.cpf;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ACESSO_USUARIO = json.acesso;
+
+                sessionStorage.ID_EMPRESA = json.idEmpresa;
+                sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
+                sessionStorage.CNPJ_EMPRESA = json.cnpj;
+
+                setTimeout(() => {
+                    window.location = "dashboard/index.html";
+                }, 1000);
+            });
+
+        } else {
+            console.log("Houve um erro ao tentar realizar o login!");
+            alert("cnpj ou senha inválidos")
+
+            resposta.text().then(texto => {
+                console.error(texto);
+            });
+        }
+
+    }).catch(function (erro) {
+        console.log(erro);
+        alert("Erro ao realizar o login")
+    })
 
     return false;
 }

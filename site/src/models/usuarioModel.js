@@ -9,34 +9,37 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function entrar(email, pass) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, pass)
+function entrar(cnpj, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, senha)
     const instrucao = `
-        CALL stg_entrar ('${email}', '${pass}');
+        SELECT *
+        FROM usuario
+            INNER JOIN empresa
+                ON idEmpresa = fkEmpresa
+        WHERE cnpj = '${cnpj}'
+        AND senha = md5('${senha}') LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a const instrucao
-function cadastrar(nameUser, nameCorp, cnpj, email, position, pass) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nameUser, nameCorp, cnpj, email, position, pass);
+function cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    const instrucao = `
-        CALL stg_cadastro ('${nameUser}', '${email}', '${position}', '${pass}', '${nameCorp}', '${cnpj}')
-    `;
+    const instrucao = `CALL stg_cadastrarNovaEmpresa('${cnpj}', '${email}', '${nomeEmpresa}', '${nomeUser}','${cpf}', '${senha}', '${acesso}')`;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
 }
 
-function registrarusuario(nameUser, email, position, pass, idEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrarusuario():", nameUser, email, position, pass, idEmpresa);
+function registrarusuario(nomeUser, email, acesso, senha, idEmpresa) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrarusuario():", nomeUser, email, acesso, senha, idEmpresa);
 
     const instrucao = `
-        CALL stg_registrarFuncionario ('${nameUser}', '${email}', '${position}', '${pass}', '${idEmpresa}')
+        CALL stg_registrarFuncionario ('${nomeUser}', '${email}', '${acesso}', '${senha}', '${idEmpresa}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 

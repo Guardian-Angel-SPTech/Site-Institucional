@@ -75,11 +75,6 @@ function login() {
     const cnpj = document.getElementById('inp_cnpj').value
     const senha = document.getElementById('inp_senha').value
 
-    if (!validarCnpj()) {
-        alert("Preencha todos os campos corretamente")
-        return false
-    }
-
     console.log("FORM LOGIN: ", cnpj);
     console.log("FORM SENHA: ", senha);
 
@@ -102,14 +97,14 @@ function login() {
                 console.log(json[0]);
                 console.log(JSON.stringify(json[0]));
 
-                sessionStorage.ID_USUARIO = json[0].idUsuario;
-                sessionStorage.cnpj_USUARIO = json[0].cnpj;
-                sessionStorage.NOME_USUARIO = json[0].nomeUsuario;
-                sessionStorage.CARGO_USUARIO = json[0].cargo;
+                sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.CPF_USUARIO = json.cpf;
+                sessionStorage.NOME_USUARIO = json.nome;
+                sessionStorage.ACESSO_USUARIO = json.acesso;
 
-                sessionStorage.ID_EMPRESA = json[0].idEmpresa;
-                sessionStorage.NOME_EMPRESA = json[0].nomeEmpresa;
-                sessionStorage.CNPJ_EMPRESA = json[0].cnpj;
+                sessionStorage.ID_EMPRESA = json.idEmpresa;
+                sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
+                sessionStorage.CNPJ_EMPRESA = json.cnpj;
 
                 setTimeout(() => {
                     window.location = "dashboard/index.html";

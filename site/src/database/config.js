@@ -1,8 +1,8 @@
-var mysql = require("mysql2");
-var sql = require('mssql');
+const mysql = require("mysql2");
+const sql = require('mssql');
 
 // CONEXÃO DO SQL SERVER - AZURE (NUVEM)
-var sqlServerConfig = {
+const sqlServerConfig = {
     server: "SEU_SERVIDOR",
     database: "SEU_BANCO_DE_DADOS",
     user: "SEU_USUARIO",
@@ -17,20 +17,12 @@ var sqlServerConfig = {
     }
 }
 
-// // CONEXÃO DO MYSQL WORKBENCH (SPTECH)
-// var mySqlConfig = {
-//     host: "localhost",
-//     database: "faustao",
-//     user: "aluno",
-//     password: "sptech",
-// };
-
-// CONEXÃO DO MYSQL (CASA)
-var mySqlConfig = {
+// CONEXÃO DO MYSQL
+const mySqlConfig = {
     host: "localhost",
     database: "GuardianAngel",
-    user: "root",
-    password: "liperox123**",
+    user: "aluno",
+    password: "sptech",
 };
 
 function executar(instrucao) {
@@ -52,7 +44,7 @@ function executar(instrucao) {
         });
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         return new Promise(function (resolve, reject) {
-            var conexao = mysql.createConnection(mySqlConfig);
+            const conexao = mysql.createConnection(mySqlConfig);
             conexao.connect();
             conexao.query(instrucao, function (erro, resultados) {
                 conexao.end();
