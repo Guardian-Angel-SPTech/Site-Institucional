@@ -69,46 +69,25 @@ input[type=number] {
     flex-direction: column;
 }
 
-.menu-superior{
-    display: flex;
-    flex-direction: row;
-    background-color: #0a2342;
-    color: #f1f0f0;
-    height: 20px;
-    width: 100%;
-    justify-content: end;
-}
-
-.menu-superior p{
-    margin: 0px;
-}
-
-.menu-superior a{
-    margin-left: 25px;
-    margin-right: 25px;
-    font-family: 'Inria Sans';
-}
 
 .menu-inferior{
     display: flex;
     flex-direction: row;
     height: 100px;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 90%;
+
     align-items: center;
 }
-
-.navbar img{
-    height: 80px;
-    width: auto;
-}
-
 .navbar a{
     text-decoration: none;
     color: #ffffff;
+    font-size: 1rem;
 }
 
 .nav-item{
     margin-right: 50px;
+    margin-top: 10px;
 }
 
 .cont-esq{
@@ -124,11 +103,14 @@ input[type=number] {
     display: flex;
     align-items: center;
 }
-
+.cont-dir a{
+    color: #0a2342;
+    font: 700 1.15rem "Inria Sans";
+}
 .nav-item a{
     color: #0a2342;
     font-weight: bold;
-    font-size: 1.4vw;
+    font-size: 1.25rem;
     font-family: 'Inria Sans';
 }
 
@@ -142,6 +124,7 @@ input[type=number] {
     font-weight: bold;
     font-size: 1.4vw;
     font-family: 'Inria Sans';
+    transition: .2s;
 }
 
 .nav-list{
@@ -223,7 +206,7 @@ input[type=number] {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
+    height: min-content;
     background-color: #0a2342;
     /* border-radius: 25px; */
     border-top: 3px solid #EEC643;
@@ -233,13 +216,15 @@ input[type=number] {
 
 .cont-cards{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 450px;
+   
 }
 
 .card{
-    height: 85%;
+    height: 300px;
     /* 30% */
     width: 100%;
     margin: 25px;
@@ -270,7 +255,7 @@ input[type=number] {
 .card h1{
     font-family: 'Inria Sans';
     color: #000000;
-    font-size: 32px;
+    font-size: 20px;
     text-decoration: none;
 }
 
@@ -299,17 +284,20 @@ input[type=number] {
     flex-direction: row;
     margin-top: 80px;
     justify-content: center;
+    width: 90%;
+    margin-bottom: 50px;
 }
 
 .area-empresa .container{
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .empresa-esq{
     display: flex;
-    width: 40%;
+    width: 50%;
     height: auto;
     justify-content: center;
     align-items: center;
@@ -318,17 +306,18 @@ input[type=number] {
 .empresa-dir{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    margin-top: 50px;
+    width: 100%;
     height: auto;
     /* background-color: #f1f0f0; */
     border-radius: 25px;
     /* border-top: 2px solid #000;
     border-bottom: 2px solid #000; */
+    text-align: center;
 }
 
 .empresa-esq img{
-    height: 200px;
-    width: auto;
+    width: 250px;
 }
 
 .empresa-dir h1{
@@ -361,13 +350,9 @@ input[type=number] {
     flex-direction: column;
     background-color: #0a2342;
     width: 100%;
-    /* align-items: center; */
-    /* padding-top: 100px; */
     padding-bottom: 80px;
-    /* margin-top: 80px; */
-    /* border-top: 3px solid #EEC643; */
-    /* border-bottom: 3px solid #EEC643; */
     align-items: center;
+    justify-content: center;
 }
 
 .req-titulo{
@@ -385,14 +370,21 @@ input[type=number] {
     color: #f1f0f0;
     font-family: 'Inria Sans';
     text-align: center;
-    font-size: 1.5vw;
+    font-size: 1.25rem;
 }
 
 .cards-requisitos{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-    margin-top: 50px;
+    justify-content: center;
+    align-items: center;
+   
+}
+.cards-requisitos h1{
+    font-size: 23px;
+    font-family: 'Inria Sans';
+  
 }
 
 .cards-requisitos img{
@@ -433,11 +425,7 @@ input[type=number] {
     padding-bottom: 50px;
 }
 
-.requisitos-esq h1{
-    font-family: 'Inria Sans';
-    /* margin-top: 0; */
-    font-size: 6vh;
-}
+
 
 .lista-req-min{
     list-style: none;
@@ -471,11 +459,6 @@ input[type=number] {
     padding-bottom: 50px;
 }
 
-.requisitos-dir h1{
-    font-family: 'Inria Sans';
-    /* margin-top: 0; */
-    font-size: 6vh;
-}
 
 .lista-req-rec{
     list-style: none;
@@ -493,13 +476,14 @@ input[type=number] {
 
 .area-contato{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     align-items: center;
+    justify-content: center;
 }
 
 .area-contato .container{
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
 }
 
@@ -507,14 +491,14 @@ input[type=number] {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end;
-    width: 50%;
+    align-items: center;
+    width: 100%;
+
+}
+.contato-esq img{
+    width: 25px;
 }
 
-.contato-esq img{
-    width: 100%;
-    height: auto;
-}
 
 .contato-dir{
     /* border: 3px solid #EEC643; */
@@ -522,28 +506,28 @@ input[type=number] {
     border-radius: 5px;
     flex-direction: column;
     width: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
-.telefone{
+.telefone, .email , .localizacao{
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 250px;
 }
 
-.email{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+
 
 .contato-dir img{
     height: 30px;
     width: auto;
 }
 
-.contato-dir p{
+.contato-esq p{
+    color: #0a2342;
     font-family: 'Jost';
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     margin-top: 12px;
     margin-bottom: 12px;
@@ -582,14 +566,16 @@ input[type=number] {
 .cadastro-esq{
     display: flex;
     height: 100%;
-    width: 50%;
+    width: 60%;
     justify-content: center;
+    margin-left: 50px;
+    display: none;
 }
 
 .cadastro-dir{
     display: flex;
     height: 100%;
-    width: 50%;
+    width: 40%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -654,7 +640,7 @@ input[type=number] {
 
 .cadastro-esq img{
     height: auto;
-    width: 90%;
+    width: 100%;
 }
 
 .form-cadastro button{
@@ -746,17 +732,6 @@ footer h1{
     flex-direction: column;
 }
 
-/* Fim Footer/Rodapé */
-
-/* Seção de medias */
-
-/* Responsável por deixar o site responsivo */
-
-@media (min-width: 320px) {
-    /* .navbar img{
-        display: flex;
-        align-items: center;
-    } */
 
     .icon-menu {
         display: block;
@@ -766,9 +741,12 @@ footer h1{
         height: 120px;
     }
 
-    .navbar img{
-        height: 50px;
-        width: auto;
+    .navbar img.logo-menu{
+        width:  200px;
+      
+    }
+    .navbar .icon-menu{
+        width: 50px;
     }
 
     .navbar .cont-mei{
@@ -783,18 +761,11 @@ footer h1{
         align-items: center;
     }
 
-    .menu-inferior{
-        justify-content: space-around;
-        width: 100%;
-    }
+  
 
-    .nav-item a{
-        font-size: 4.4vw;
-    }
+  
 
-    .nav-item{
-        margin-top: 12px;
-    }
+   
 
     /* inicio area banner */
 
@@ -831,11 +802,6 @@ footer h1{
         font-size: 28px;
     }
 
-    .cont-cards{
-        flex-direction: column;
-        height: auto;
-        align-items: center;
-    }
 
     .card{
         padding-top: 40px;
@@ -858,62 +824,30 @@ footer h1{
         width: auto;
     }
 
-    .area-empresa{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .area-empresa .container{
-        flex-direction: column;
-    }
-
-    .area-empresa img{
-        height: 100px;
-        width: auto;
-        margin-bottom: 30px;
-    }
-
-    .area-empresa h1{
-        font-size: 36px;
-    }
-
-    .area-empresa p{
-        font-size: 14px;
-        padding: 0;
-        text-align: center;
-    }
 
     /* Inicio Area Requisitos */
 
-    .cards-requisitos{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cards-requisitos h1{
-        font-size: 3.5vh;
-    }
 
     .req-titulo{
         font-size: 28px;
     }
 
     .req-texto{
-        font-size: 4vw;;
+        font-size: 1.25rem;
     }
 
     .requisitos-esq{
-        width: 80vw;
+        width: 80%;
         margin-bottom: 10px;
     }
 
     .requisitos-mei{
-        width: 80vw;
+        width: 80%;
         height: 3px;
     }
 
     .requisitos-dir{
-        width: 80vw;
+        width: 80%;
         margin-top: 10px;
     }
 
@@ -929,75 +863,6 @@ footer h1{
 
     /* Fim Area Requisitos */
 
-    .contato-esq{
-        display: none;
-    }
-
-    .contato-dir{
-        width: 80%;
-        align-items: center;
-    }
-
-    .mapa{
-        width: 100%;
-    }
-
-    /* Inicio Area Contato */
-
-    .area-contato{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    .area-contato .container{
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .contato-esq img{
-        width: 100%;
-        height: auto;
-    }
-
-    .telefone{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .email{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .contato-dir img{
-        height: 20px;
-        width: auto;
-    }
-
-    .contato-dir p{
-        font-family: 'Jost';
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        margin-left: 20px;
-    }
-
-    .area-contato h1{
-        font-family: 'Jost';
-        font-weight: bold;
-        color: #0a2342;
-        font-size: 36px;
-        padding-top: 20px;
-        padding-bottom: 12px;
-        /* text-decoration: underline; */
-    }
-
-    /* Fim Area Contato */
 
     footer{
         text-align: center;
@@ -1021,9 +886,7 @@ footer h1{
         display: none;
     }
 
-    .cadastro-esq{
-        display: none;
-    }
+
 
     .cadastro-dir{
         width: 100%;
@@ -1055,16 +918,6 @@ footer h1{
         height: auto;
     }
 
-    
-
-}
-
-@media (min-width: 350px) {
-    /* .navbar img{
-        display: flex;
-        align-items: center;
-    } */
-
     .icon-menu {
         display: block;
     }
@@ -1073,10 +926,7 @@ footer h1{
         height: 120px;
     }
 
-    .navbar img{
-        height: 50px;
-        width: auto;
-    }
+   
 
     .navbar .cont-mei{
         display: none;
@@ -1090,18 +940,10 @@ footer h1{
         align-items: center;
     }
 
-    .menu-inferior{
-        justify-content: space-around;
-        width: 100%;
-    }
+  
 
-    .nav-item a{
-        font-size: 4.4vw;
-    }
-
-    .nav-item{
-        margin-top: 12px;
-    }
+ 
+   
 
     /* inicio area banner */
 
@@ -1138,116 +980,7 @@ footer h1{
         font-size: 28px;
     }
 
-    .cont-cards{
-        flex-direction: column;
-        height: auto;
-        align-items: center;
-    }
 
-    .card{
-        padding-top: 40px;
-        padding-bottom: 40px;
-        width: 70%;
-        border-radius: 50px;
-    }
-    
-    .card p{
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .card h1{
-        font-size: 24px;
-    }
-
-    .card img{
-        height: 80px;
-        width: auto;
-    }
-
-    .area-empresa{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .area-empresa .container{
-        flex-direction: column;
-    }
-
-    .area-empresa img{
-        height: 100px;
-        width: auto;
-        margin-bottom: 30px;
-    }
-
-    .area-empresa h1{
-        font-size: 36px;
-    }
-
-    .area-empresa p{
-        font-size: 14px;
-        padding: 0;
-        text-align: center;
-    }
-
-    /* Inicio Area Requisitos */
-
-    .cards-requisitos{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cards-requisitos h1{
-        font-size: 3.5vh;
-    }
-
-    .req-titulo{
-        font-size: 28px;
-    }
-
-    .req-texto{
-        font-size: 4vw;;
-    }
-
-    .requisitos-esq{
-        width: 80vw;
-        margin-bottom: 10px;
-    }
-
-    .requisitos-mei{
-        width: 80vw;
-        height: 3px;
-    }
-
-    .requisitos-dir{
-        width: 80vw;
-        margin-top: 10px;
-    }
-
-    .li-lista-min{
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .li-lista-rec{
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    /* Fim Area Requisitos */
-
-    .contato-esq{
-        display: none;
-    }
-
-    .contato-dir{
-        width: 80%;
-        align-items: center;
-    }
-
-    .mapa{
-        width: 100%;
-    }
 
     /* Inicio Area Contato */
 
@@ -1259,14 +992,10 @@ footer h1{
     }
 
     .area-contato .container{
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-around;
     }
 
-    .contato-esq img{
-        width: 100%;
-        height: auto;
-    }
 
     .telefone{
         display: flex;
@@ -1328,9 +1057,7 @@ footer h1{
         display: none;
     }
 
-    .cadastro-esq{
-        display: none;
-    }
+ 
 
     .cadastro-dir{
         width: 100%;
@@ -1358,19 +1085,24 @@ footer h1{
         height: auto;
     }
 
-}
 
-@media (min-width: 576px) {
 
+@media (min-width: 992px) {
+    
     .banner{
         justify-content: end;
     }
     
-
-    /* .navbar img{
+    .icon-menu{
         display: none;
-    } */
-
+    }
+    .nav-item{
+        margin-top: 0;
+    }
+    .menu-inferior{
+        width: 100%;
+        height: 50px;
+    }
     .navbar .cont-mei{
         display: block;
     }
@@ -1411,9 +1143,10 @@ footer h1{
     }
 
     .cont-cards{
-        flex-direction: column;
+        flex-direction: row;
         height: auto;
         align-items: center;
+        width: 90%;
     }
 
     .card{
@@ -1424,68 +1157,60 @@ footer h1{
     }
     
     .card p{
-        font-size: 21px;
+        font-size: 18px;
         text-align: center;
     }
 
     .card h1{
-        font-size: 38px;
+        font-size: 28px;
     }
 
-    .area-empresa{
-        flex-direction: column;
-        align-items: center;
-    }
+ 
 
     .area-empresa .container{
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .area-empresa img{
-        height: 160px;
-        width: auto;
-        margin-bottom: 30px;
+        width: 80%;
+       
     }
 
     .area-empresa h1{
-        font-size: 50px;
+        font-size: 28px;
     }
 
     .area-empresa p{
-        font-size: 22px;
+        font-size: 18px;
         padding: 0;
         text-align: center;
     }
-
+    .empresa-dir{
+        width: 50%;
+        margin-top: 0;
+    }
     /* Inicio Area Requisitos */
 
     .cards-requisitos{
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        justify-content: space-around;
     }
 
     .cards-requisitos h1{
-        font-size: 4.5vh;
+        font-size: 28px;
     }
 
-    .req-texto{
-        font-size: 2.5vw;;
-    }
-
-    .requisitos-esq{
-        width: 80vw;
-        margin-bottom: 10px;
-    }
 
     .requisitos-mei{
-        width: 80vw;
-        height: 3px;
+       display: none;
     }
-
-    .requisitos-dir{
-        width: 80vw;
-        margin-top: 10px;
+    .requisitos-dir, .requisitos-esq{
+        margin-bottom: 0;
+        margin-top: 0;
+        width: 40vw;
     }
+  
 
     .li-lista-min{
         font-size: 26px;
@@ -1499,10 +1224,6 @@ footer h1{
 
     /* Fim Area Requisitos */
 
-    .contato-esq{
-        display: none;
-    }
-
     .contato-dir{
         width: 80%;
         align-items: center;
@@ -1511,6 +1232,7 @@ footer h1{
     .mapa{
         width: 100%;
     }
+ 
 
     /* Inicio Area Contato */
 
@@ -1524,11 +1246,15 @@ footer h1{
     .area-contato .container{
         flex-direction: row;
         justify-content: space-around;
-    }
 
-    .contato-esq img{
-        width: 100%;
+    }
+    .mapa{
+        width: 80%;
+    }
+    .contato-esq{
+        width: 80%;
         height: auto;
+
     }
 
     .telefone{
@@ -1542,7 +1268,10 @@ footer h1{
         flex-direction: row;
         align-items: center;
     }
+    .contato-dir{
 
+    border-left:solid 3px #0a2342;
+    }
     .contato-dir img{
         height: 30px;
         width: auto;
@@ -1576,693 +1305,12 @@ footer h1{
     .cadastro-dir label{
         font-size: 18px;
     }
-}
-
-@media (min-width: 768px) {
-
-    /* inicio area banner */
-
-    .banner-dir{
-        display: flex;
-        width: 80%;
-        align-items: flex-end;
-        justify-content: center;
-        background-image: url('../assets/imgs/wave-banner.svg');
-        background-repeat: no-repeat;
-        background-position: bottom;
-    }
-
-    .frase-banner{
-        font-size: 3.25vw;
-    }
-
-    /* fim area banner */
-
-    .area-cards{
-        height: auto;
-    }
-
-    .cont-cards{
-        flex-direction: column;
-        height: auto;
-        align-items: center;
-    }
-
-    .card{
-        padding-top: 60px;
-        padding-bottom: 60px;
-        width: 70%;
-        border-radius: 50px;
-    }
-    
-    .card p{
-        font-size: 21px;
-        text-align: center;
-    }
-
-    .card h1{
-        font-size: 38px;
-    }
-
-    .area-empresa{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .area-empresa .container{
-        flex-direction: column;
-    }
-
-    .area-empresa img{
-        height: 160px;
-        width: auto;
-        margin-bottom: 30px;
-    }
-
-    .area-empresa h1{
-        font-size: 50px;
-    }
-
-    .area-empresa p{
-        font-size: 22px;
-        padding: 0;
-        text-align: center;
-    }
-
-    /* Inicio Area Requisitos */
-
-    .cards-requisitos{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cards-requisitos h1{
-        font-size: 4.5vh;
-    }
-
-    .req-texto{
-        font-size: 2.5vw;;
-    }
-
-    .requisitos-esq{
-        width: 80vw;
-        margin-bottom: 10px;
-    }
-
-    .requisitos-mei{
-        width: 80vw;
-        height: 3px;
-    }
-
-    .requisitos-dir{
-        width: 80vw;
-        margin-top: 10px;
-    }
-
-    .li-lista-min{
-        font-size: 26px;
-        font-weight: bold;
-    }
-
-    .li-lista-rec{
-        font-size: 26px;
-        font-weight: bold;
-    }
-
-    /* Fim Area Requisitos */
-
-    .contato-esq{
-        display: none;
-    }
-
-    .contato-dir{
-        width: 80%;
-        align-items: center;
-    }
-
-    .mapa{
-        width: 100%;
-    }
-
-    /* Inicio Area Contato */
-
-    .area-contato{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    .area-contato .container{
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .contato-esq{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-end;
-        width: 50%;
-    }
-
-    .contato-esq img{
-        width: 100%;
-        height: auto;
-    }
-
-    .contato-dir{
-        /* border: 3px solid #EEC643; */
-        display: flex;
-        border-radius: 5px;
-        flex-direction: column;
-        width: 50%;
-    }
-
-    .telefone{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .email{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .contato-dir img{
-        height: 30px;
-        width: auto;
-    }
-
-    .contato-dir p{
-        font-family: 'Jost';
-        font-size: 30px;
-        font-weight: bold;
-        margin-top: 12px;
-        margin-bottom: 12px;
-        margin-left: 20px;
-    }
-
-    .area-contato h1{
-        font-family: 'Jost';
-        font-weight: bold;
-        color: #0a2342;
-        font-size: 42px;
-        padding-top: 20px;
-        padding-bottom: 12px;
-        /* text-decoration: underline; */
-    }
-
-    /* Fim Area Contato */
-    
-}
-
-@media (min-width: 992px) {
-
-    /* COLOCAR MENU AQ */
-
-    /* Inicio Menu */
-
-    .navbar{
-        position: sticky;
-        top: 0px;
-        background-color: #f1f0f0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 120px;
-        width: 100%;
-        border-bottom: 2px solid #0a2342;
-    }
-
-    .logo-menu{
-        display: block;
-    }
-
-    .icon-menu{
-        display: none;
-    }
-
-    .navbar .container{
-        justify-content: space-around;
-        flex-direction: column;
-    }
-
-    .menu-superior{
-        display: flex;
-        flex-direction: row;
-        background-color: #0a2342;
-        color: #f1f0f0;
-        height: 20px;
-        width: 100%;
-        justify-content: end;
-    }
-
-    .menu-superior p{
-        margin: 0px;
-    }
-
-    .menu-superior a{
-        margin-left: 25px;
-        margin-right: 25px;
-        font-family: 'Inria Sans';
-    }
-
-    .menu-inferior{
-        display: flex;
-        flex-direction: row;
-        height: 100px;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    .navbar img{
-        height: 80px;
-        width: auto;
-    }
-
-    .navbar a{
-        text-decoration: none;
-        color: #ffffff;
-    }
-
-    .nav-item{
-        margin-right: 50px;
-    }
-
-    .cont-esq{
-        display: flex;
-    }
-
-    .cont-mei{
-        display: flex;
-        flex-direction: row;
-    }
-
-    .cont-dir{
-        display: flex;
-        align-items: center;
-    }
-
-    .nav-item a{
-        color: #0a2342;
-        font-weight: bold;
-        font-size: 1.4vw;
-        font-family: 'Inria Sans';
-    }
-
-    .btn-download{
-        height: 40px;
-        width: 140px;
-        background-color: #f1f0f0;
-        border: 3px solid #0a2342;
-        border-radius: 5px;
-        color: #0a2342;
-        font-weight: bold;
-        font-size: 1.4vw;
-        font-family: 'Inria Sans';
-    }
-
-    .nav-list{
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-
-    .btn-download:hover{
-        background-color: #0a2342;
-        border: 3px solid #0a2342;
-        border-radius: 5px;
-        color: #f1f1f1;
-        font-weight: bold;
-        font-size: 1.4vw;
-        font-family: 'Inria Sans';
-        cursor: pointer;
-    }
-
-    /* Fim Menu */
-
-    .banner{
-        background-image: url('../assets/imgs/call-center.jpeg');
-        background-position: center;
-        height: 500px;
-        width: 100%;
-        background-size: cover;
-        display: flex;
-        /* border-bottom: 3px solid #EEC643; */
-        flex-direction: row;
-    }
-
-    .frase-banner{
-        margin: 0;
-        margin-bottom: 12px;
-        color: #0a2342;
-        font-weight: bold;
-        font-size: 2.5vw;
-        font-family: 'Inria Sans';
-        font-weight: bold;
-    }
-
-    .banner-esq{
-        width: 50%;
-    }
-    
-    .banner-dir{
-        display: flex;
-        width: 50%;
-        align-items: flex-end;
-        justify-content: center;
-        background-image: url('../assets/imgs/wave-banner.svg');
-        background-repeat: no-repeat;
-        background-position: bottom;
-    }
-
-    /* Inicio Area Requisitos */
-    .cards-requisitos h1{
-        font-size: 4.5vh;
-    }
-
-    .card img{
-        height: 90px;
-        width: auto;
-    }
-
-    .req-texto{
-        font-size: 2.5vw;;
-    }
-
-    .requisitos-esq{
-        width: 38vw;
-    }
-
-    .cont-cards{
-        flex-direction: row;
-        height: 448px;
-    }
-
-    .card{
-        padding-top: 0;
-        padding-bottom: 0;
-        border-radius: 5px;
-    }
-    
-    .card p{
-        font-size: 16px;
-        text-align: center;
-    }
-
-    .card h1{
-        font-size: 32px;
-    }
-
-    /* Fim Area Requisitos */
-
-    /* Inicio Area Empresa */
-
-    .empresa-dir p{
-        font-size: 20px;
-    }
-
-    p{
-        font-size: 17px;
-    }
-
-    li{
-        font-size: 20px;
-    }
-
-    .area-empresa{
-        display: flex;
-        flex-direction: row;
-        margin-top: 80px;
-        justify-content: center;
-    }
-    
-    .area-empresa .container{
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .empresa-esq{
-        display: flex;
-        width: 40%;
-        height: auto;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .empresa-dir{
-        display: flex;
-        flex-direction: column;
-        width: 60%;
-        height: auto;
-        /* background-color: #f1f0f0; */
-        border-radius: 25px;
-        /* border-top: 2px solid #000;
-        border-bottom: 2px solid #000; */
-    }
-    
-    .empresa-esq img{
-        height: 200px;
-        width: auto;
-    }
-
-    /* Fim Area Empresa */
-
-    /* Inicio Area Contato */
-
-    .contato-dir p{
-        font-size: 20px;
-    }
-
-    .contato-dir img{
-        height: 20px;
-        width: auto;
-    }
-
-    .mapa{
-        width: auto;
-        height: 160px;
-    }
-
-    /* Fim Area Contato */
-
-    /* Tela Cadastro */
-
     .cadastro-esq{
         display: flex;
-        height: 100%;
-        width: 50%;
-        justify-content: center;
     }
-
-    .cadastro-dir{
-        display: flex;
-        height: 100%;
-        width: 50%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    #dropdown{
+        display: none;
+        visibility: hidden;
     }
-}
-
-@media (min-width: 1200px) {
-
-    .banner{
-        background-image: url('../assets/imgs/call-center.jpeg');
-        background-position: center;
-        height: 500px;
-        width: 100%;
-        background-size: cover;
-        display: flex;
-        /* border-bottom: 3px solid #EEC643; */
-        flex-direction: row;
-    }
-    .frase-banner{
-        margin: 0;
-        margin-bottom: 12px;
-        color: #0a2342;
-        font-weight: bold;
-        font-size: 2.5vw;
-        font-family: 'Inria Sans';
-        font-weight: bold;
-    }
-    
-    .banner-esq{
-        width: 50%;
-    }
-    
-    .banner-dir{
-        display: flex;
-        width: 50%;
-        align-items: flex-end;
-        justify-content: center;
-        background-image: url('../assets/imgs/wave-banner.svg');
-        background-repeat: no-repeat;
-        background-position: bottom;
-    }
-    
-
-    /* Inicio Requisitos */
-
-    .area-requisitos{
-        display: flex;
-        flex-direction: column;
-        background-color: #0a2342;
-        width: 100%;
-        /* align-items: center; */
-        /* padding-top: 100px; */
-        padding-bottom: 80px;
-        /* margin-top: 80px; */
-        /* border-top: 3px solid #EEC643; */
-        /* border-bottom: 3px solid #EEC643; */
-        align-items: center;
-    }
-
-    .req-titulo{
-        font-family: 'Jost';
-        font-weight: 700;
-        color: #EEC643;
-        font-size: 42px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        /* text-decoration: underline; */
-        text-align: center;
-    }
-
-    .req-texto{
-        color: #f1f0f0;
-        font-family: 'Inria Sans';
-        text-align: center;
-        font-size: 1.5vw;
-    }
-
-    .cards-requisitos{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin-top: 50px;
-    }
-
-    .cards-requisitos img{
-        width: 15%;
-        height: auto;
-    }
-
-    /* Inicio Teste Blob */
-
-    .div-blob{
-        background-image: url('../assets/imgs/blob.svg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .div-blob h1{
-        font-family: 'Jost';
-    }
-
-    /* Fim Teste Blob */
-
-    
-
-    .requisitos-esq h1{
-        font-family: 'Inria Sans';
-        /* margin-top: 0; */
-        font-size: 6vh;
-    }
-
-    .lista-req-min{
-        list-style: none;
-        padding: 0;
-    }
-
-    .li-lista-min{
-        font-family: 'Inria Sans';
-        text-align: center;
-    }
-
-    .requisitos-mei{
-        width: 3px;
-        height: auto;
-        background-color: #EEC643;
-        border-radius: 10px;
-    }
-
-    .requisitos-dir{
-        display: flex;
-        flex-direction: column;
-        background-color: #f1f0f0;
-        height: auto;
-        width: 38vw;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        border: 3px solid #EEC643;
-        border-radius: 10px;
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    .requisitos-dir h1{
-        font-family: 'Inria Sans';
-        /* margin-top: 0; */
-        font-size: 6vh;
-    }
-
-    .lista-req-rec{
-        list-style: none;
-        padding: 0;
-    }
-
-    .li-lista-rec{
-        font-family: 'Inria Sans';
-        text-align: center;
-    }
-
-    /* Fim Requisitos */
-
-    /* Fim Area Requisitos */
-
-    /* Inicio Area Empresa */
-
-    .empresa-dir p{
-        font-size: 16px;
-    }
-
-    /* Fim Area Empresa */
-
-    /* Inicio Area Contato */
-
-    .contato-dir{
-        align-items: flex-start;
-    }
-
-    .contato-dir p{
-        font-size: 30px;
-    }
-
-    .contato-dir img{
-        height: 30px;
-        width: auto;
-    }
-
-    .mapa{
-        width: 600px;
-        height: 250px;
-    }
-
-    /* Fim Area Contato */
-}
-
-@media (min-width: 1400px) {
-    
+    .menu-aberto{}
 }
