@@ -1,7 +1,7 @@
 main{
-        flex-direction: column;
-        display: flex;
-        gap: 40px;
+    flex-direction: column;
+    display: flex;
+    gap: 40px;
 }
 
 .top-message{
@@ -78,3 +78,17 @@ td{
     width: 100px;
 }
 /* ---------------------------- FIM - DASHBOARD ---------------------------- */
+
+/* ---------------------------- INICIO - MODAL ---------------------------- */
+.modal{
+    position: absolute;
+    background-color: #e7e7e7;
+    height: 200px;
+    width: 200px;
+    z-index: 1;
+}
+
+.modal, .modal-input{
+    display: flex;
+}
+/* ---------------------------- FIM - MODAL ---------------------------- */

@@ -36,12 +36,11 @@
 
             <button type="button" id="exit">Sair</button>
         </section>
-
     </aside>
 
     <aside class="r-side-bar">
-        <section class="wrapper">
-            <div>
+        <section>
+            <article>
                 <button type="button" class="menu-collapse">
                     Funcionários
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
@@ -54,30 +53,55 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </article>
+            
+            <article>
+                <button type="button" class="new-func">
+                    <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
+                    Novo funcionário
+                </button>
+            </article>
 
-            <div>
+            <article>
                 <button type="button" class="menu-collapse">
                     Meu computador
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
                 <ul class="list-collapse">
-
+                    <!-- li 'alguma coisa' li -->
                 </ul>
-            </div>
+            </article>
         </section>
     </aside>
 
+    <!-- Modal para cadastrar novo usuário -->
+    <!-- <section class="modal">
+        <div class="modal-input">
+            <label for="">Campo 1</label>
+            <input type="text" id="">
+        </div>
+
+        <div class="modal-input">
+            <label for="">Campo 1</label>
+            <input type="text" id="">
+        </div>
+
+        <div class="modal-input">
+            <label for="">Campo 1</label>
+            <input type="text" id="">
+        </div>
+    </section> -->
+
     <main>
         <section class="top-message">
-            <label>Olá, <span id="hello-message2">cargo</span>! Bem vindo ao seu portal!</label>
+            <label>Bem vindo ao seu portal</label>
             <label class="status-check">
                 Status: <span id="status">status</span>
                 <img src="../assets/svg/circle.svg" alt="status image"></label>
         </section>
 
         <section>
-            <article  class="dashboard">
+            <article  class="dashboard" id="1">
                 <div style="position: relative; height:100%; width:40%">
                     <canvas id="chart-1" width="100%" height="100%"></canvas>
                 </div>
