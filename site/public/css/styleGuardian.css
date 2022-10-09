@@ -107,6 +107,9 @@ input[type=number] {
     color: #0a2342;
     font: 700 1.15rem "Inria Sans";
 }
+.cont-dir a:hover{
+    color: #fff;
+}
 .nav-item a{
     color: #0a2342;
     font-weight: bold;
@@ -580,11 +583,17 @@ input[type=number] {
     justify-content: center;
     align-items: center;
 }
-
 .form-cadastro{
     display: flex;
     flex-direction: column;
     width: 75%;
+    height: auto;
+    /* justify-content: center; */
+}
+.n{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
     height: auto;
     /* justify-content: center; */
 }

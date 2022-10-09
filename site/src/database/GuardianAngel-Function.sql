@@ -15,8 +15,8 @@ CREATE FUNCTION fct_cadastrarUsuario
 RETURNS BOOLEAN DETERMINISTIC
 BEGIN
 
-	INSERT INTO usuario (nome, cpf, senha, nivelAcesso, fkEmpresa)
-		VALUES (nomeUser, cpf, MD5(senha), acesso, fkEmpresa);
+	INSERT INTO usuario (nome, cpf, email, senha, nivelAcesso, fkEmpresa)
+		VALUES (nomeUser, cpf, email, MD5(senha), acesso, fkEmpresa);
 		
     RETURN (SELECT idUsuario FROM usuario ORDER BY idUsuario DESC LIMIT 1);
 END$$

@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="css/global.css">
-    <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon">
-    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-    <title>Guardian Angel</title>
+    <link rel="stylesheet" href="../css/styleGuardian.css">
+    <title>Cadastro</title>
 </head>
-
 <body>
-    <!-- Barra de navegação lateral -->
     <aside class="l-side-bar">
         <section class="wrapper">
             <figure class="logo">
@@ -73,59 +69,36 @@
             </article>
         </section>
     </aside>
-
-    <!-- Modal para cadastrar novo usuário -->
-    <!-- <section class="modal">
-        <div class="modal-input">
-            <label for="">Campo 1</label>
-            <input type="text" id="">
+        <div class="cadastro-dir">
+            <div class="form-cadastro n">
+                    <p class="dados-quem">Dados do Usuário:</p>
+                    <label for="inp_nome">Nome:</label>
+                    <input type="text" id="inp_nome">
+                    <div class="campo-senha">
+                        <div class="div-senha">
+                            <label for="inp_cpf">CPF:</label>
+                            <input type="text" id="inp_cpf">
+                        </div>
+                        <div class="div-senha">
+                            <label for="inp_email">Email:</label>
+                            <input type="email" id="inp_email">
+                        </div>
+                    </div>
+                    <div class="campo-senha">
+                        <div class="div-senha">
+                            <label for="inp_senha">Senha</label>
+                            <input type="password" id="inp_senha">
+                        </div>
+                        <div class="div-senha">
+                            <label for="inp_conf_senha">Confirmar Senha</label>
+                            <input type="password" id="inp_conf_senha">
+                        </div>
+                    </div>
+                    <div class="linha-botao">
+                        <button id="btn_cadastrar">Cadastrar</button>
+                    </div>
+            </div>
         </div>
-
-        <div class="modal-input">
-            <label for="">Campo 1</label>
-            <input type="text" id="">
-        </div>
-
-        <div class="modal-input">
-            <label for="">Campo 1</label>
-            <input type="text" id="">
-        </div>
-    </section> -->
-
-    <main>
-        <section class="top-message">
-            <label>Bem vindo ao seu portal</label>
-            <label class="status-check">
-                Status: <span id="status">status</span>
-                <img src="../assets/svg/circle.svg" alt="status image"></label>
-        </section>
-
-        <section>
-            <article  class="dashboard" id="1">
-                <div style="position: relative; height:100%; width:40%">
-                    <canvas id="chart-1" width="100%" height="100%"></canvas>
-                </div>
-
-                <div class="process">
-                    <section id="process-table" class="table-container">
-                        <article>
-                            <table>
-                                <tbody id="table1">
-                                    <tr>
-                                        <th>Processo</th>
-                                        <th>Uso (%)</th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </article>
-                    </section>
-                </div>
-            </article>
-        </section>
-    </main>
 </body>
-
-<script src="js/global.js"></script>
-<script src="js/dashboard.js"></script>
-
 </html>
+<script src="/dashboard/js/novoCadastro.js"></script>

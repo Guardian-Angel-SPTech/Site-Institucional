@@ -64,3 +64,5 @@ INSERT INTO componente (statusComponente, nomeComponente)
             ('Ativo', 'Disco');
             
 select * from registro;
+select * from usuario;
+select * from empresa;

@@ -105,10 +105,11 @@ function cadastrar(req, res) {
 }
 
 function registrarusuario(req, res) {
-    const nomeUser = req.body.nameServer;
+    const nomeUser = req.body.nomeUserServer;
+    const cpf = req.body.cpfServer;
     const email = req.body.emailServer;
     const acesso = req.body.acessoServer;
-    const idEmpresa = req.body.idEmpresaServer;
+    const idEmpresa = req.body.IdServer;
     const senha = req.body.senhaServer;
 
     // Faça as validações dos valores
@@ -116,6 +117,8 @@ function registrarusuario(req, res) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
+    } else if (cpf == undefined) {
+        res.status(400).send("O cpf está undefined!");
     } else if (acesso == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (idEmpresa == undefined) {
@@ -124,7 +127,7 @@ function registrarusuario(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {     
         // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.registrarusuario(nomeUser, email, acesso, senha, idEmpresa)
+        usuarioModel.registrarusuario(nomeUser, email, cpf, senha, acesso, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);

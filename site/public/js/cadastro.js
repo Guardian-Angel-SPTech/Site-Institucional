@@ -4,6 +4,7 @@ const secao_usuario = document.getElementById("dados_usuario");
 const btn_proximo = document.getElementById("btn_proximo")
 const btn_voltar = document.getElementById("btn_voltar")
 const btn_cadastrar = document.getElementById("btn_cadastrar")
+const btn_cadastrarN = document.getElementById("btn_cadastrarN")
 
 btn_proximo.addEventListener('click', proximoCampo)
 btn_voltar.addEventListener('click', voltarCampo)

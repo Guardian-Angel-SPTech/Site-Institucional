@@ -35,11 +35,11 @@ function cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha) {
     return database.executar(instrucao);
 }
 
-function registrarusuario(nomeUser, email, acesso, senha, idEmpresa) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrarusuario():", nomeUser, email, acesso, senha, idEmpresa);
+function registrarusuario(nomeUser, email, cpf, senha, acesso, idEmpresa) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrarusuario():", nomeUser, cpf, acesso, senha, idEmpresa);
 
     const instrucao = `
-        CALL stg_registrarFuncionario ('${nomeUser}', '${email}', '${acesso}', '${senha}', '${idEmpresa}')
+        CALL stg_registrarFuncionario ('${nomeUser}', '${email}', '${cpf}', '${senha}', '${acesso}', '${idEmpresa}')
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
