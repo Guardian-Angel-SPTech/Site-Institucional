@@ -17,7 +17,7 @@ function entrar(cnpj, senha) {
             INNER JOIN empresa
                 ON idEmpresa = fkEmpresa
         WHERE cnpj = '${cnpj}'
-        AND senha = md5('${senha}') LIMIT 1;
+        AND senha = ('${senha}') LIMIT 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

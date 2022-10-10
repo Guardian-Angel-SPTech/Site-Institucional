@@ -1,49 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="shortcut icon" href="assets/imgs/icone-aba.jpg" type="image/x-icon">
-        <link rel="stylesheet" href="css/styleGuardian.css">
-    </head>
-    <body>
-        <nav class="navbar" id="navbar">
-          
-            <div class="container">
-                <div class="menu-inferior">
-                    <div class="cont-esq">
-                        <a href="index.html"><img src="assets/imgs/logo_v3.png" class="logo-menu"></a>
-                    </div>
-                    <div class="cont-mei">
-                        <ul class="nav-list">
-                            <li class="nav-item">
-                                <a href="#software">Nosso Produto</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#empresa">Quem Somos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#requisitos">Requisitos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#contato">Contato</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#contato">Download</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="cont-dir">
-                        <button class="btn-download"><a href="login.html">Login</a></button>
-                        <img src="assets/imgs/icon-menu.png" class="icon-menu" id="btn-menu" onclick="clicarBotao()">
-                    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="shortcut icon" href="assets/imgs/icone-aba.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/styleGuardian.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+
+        <div class="container">
+            <div class="menu-inferior">
+                <div class="cont-esq">
+                    <a href="index.html"><img src="assets/imgs/logo_v3.png" class="logo-menu"></a>
                 </div>
-            </div>
-            <div class="container dropdown" id="dropdown">
-                <div>
-                    <ul class="nav-list dropdown" id="lista-dropdown">
+                <div class="cont-mei">
+                    <ul class="nav-list">
                         <li class="nav-item">
                             <a href="#software">Nosso Produto</a>
                         </li>
@@ -56,36 +32,66 @@
                         <li class="nav-item">
                             <a href="#contato">Contato</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#contato">Download</a>
+                        </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-        <!--Começo dos campos de inputs-->
-        <div class="corpo-cadastro">
-            <div class="cadastro-esq">
-                <img src="assets/imgs/arte2.jpg">
-            </div>
-            <div class="cadastro-dir">
-                <div class="form-cadastro">
-                    <h1>Login</h1>
-                    <label for="inp_cnpj">CNPJ</label>
-                    <input type="text" id="inp_cnpj">
-                    <label for="inp_senha">Senha</label>
-                    <input type="password" id="inp_senha">
-                    <button id="btn_login">Login</button>
-                    <p>Não possui cadastro? Realize seu <a class="tag-a-cadastro-login" href="cadastro.html">cadastro.</a></p>
+                <div class="cont-dir">
+                    <a href="login.html">
+                        <button class="btn-download">Login</button>
+                    </a>
+                    <img src="assets/imgs/icon-menu.png" class="icon-menu" id="btn-menu" onclick="clicarBotao()">
                 </div>
             </div>
         </div>
-        <!--Fim dos campos de inputs-->
-        <footer>
-            <img class="wave" src="assets/imgs/wave-requisitos.svg">
-            <div class="container">
-                <h1>Guardian Angel | Pesquisa e Inovação SPTech 2022</h1>
+        <div class="container dropdown" id="dropdown">
+            <div>
+                <ul class="nav-list dropdown" id="lista-dropdown">
+                    <li class="nav-item">
+                        <a href="#software">Nosso Produto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#empresa">Quem Somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#requisitos">Requisitos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contato">Contato</a>
+                    </li>
+                </ul>
             </div>
-        </footer>
-        
-    </body>
+        </div>
+    </nav>
+    <!--Começo dos campos de inputs-->
+    <div class="corpo-cadastro">
+        <div class="cadastro-esq">
+            <img src="assets/imgs/arte2.jpg">
+        </div>
+        <div class="cadastro-dir">
+            <div class="form-cadastro">
+                <h1>Login</h1>
+                <label for="inp_cnpj">CNPJ</label>
+                <input type="text" id="inp_cnpj">
+                <label for="inp_senha">Senha</label>
+                <input type="password" id="inp_senha">
+                <button id="btn_login">Login</button>
+                <p>Não possui cadastro? Realize seu <a class="tag-a-cadastro-login" href="cadastro.html">cadastro.</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!--Fim dos campos de inputs-->
+    <footer>
+        <img class="wave" src="assets/imgs/wave-requisitos.svg">
+        <div class="container">
+            <h1>Guardian Angel | Pesquisa e Inovação SPTech 2022</h1>
+        </div>
+    </footer>
+
+</body>
+
 </html>
 
 <script src="js/menu-dropdown.js"></script>

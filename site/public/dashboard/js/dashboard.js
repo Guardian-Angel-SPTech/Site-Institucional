@@ -3,18 +3,42 @@ const processStatus = ['danger', 'moderate', 'controlled']
 chart1()
 
 processTableId.addEventListener('load', tables())
+
 function tables() {
     // Preenchendo a tabela com os processos
-    const process = [1, 2, 3, 4, 5]
+
+    const process = [];
+    const uso = [];
+
+    fetch("../medidas/PegarProcessos", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json)
+                json.forEach(element => {
+                    process.push(element.processo)
+                    uso.push(element.uso)
+                    for (let i = 0; i < 9; i++) {
+                        if (process[i] != undefined) {
+                            processTable1.insertAdjacentHTML("beforeEnd", `
+                                    <tr>
+                                        <td>${json[i]["processo"]}</td>
+                                        <td>${json[i]["uso"]} %</td>
+                                    </tr>
+                            `)
+                        }
+                    }
+                });
+            })
+        }
+    })
+
     const processTable1 = document.getElementById("table1")
-    for (let i = 0; i < process.length; i++) {
-        processTable1.insertAdjacentHTML("beforeEnd", `
-                <tr>
-                    <td>Processo ${process[i]}</td>
-                    <td>Uso ${i+1} %</td>
-                </tr>
-        `)
-    }
+
 }
 
 // Gráficos
@@ -96,21 +120,23 @@ function obterDadosGrafico(fkSensor) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimas/${fkSensor}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            console.log("Obtendo dados: Resposta Ok")
-            
-            response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                resposta.reverse();
+    fetch(`/medidas/ultimas/${fkSensor}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
 
-                console.log("Indo plotar gráfico")
-                plotarGrafico(resposta, fkSensor);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    })
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    plotarGrafico(resposta, fkSensor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
@@ -124,8 +150,7 @@ function plotarGrafico(resposta, fkSensor) {
 
     const dados = {
         labels: [],
-        datasets: [
-            {
+        datasets: [{
                 yAxisID: 'y-ram',
                 label: 'ram',
                 borderColor: '#32B9CD',
@@ -159,7 +184,9 @@ function plotarGrafico(resposta, fkSensor) {
         data: dados,
         options: {
             responsive: true,
-            animation: { duration: 500 },
+            animation: {
+                duration: 500
+            },
             hoverMode: 'index',
             stacked: false,
             title: {
@@ -209,34 +236,36 @@ function plotarGrafico(resposta, fkSensor) {
 function atualizarGrafico(fkSensor, dados) {
     // console.log("Indo atualizar gráfico")
 
-    fetch(`/medidas/tempo-real/${fkSensor}`, { cache: 'no-store' }).then(function (response) {
-        if (response.ok) {
-            response.json().then(function (novoRegistro) {
+    fetch(`/medidas/tempo-real/${fkSensor}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
 
-                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                console.log(`Dados atuais do gráfico: ${dados}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico: ${dados}`);
 
-                // tirando e colocando valores no gráfico
-                dados.labels.shift(); // apagar o primeiro
-                dados.labels.push(novoRegistro[0].horario); // incluir um novo momento
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro[0].horario); // incluir um novo momento
 
-                dados.datasets[0].data.shift();  // apagar o primeiro de ram
-                dados.datasets[0].data.push(novoRegistro[0].ram); // incluir uma nova medida de ram
+                    dados.datasets[0].data.shift(); // apagar o primeiro de ram
+                    dados.datasets[0].data.push(novoRegistro[0].ram); // incluir uma nova medida de ram
 
-                dados.datasets[1].data.shift();  // apagar o primeiro de ram
-                dados.datasets[1].data.push(novoRegistro[0].ram); // incluir uma nova medida de ram
+                    dados.datasets[1].data.shift(); // apagar o primeiro de ram
+                    dados.datasets[1].data.push(novoRegistro[0].ram); // incluir uma nova medida de ram
 
-                window.grafico_linha.update();
+                    window.grafico_linha.update();
 
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(fkSensor, dados), 5000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkSensor, dados), 5000);
-            });
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-            proximaAtualizacao = setTimeout(() => atualizarGrafico(fkSensor, dados), 2000);
-        }
-    })
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(fkSensor, dados), 2000);
+            }
+        })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });

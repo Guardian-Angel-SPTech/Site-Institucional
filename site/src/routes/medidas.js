@@ -11,4 +11,9 @@ router.get("/tempo-real/:idSensor", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 })
 
+router.post("/pegarProcessos", function (req, res) {
+    console.log('Chegou na rota!')
+    medidaController.pegarProcessos(req, res);
+});
+
 module.exports = router;

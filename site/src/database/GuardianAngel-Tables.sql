@@ -10,6 +10,7 @@ nomeEmpresa varchar(45)
 
 select * from empresa;
 select * from usuario;
+
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),

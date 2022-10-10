@@ -54,8 +54,14 @@ function buscarMedidasEmTempoReal(fkSensor) {
     return database.executar(instrucaoSql);
 }
 
+function pegarProcessos() {
+    instrucaoSql = `SELECT * FROM processos`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal, 
+    pegarProcessos
 }
