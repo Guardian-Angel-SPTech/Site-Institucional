@@ -27,6 +27,8 @@ idMaquina int primary key auto_increment,
 nomeMaquina varchar(45),
 MAC char(17),
 statusMaquina varchar(45),
+processos varchar(45),
+usoProcesso decimal(4,2),
 fkUsuario int,
 foreign key usuario(fkUsuario) references usuario(idUsuario)
 );
@@ -44,13 +46,9 @@ create table registro (
 idRegistro int auto_increment,
 fkMaquina int,
 componente varchar(20),
-RegistroComponente varchar(10),
+RegistroComponente decimal,
+uso decimal,
 horaRegistro datetime,
-primary key(idRegistro, fkMaquina)
-);
-
-create table componente (
-idComponente int primary key auto_increment,
-statusComponente varchar(10),
-nomeComponente varchar(20)
+primary key(idRegistro, fkMaquina),
+statusComponente varchar(10)
 );
