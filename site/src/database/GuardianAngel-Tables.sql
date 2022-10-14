@@ -27,8 +27,8 @@ idMaquina int primary key auto_increment,
 nomeMaquina varchar(45),
 MAC char(17),
 statusMaquina varchar(45),
-fkEmpresa int,
-foreign key maquina(fkEmpresa) references empresa(idEmpresa)
+fkUsuario int,
+foreign key usuario(fkUsuario) references usuario(idUsuario)
 );
 
 create table chamado (
