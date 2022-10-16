@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/styleGuardian.css">
     <title>Cadastro</title>
 </head>
-<body>
+<body onload="funcionario()">
     <aside class="l-side-bar">
         <section class="wrapper">
             <figure class="logo">
@@ -42,13 +42,8 @@
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
 
-                <ul class="list-collapse">
-                    <li>
-                        <a href="#1">
-                            Funcionário 1
-                        </a>
-                    </li>
-                </ul>
+                <div id="listaFunc">
+                </div>
             </article>
             
             <article>
@@ -63,7 +58,7 @@
                     Meu computador
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-                <ul class="list-collapse">
+                <ul class="list-collapse2">
                     <!-- li 'alguma coisa' li -->
                 </ul>
             </article>
@@ -102,3 +97,4 @@
 </body>
 </html>
 <script src="/dashboard/js/novoCadastro.js"></script>
+<script src="exibirFunc.js"></script>

@@ -45,5 +45,5 @@ fkMaquina int,
 componente varchar(20),
 RegistroComponente decimal,
 horaRegistro datetime,
-primary key(idRegistro, fkMaquina),
+primary key(idRegistro, fkMaquina)
 );
