@@ -44,11 +44,6 @@ idRegistro int auto_increment,
 fkMaquina int,
 componente varchar(20),
 RegistroComponente decimal,
-uso decimal,
 horaRegistro datetime,
 primary key(idRegistro, fkMaquina),
-statusComponente varchar(10)
 );
-select * from usuario;
-select * from empresa;
-
