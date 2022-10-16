@@ -12,7 +12,7 @@
     <title>Guardian Angel</title>
 </head>
 
-<body>
+<body onload="funcionario()">
     <!-- Barra de navegação lateral -->
     <aside class="l-side-bar">
         <section class="wrapper">
@@ -45,14 +45,9 @@
                     Funcionários
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-
-                <ul class="list-collapse">
-                    <li>
-                        <a href="#1">
-                            Funcionário 1
-                        </a>
-                    </li>
-                </ul>
+                
+                <div id="listaFunc">
+                </div>
             </article>
             
             <article>
@@ -67,7 +62,7 @@
                     Meu computador
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-                <ul class="list-collapse">
+                <ul class="list-collapse2">
                     <!-- li 'alguma coisa' li -->
                 </ul>
             </article>
@@ -129,3 +124,43 @@
 <script src="js/dashboard.js"></script>
 
 </html>
+<script>
+    var vFuncionario = ""
+    const loadF = document.getElementById("listaFunc")
+function funcionario(){
+    fetch("../usuarios/verfuncionario", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+
+        console.log("resposta: ", resposta);
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                vFuncionario = json
+                loadF.addEventListener('load', listaUsuario())
+              });
+        } else {
+            throw ("Houve um erro ao tentar realizar consulta!");
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        alert("Houve um erro ao tentar realizar consulta!")
+    });
+    return false;
+}
+function listaUsuario(){
+    for (i = 0; i < vFuncionario.length; i++) {
+                var texto = document.createTextNode(vFuncionario[i].nome);
+                var cUl = document.createElement("ul");
+                cUl.classList.add("list-collapse");
+                var cLi = document.createElement("li");
+                cLi.appendChild(texto);
+                cUl.appendChild(cLi);
+                document.getElementById("listaFunc").appendChild(cUl);
+              }
+}
+</script>

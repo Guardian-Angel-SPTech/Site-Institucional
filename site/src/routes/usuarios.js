@@ -24,6 +24,10 @@ router.post("/listarusuario", function (req, res) {
     usuarioController.listarusuario(req, res);
 })
 
+router.post("/verfuncionario", function (req, res) {
+    usuarioController.verfuncionario(req, res);
+})
+
 router.post("/excluirusuario", function (req, res) {
     usuarioController.excluirusuario(req, res);
 })

@@ -8,9 +8,6 @@ email varchar(20),
 nomeEmpresa varchar(45)
 );
 
-select * from empresa;
-select * from usuario;
-
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
@@ -52,3 +49,6 @@ horaRegistro datetime,
 primary key(idRegistro, fkMaquina),
 statusComponente varchar(10)
 );
+select * from usuario;
+select * from empresa;
+

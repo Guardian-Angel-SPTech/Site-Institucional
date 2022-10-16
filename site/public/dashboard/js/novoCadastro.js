@@ -142,7 +142,10 @@ function cadastrar() {
     }).then(function (resposta) {
 
         console.log("resposta: ", resposta);
-
+        alert("Cadastro realizado!")
+        setTimeout(() => {
+            window.location = "index.html";
+        }, 1000);
         if (resposta.ok) {
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
