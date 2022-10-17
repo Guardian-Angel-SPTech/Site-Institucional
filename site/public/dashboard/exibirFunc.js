@@ -5,7 +5,12 @@ fetch("../usuarios/verfuncionario", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
-    }
+    },
+    body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        cnpjServer: sessionStorage.CNPJ_EMPRESA,
+    })
 }).then(function (resposta) {
 
     console.log("resposta: ", resposta);
@@ -26,9 +31,9 @@ fetch("../usuarios/verfuncionario", {
 return false;
 }
 function listaUsuario(){
+    var cUl = document.createElement("ul");
 for (i = 0; i < vFuncionario.length; i++) {
             var texto = document.createTextNode(vFuncionario[i].nome);
-            var cUl = document.createElement("ul");
             cUl.classList.add("list-collapse");
             var cLi = document.createElement("li");
             cLi.appendChild(texto);

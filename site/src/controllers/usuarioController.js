@@ -171,7 +171,8 @@ function listarusuario(req, res) {
 }
 
 function verfuncionario(req, res){
-    usuarioModel.listar()
+    const cnpj = req.body.cnpjServer;
+    usuarioModel.listar(cnpj)
     .then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
