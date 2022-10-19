@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&family=Jost&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -25,10 +28,7 @@ li{
     list-style-type: none;
 }
 
-main{
-    margin: 0 0 0 200px ;
-    width: calc(100% - 400px);
-}
+
 
 :hover{
     transition: 300ms;
@@ -38,24 +38,35 @@ main{
 /* ---------------------------- INÍCIO - LEFT ASIDE ---------------------------- */
 .l-side-bar{
     background-color: #7e90a6;
-    width: 200px;
-    height: 100vh;
+    width: 100vw;
+    height: 15vh;
     position: fixed;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo{
-    width: 100%;
+    width: 150px;
+   
 }
 
-.logo > img{
-    width: inherit;
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: none;
 }
 
 .wrapper{
-    height: inherit;
+    width: 80%;
     display: flex;
-    flex-direction: column;
-    gap: 40px;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .wrapper > label{
@@ -63,16 +74,23 @@ main{
     font-size: 20px;
 }
 
-#hello_message{
-    text-transform: capitalize;
+.hello , #hello-message{
+    font: 500 1.35rem "Inria Sans";
+    
 }
-
+.hello{
+    display: none;
+}
 .link-pages{
     width: 100%;
     text-align: center;
     font-size: 20px;
+    gap: 20px;
 }
-
+.link-pages li{
+    margin-top: 10px;
+    font: 500 1.15rem "Inria Sans";
+}
 .link-pages :is(a, li){
     width: 100%;
 }
@@ -95,18 +113,15 @@ main{
 }
 
 .btn-arrow {
-    --height: 35px;
+    height: 25px;
     position: absolute;
-    height: var(--height);
-    width: auto;
-    left: calc(100% - var(--height));
-    top: calc(100% - var(--height));
     transform: rotate(90deg);
     transition: 600ms;
+    right: 1rem;
 }
 
 .list-collapse{
-    height: 200px;
+    height: 0px;
     overflow-y: auto;
     background-color: #96b9fc;
     transition: 500ms;
@@ -123,14 +138,14 @@ main{
 }
 
 #exit{
-    --heigth: 50px;
+    height: 50px;
     background-color: #f24742;
     border: none;
-    height: var(--heigth);
+   left: 0;
     width: 100%;
     font-size: 20px;
     position: absolute;
-    top: calc(100% - var(--heigth));
+    bottom: 0;
     cursor: pointer;
 }
 
@@ -142,13 +157,9 @@ main{
 
 /* ---------------------------- INÍCIO - RIGHT ASIDE ---------------------------- */
 .r-side-bar{
+    padding-top:15vh;
     background-color: #d9d9d9;
-    --width: 200px;
-    width: var(--width);
-    height: 9   0vh;
-    position: fixed;
-    bottom: 0;
-    left: calc(100% - var(--width));
+    width: 100vw;
 }
 
 .new-func {
@@ -168,4 +179,61 @@ main{
 .new-func img{
     transform: rotate(45deg);
 }
+
+.iconx{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 35px;
+    cursor: pointer;
+}
+.iconMenu{
+    width: 35px;
+    margin-top: 10px;
+}
+
 /* ---------------------------- FIM - RIGHT ASIDE ---------------------------- */
+
+@media (min-width: 992px) {
+    .l-side-bar{
+        width: 300px;
+        height: 100vh;
+        align-items:flex-start;
+    }
+    .logo{
+        width: 250px;
+
+    }
+    .iconx {
+        display: none;
+    }
+    .hello{
+        display: block;
+    }
+    .wrapper{
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 3rem;
+    }
+    nav{
+        display: block;
+      
+    }
+    .iconMenu{
+        display: none;
+    }
+    nav ul{
+        margin-top: 5rem;
+    }
+
+    .r-side-bar{
+        background-color: #d9d9d9;
+        --width: 200px;
+        width: var(--width);
+        height: 9   0vh;
+        position: fixed;
+        bottom: 0;
+        left: calc(100% - var(--width));
+        padding: 0;
+    }
+}

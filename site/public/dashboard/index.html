@@ -14,50 +14,55 @@
 
 <body onload="funcionario()">
     <!-- Barra de navegação lateral -->
-    <aside class="l-side-bar">
+    <aside class="l-side-bar" id="header">
+        
         <section class="wrapper">
-            <figure class="logo">
-                <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel">
-            </figure>
+                    
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo toggle">
+            <p class="hello">Olá, <span id="hello-message">cargo</span><p>
+            <img src="../assets/svg/menu-svgrepo-com.svg" alt="Logotipo da Guardian Angel" class="iconMenu toggle">
+                <nav>
+                    <img src="../assets/svg/x-svgrepo-com.svg" alt="Logotipo da Guardian Angel" class="iconx toggle">
+                    <ul class="link-pages">
+                        <li>
+                            <a href="#perfil">Perfil</a>
+                        </li>
+                        <li>
+                            <a href="#func">Funcionários</a>
+                        </li>
+                        <li>
+                            <a href="#relat">Relatórios</a>
+                        </li>
+                    </ul>
 
-            <label>Olá, <span id="hello-message1">cargo</span></label>
+                    
+                 <button type="button" id="exit">Sair</button>
+                </nav>
+         
 
-            <ul class="link-pages">
-                <li>
-                    <a href="#perfil">Perfil</a>
-                </li>
-                <li>
-                    <a href="#func">Funcionários</a>
-                </li>
-                <li>
-                    <a href="#relat">Relatórios</a>
-                </li>
-            </ul>
-
-            <button type="button" id="exit">Sair</button>
         </section>
     </aside>
 
     <aside class="r-side-bar">
         <section>
-            <article>
+
                 <button type="button" class="menu-collapse">
                     Funcionários
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-                
-                <div id="listaFunc">
-                </div>
-            </article>
+                <ul class="list-collapse">
+                    <!-- li 'alguma coisa' li -->
+                </ul>
             
-            <article>
+            
+
                 <button type="button" class="new-func">
                     <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
                     <a href="novoFuncionario.html">Novo funcionário</a>
                 </button>
-            </article>
+            
 
-            <article>
+
                 <button type="button" class="menu-collapse">
                     Meu computador
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
@@ -65,7 +70,7 @@
                 <ul class="list-collapse">
                     <!-- li 'alguma coisa' li -->
                 </ul>
-            </article>
+            
         </section>
     </aside>
 
@@ -95,27 +100,27 @@
                 <img src="../assets/svg/circle.svg" alt="status image"></label>
         </section>
 
-        <section>
-            <article  class="dashboard" id="1">
-                <div style="position: relative; height:100%; width:40%">
-                    <canvas id="chart-1" width="100%" height="100%"></canvas>
+        <section  class="dashboard" id="1">
+                <div class="graficos">
+                    <canvas id="chart-1"></canvas>
                 </div>
 
-                <div class="process">
-                    <section id="process-table" class="table-container">
-                        <article>
-                            <table>
-                                <tbody id="table1">
-                                    <tr>
-                                        <th>Processo</th>
-                                        <th>Uso (%)</th>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </article>
-                    </section>
-                </div>
-            </article>
+               
+                    <div id="process" class="Processcontainer">
+            
+                      
+                            <p>Processos</p>
+                            <div id="listaNomeProc"></div>
+                            
+                            <p>CPU %</p>
+                            <div id="listaPorcentCPU">
+
+                            </div>
+                    
+                        
+                    </div>
+             
+            
         </section>
     </main>
 </body>

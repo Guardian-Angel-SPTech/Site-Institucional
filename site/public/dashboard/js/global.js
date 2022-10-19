@@ -11,15 +11,15 @@ function collapse(evt) {
     const list = document.getElementsByClassName("list-collapse")[evt.currentTarget.i]
     const arrow = document.getElementsByClassName("btn-arrow")[evt.currentTarget.i]
 
-    if (list.style.height != "0px") {
+    if (list.style.height != "200px") {
 
-        list.style.height = "0px"
+        list.style.height = "200px"
         arrow.style.transform = "rotate(0deg)"
 
         clearTimeout(list);
     } else {
 
-        list.style.height = "200px"
+        list.style.height = "0px"
         arrow.style.transform = "rotate(90deg)"
 
         list = setTimeout(() => {
@@ -30,3 +30,19 @@ function collapse(evt) {
         clearTimeout(list);
     }
 }
+const nav = document.querySelector('#header nav');
+for( const element of toggle){
+    element.addEventListener('click', function(){
+        nav.classList.toggle('show')
+       
+    })
+    }
+    //no click do menu , fecha ele todo 
+    
+    const links =document.querySelectorAll('nav ul li a')
+    for(const link of links){
+        link.addEventListener('click', function(){
+        nav.classList.remove('show')
+    
+        })
+    }

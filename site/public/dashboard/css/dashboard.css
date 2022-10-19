@@ -1,15 +1,8 @@
-main{
-    flex-direction: column;
-    display: flex;
-    gap: 40px;
-}
+
 
 .top-message{
-    height: 30px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 25px;
+
+    visibility: hidden;
 }
 
 .status-check{
@@ -31,51 +24,21 @@ main{
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-
-.box {
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    background-color: #e5d0d0;
+width: 100%;
 }
 
-.box h2 {
-    text-align: center;
-    font-size: 27px;
-    border-top: 1px solid #000;
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-}
 
-:is(.box) table, th, td, thead {
-    height: 47px;
-    font-size: 15px;
-    text-align: center;
-    border: #00000021 1px solid;
-}
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    text-align: left;
-    border: 1px solid #000;
+.graficos{
+    width: 40vw;
 }
-
-.table-container {
-    height: auto;
-    width: 100%;
+#process{
+    margin-top: 30px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-tr {
-    height: 30px;
-}
-td{
-    width: 100px;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
 }
 /* ---------------------------- FIM - DASHBOARD ---------------------------- */
 
@@ -92,3 +55,19 @@ td{
     display: flex;
 }
 /* ---------------------------- FIM - MODAL ---------------------------- */
+
+@media (min-width: 992px) {
+    .top-message{
+        height: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 25px;
+       visibility: visible;
+
+    }
+    .graficos{
+        width: 40vw;
+    }
+
+}
