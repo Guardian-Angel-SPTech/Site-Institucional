@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&family=Jost&display=swap');
 
 
 .top-message{
-
+    font: 700 1.85rem "inria Sans";
     visibility: hidden;
 }
 
@@ -26,19 +27,25 @@
     align-items: center;
     flex-direction: column;
 width: 100%;
+margin-left: -3rem;
 }
 
 
 
-.graficos{
-    width: 40vw;
-}
+
 #process{
     margin-top: 30px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 80%;
+}
+.graficos{
+    width: min-content;
+}
+#chart{
+    width: 80vw;
+    
 }
 /* ---------------------------- FIM - DASHBOARD ---------------------------- */
 
@@ -54,20 +61,51 @@ width: 100%;
 .modal, .modal-input{
     display: flex;
 }
+
+.chart-container{
+    position: relative;  
+    width:80vw;
+}
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
 @media (min-width: 992px) {
     .top-message{
         height: 30px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        font-size: 25px;
        visibility: visible;
+      margin-top: 2rem;
+       width: 100%;
 
     }
-    .graficos{
-        width: 40vw;
+    .chart-container{
+        position: relative;  
+        width:40vw;
+        margin-top: 2rem;
     }
+.graficos{
+   
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+    .dashboard{
+        margin: 0;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    
+        padding-left: 330px;
+    }
+ 
 
+    #process{
+       width: 20%;
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }

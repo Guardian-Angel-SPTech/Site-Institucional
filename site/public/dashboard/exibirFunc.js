@@ -32,10 +32,16 @@ return false;
 }
 function listaUsuario(){
     var cUl = document.createElement("ul");
+    var nome = document.createTextNode(vFuncionario[0].nome);
+    Nomefunc= document.getElementById("nomeFunc");
 for (i = 0; i < vFuncionario.length; i++) {
+
             var texto = document.createTextNode(vFuncionario[i].nome);
             cUl.classList.add("list-collapse");
             var cLi = document.createElement("li");
+            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idUsuario}), obterDadosGraficoCPU(${vFuncionario[i].idUsuario}), obterDadosGraficoDisco(${vFuncionario[i].idUsuario})`);
+            
+            Nomefunc.appendChild(nome)
             cLi.appendChild(texto);
             cUl.appendChild(cLi);
             document.getElementById("listaFunc").appendChild(cUl);

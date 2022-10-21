@@ -11,15 +11,19 @@ function collapse(evt) {
     const list = document.getElementsByClassName("list-collapse")[evt.currentTarget.i]
     const arrow = document.getElementsByClassName("btn-arrow")[evt.currentTarget.i]
 
-    if (list.style.height != "200px") {
+    if (list.style.height != "min-content") {
 
-        list.style.height = "200px"
+        list.style.height = "min-content"
+        list.style.paddingTop = "1rem"
+        list.style.paddingBottom = "1rem"
         arrow.style.transform = "rotate(0deg)"
 
         clearTimeout(list);
     } else {
 
         list.style.height = "0px"
+        list.style.paddingTop = "0rem"
+        list.style.paddingBottom = "0rem"
         arrow.style.transform = "rotate(90deg)"
 
         list = setTimeout(() => {
@@ -30,7 +34,8 @@ function collapse(evt) {
         clearTimeout(list);
     }
 }
-const nav = document.querySelector('#header nav');
+const nav = document.querySelector('#header section nav');
+const toggle = document.querySelectorAll('section .toggle img')
 for( const element of toggle){
     element.addEventListener('click', function(){
         nav.classList.toggle('show')

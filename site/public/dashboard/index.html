@@ -15,29 +15,36 @@
 <body onload="funcionario()">
     <!-- Barra de navegação lateral -->
     <aside class="l-side-bar" id="header">
-        
         <section class="wrapper">
-                    
-            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo toggle">
-            <p class="hello">Olá, <span id="hello-message">cargo</span><p>
-            <img src="../assets/svg/menu-svgrepo-com.svg" alt="Logotipo da Guardian Angel" class="iconMenu toggle">
-                <nav>
-                    <img src="../assets/svg/x-svgrepo-com.svg" alt="Logotipo da Guardian Angel" class="iconx toggle">
-                    <ul class="link-pages">
-                        <li>
-                            <a href="#perfil">Perfil</a>
-                        </li>
-                        <li>
-                            <a href="#func">Funcionários</a>
-                        </li>
-                        <li>
-                            <a href="#relat">Relatórios</a>
-                        </li>
-                    </ul>
+        <nav class="container">
+            <div class="logo">
+                <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo">
+            </div>
+    
+            <div class="menu">
+              
+                    <div class="logoMenuPequeno">
+                        <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor">
+                    </div>
 
-                    
-                 <button type="button" id="exit">Sair</button>
-                </nav>
+                    <p class="ola"> Olá, <span id="nomeFunc"></span></p>
+                  <ul class="grid">
+                    <li><a href="index.html#banner">Perfil</a></li>
+                    <li><a href="Servicos.html">Funcionários</a></li>
+                    <li><a href="Produtos.html">Relatórios</a></li>
+                  </ul>
+                  <button type="button" id="exit">Sair</button>
+                </div>
+    
+                
+                <div class="toggle iconMenu">
+                    <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+                  </div>
+                  <div class="toggle icon-close">
+                    <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+                  </div>
+          </nav>
+    
          
 
         </section>
@@ -50,9 +57,10 @@
                     Funcionários
                     <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
                 </button>
-                <ul class="list-collapse">
-                    <!-- li 'alguma coisa' li -->
-                </ul>
+                <div id="listaFunc">
+                   
+                </div>
+                
             
             
 
@@ -92,37 +100,36 @@
         </div>
     </section> -->
 
-    <main>
-        <section class="top-message">
-            <label>Bem vindo ao seu portal</label>
-            <label class="status-check">
-                Status: <span id="status">status</span>
-                <img src="../assets/svg/circle.svg" alt="status image"></label>
-        </section>
+    <section  class="dashboard" id="1">
+        <div class="top-message">
+            <p>Bem vindo ao seu portal</p>
+            
+        </div>
 
-        <section  class="dashboard" id="1">
+        <div>
                 <div class="graficos">
-                    <canvas id="chart-1"></canvas>
+                    <div style="display: flex;flex-direction: column; margin-top: 3rem;">
+
+                        <div class="chart-container" >
+                            <canvas id="chart1"></canvas>
+                        </div>
+                        <div class="chart-container" >
+                            <canvas id="chart2"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="chart3"></canvas>
+                        </div>
+                    </div>
+               
+                      
                 </div>
 
+        </div>
                
-                    <div id="process" class="Processcontainer">
-            
-                      
-                            <p>Processos</p>
-                            <div id="listaNomeProc"></div>
-                            
-                            <p>CPU %</p>
-                            <div id="listaPorcentCPU">
-
-                            </div>
-                    
-                        
-                    </div>
              
             
         </section>
-    </main>
+  
 </body>
 
 <script src="js/global.js"></script>
