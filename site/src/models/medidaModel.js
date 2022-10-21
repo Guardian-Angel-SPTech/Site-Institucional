@@ -138,9 +138,8 @@ function buscarMedidasEmTempoRealDisco(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function pegarProcessos() {
-    instrucaoSql = `SELECT * FROM processos`;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+function pegarProcessos(idUsuario) {
+    instrucaoSql = `SELECT processos, usoProcesso FROM maquina where fkUsuario = 1 limit 10`;
     return database.executar(instrucaoSql);
 }
 

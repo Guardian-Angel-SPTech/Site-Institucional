@@ -24,7 +24,6 @@ router.get("/tempo-realDisco/:idUsuario", function (req, res) {
 })
 
 router.post("/pegarProcessos", function (req, res) {
-    console.log('Chegou na rota!')
     medidaController.pegarProcessos(req, res);
 });
 

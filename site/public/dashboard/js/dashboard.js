@@ -1,49 +1,46 @@
-// const processTableId = document.getElementById("process-table")
-// const processStatus = ['danger', 'moderate', 'controlled']
- chart()
+chart()
+pegarProcessos()
 
-// processTableId.addEventListener('load', tables())
+obterDadosGraficoRAM()
+obterDadosGraficoCPU()
+obterDadosGraficoDisco()
 
-// function tables() {
-//     // Preenchendo a tabela com os processos
+plotarGraficoCPU()
+plotarGraficoDisco()
+plotarGraficoRAM()
 
-//     const process = [];
-//     const uso = [];
+function pegarProcessos() {
+    // Preenchendo a tabela com os processos
 
-//     fetch("../medidas/PegarProcessos", {
-//         method: 'POST',
-//         headers: {
-//             "Content-Type": "application/json"
-//         }
-//     }).then(function (resposta) {
-//         if (resposta.ok) {
-//             resposta.json().then(json => {
-//                 console.log(json)
-//                 json.forEach(element => {
-//                     process.push(element.processo)
-//                     uso.push(element.uso)
-//                     for (let i = 0; i < 9; i++) {
-//                         if (process[i] != undefined) {
-//                             processTable1.insertAdjacentHTML("beforeEnd", `
-//                                     <tr>
-//                                         <td>${json[i]["processo"]}</td>
-//                                         <td>${json[i]["uso"]} %</td>
-//                                     </tr>
-//                             `)
-//                         }
-//                     }
-//                 });
-//             })
-//         }
-//     })
+    const process = [];
+    const uso = [];
 
-//     const processTable1 = document.getElementById("table1")
+    fetch("../medidas/PegarProcessos", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            resposta.json().then(json => {
+                console.log(json)
+                json.forEach(element => {
+                    process.push(element.processos)
+                    uso.push(element.usoProcesso)
+                    document.getElementById("process").innerHTML = ""
+                    for (let i = 0; i < process.length; i++) {
+                        document.getElementById("process").innerHTML += `Processo - ${process[i]} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Uso da CPU - ${uso[i]}<br>`
+                    }
+                });
+            })
+        }
+    })
 
-// }
+}
 
 // Gráficos
 function chart() {
-    
+
 }
 
 // Atualizando gráficos em tempo real
@@ -75,6 +72,7 @@ function obterDadosGraficoRAM(idUsuario) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 }
+
 function obterDadosGraficoCPU(idUsuario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
@@ -101,6 +99,7 @@ function obterDadosGraficoCPU(idUsuario) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
 }
+
 function obterDadosGraficoDisco(idUsuario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
@@ -144,15 +143,18 @@ function plotarGraficoRAM(resposta, idUsuario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         var horario = registro.horaRegistro;
-        dados1.datasets[0].data.push(registro.RegistroComponente);     
+        dados1.datasets[0].data.push(registro.RegistroComponente);
         labels1.push(horario);
         dados1.datas
     }
 
-    const config = { type: 'line', data: dados1, };
+    const config = {
+        type: 'line',
+        data: dados1,
+    };
     var ctx = document.getElementById("chart1").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoRAM(idUsuario,myChart,dados1), 2000);
+    setTimeout(() => atualizarGraficoRAM(idUsuario, myChart, dados1), 2000);
 }
 
 function plotarGraficoCPU(resposta, idUsuario) {
@@ -169,15 +171,18 @@ function plotarGraficoCPU(resposta, idUsuario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         var horario = registro.horaRegistro;
-        dados1.datasets[0].data.push(registro.RegistroComponente);     
+        dados1.datasets[0].data.push(registro.RegistroComponente);
         labels1.push(horario);
         dados1.datas
     }
 
-    const config = { type: 'line', data: dados1, };
+    const config = {
+        type: 'line',
+        data: dados1,
+    };
     var ctx = document.getElementById("chart2").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoCPU(idUsuario,myChart,dados1), 2000);
+    setTimeout(() => atualizarGraficoCPU(idUsuario, myChart, dados1), 2000);
 }
 
 function plotarGraficoDisco(resposta, idUsuario) {
@@ -194,15 +199,18 @@ function plotarGraficoDisco(resposta, idUsuario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         var horario = registro.horaRegistro;
-        dados1.datasets[0].data.push(registro.RegistroComponente);     
+        dados1.datasets[0].data.push(registro.RegistroComponente);
         labels1.push(horario);
         dados1.datas
     }
 
-    const config = { type: 'line', data: dados1, };
+    const config = {
+        type: 'line',
+        data: dados1,
+    };
     var ctx = document.getElementById("chart3").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoDisco(idUsuario,myChart,dados1), 2000);
+    setTimeout(() => atualizarGraficoDisco(idUsuario, myChart, dados1), 2000);
 }
 
 // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
@@ -210,14 +218,14 @@ function plotarGraficoDisco(resposta, idUsuario) {
 
 //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
 //     Para ajustar o "select", ajuste o comando sql em src/models
-function atualizarGraficoRAM(idUsuario,myChart, dados1) {
+function atualizarGraficoRAM(idUsuario, myChart, dados1) {
     // console.log("Indo atualizar gráfico")
 
     fetch(`/medidas/tempo-realRAM/${idUsuario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
-               
+
                 response.json().then(function (novoRegistro) {
 
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
@@ -234,12 +242,12 @@ function atualizarGraficoRAM(idUsuario,myChart, dados1) {
                     myChart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idUsuario,myChart, dados1), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idUsuario, myChart, dados1), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idUsuario,myChart, dados1), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idUsuario, myChart, dados1), 2000);
             }
         })
         .catch(function (error) {
@@ -247,7 +255,7 @@ function atualizarGraficoRAM(idUsuario,myChart, dados1) {
         });
 }
 
-function atualizarGraficoCPU(idUsuario,mychart, dados1) {
+function atualizarGraficoCPU(idUsuario, mychart, dados1) {
     // console.log("Indo atualizar gráfico")
 
     fetch(`/medidas/tempo-realCPU/${idUsuario}`, {
@@ -270,12 +278,12 @@ function atualizarGraficoCPU(idUsuario,mychart, dados1) {
                     mychart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idUsuario,mychart, dados1), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idUsuario, mychart, dados1), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idUsuario,mychart, dados1), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idUsuario, mychart, dados1), 2000);
             }
         })
         .catch(function (error) {
@@ -283,7 +291,7 @@ function atualizarGraficoCPU(idUsuario,mychart, dados1) {
         });
 }
 
-function atualizarGraficoDisco(idUsuario,mychart, dados1) {
+function atualizarGraficoDisco(idUsuario, mychart, dados1) {
     // console.log("Indo atualizar gráfico")
 
     fetch(`/medidas/tempo-realDisco/${idUsuario}`, {
@@ -306,12 +314,12 @@ function atualizarGraficoDisco(idUsuario,mychart, dados1) {
                     mychart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idUsuario,mychart, dados1), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idUsuario, mychart, dados1), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idUsuario,mychart, dados1), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idUsuario, mychart, dados1), 2000);
             }
         })
         .catch(function (error) {

@@ -16,36 +16,36 @@
     <!-- Barra de navegação lateral -->
     <aside class="l-side-bar" id="header">
         <section class="wrapper">
-        <nav class="container">
-            <div class="logo">
-                <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo">
-            </div>
-    
-            <div class="menu">
-              
+            <nav class="container">
+                <div class="logo">
+                    <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo">
+                </div>
+
+                <div class="menu">
+
                     <div class="logoMenuPequeno">
                         <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor">
                     </div>
 
                     <p class="ola"> Olá, <span id="nomeFunc"></span></p>
-                  <ul class="grid">
-                    <li><a href="index.html#banner">Perfil</a></li>
-                    <li><a href="Servicos.html">Funcionários</a></li>
-                    <li><a href="Produtos.html">Relatórios</a></li>
-                  </ul>
-                  <button type="button" id="exit">Sair</button>
+                    <ul class="grid">
+                        <li><a href="index.html#banner">Perfil</a></li>
+                        <li><a href="Servicos.html">Funcionários</a></li>
+                        <li><a href="Produtos.html">Relatórios</a></li>
+                    </ul>
+                    <button type="button" id="exit">Sair</button>
                 </div>
-    
-                
+
+
                 <div class="toggle iconMenu">
                     <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
-                  </div>
-                  <div class="toggle icon-close">
+                </div>
+                <div class="toggle icon-close">
                     <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-                  </div>
-          </nav>
-    
-         
+                </div>
+            </nav>
+
+
 
         </section>
     </aside>
@@ -53,32 +53,32 @@
     <aside class="r-side-bar">
         <section>
 
-                <button type="button" class="menu-collapse">
-                    Funcionários
-                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
-                </button>
-                <div id="listaFunc">
-                   
-                </div>
-                
-            
-            
+            <button type="button" class="menu-collapse">
+                Funcionários
+                <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+            </button>
+            <div id="listaFunc">
 
-                <button type="button" class="new-func">
-                    <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
-                    <a href="novoFuncionario.html">Novo funcionário</a>
-                </button>
-            
+            </div>
 
 
-                <button type="button" class="menu-collapse">
-                    Meu computador
-                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
-                </button>
-                <ul class="list-collapse">
-                    <!-- li 'alguma coisa' li -->
-                </ul>
-            
+
+
+            <button type="button" class="new-func">
+                <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
+                <a href="novoFuncionario.html">Novo funcionário</a>
+            </button>
+
+
+
+            <button type="button" class="menu-collapse">
+                Meu computador
+                <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+            </button>
+            <ul class="list-collapse">
+                <!-- li 'alguma coisa' li -->
+            </ul>
+
         </section>
     </aside>
 
@@ -100,36 +100,40 @@
         </div>
     </section> -->
 
-    <section  class="dashboard" id="1">
+    <section class="dashboard" id="1">
         <div class="top-message">
             <p>Bem vindo ao seu portal</p>
-            
+
         </div>
 
         <div>
-                <div class="graficos">
-                    <div style="display: flex;flex-direction: column; margin-top: 3rem;">
+            <div class="graficos">
+                <div style="display: flex;flex-direction: column; margin-top: 3rem;">
 
-                        <div class="chart-container" >
-                            <canvas id="chart1"></canvas>
-                        </div>
-                        <div class="chart-container" >
-                            <canvas id="chart2"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <canvas id="chart3"></canvas>
-                        </div>
+                    <div class="process-container" >
+                        <span id="process" style="height: 100%; width: 100%"></span>
                     </div>
-               
-                      
+
+                    <div class="chart-container">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart2"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="chart3"></canvas>
+                    </div>
                 </div>
 
+
+            </div>
+
         </div>
-               
-             
-            
-        </section>
-  
+
+
+
+    </section>
+
 </body>
 
 <script src="js/global.js"></script>

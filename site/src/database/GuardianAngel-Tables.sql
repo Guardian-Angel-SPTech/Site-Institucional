@@ -4,7 +4,7 @@ use GuardianAngel;
 create table empresa (
 idEmpresa int primary key auto_increment,
 cnpj char(14),
-email varchar(20),
+email varchar(45),
 nomeEmpresa varchar(45)
 );
 
@@ -12,7 +12,7 @@ create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
 cpf char(11),
-email varchar(30),
+email varchar(45),
 senha varchar(45),
 nivelAcesso char(1),
 fkEmpresa int,

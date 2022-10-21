@@ -113,7 +113,9 @@ function buscarMedidasEmTempoRealDisco(req, res) {
 
 function pegarProcessos(req, res) {
 
-    medidaModel.pegarProcessos().then(function (resultado) {
+    const idUsuario = req.params.idUsuario;
+
+    medidaModel.pegarProcessos(idUsuario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
