@@ -139,7 +139,7 @@ function buscarMedidasEmTempoRealDisco(idUsuario) {
 }
 
 function pegarProcessos(idUsuario) {
-    instrucaoSql = `SELECT processos, usoProcesso FROM maquina where fkUsuario = 1 limit 10`;
+    instrucaoSql = `SELECT processos, usoProcesso FROM maquina where fkUsuario = ${idUsuario} limit 10`;
     return database.executar(instrucaoSql);
 }
 

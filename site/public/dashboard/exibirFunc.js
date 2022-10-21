@@ -19,6 +19,7 @@ fetch("../usuarios/verfuncionario", {
             console.log(json);
             console.log(JSON.stringify(json));
             vFuncionario = json
+            
             loadF.addEventListener('load', listaUsuario())
           });
     } else {
@@ -39,7 +40,7 @@ for (i = 0; i < vFuncionario.length; i++) {
             var texto = document.createTextNode(vFuncionario[i].nome);
             cUl.classList.add("list-collapse");
             var cLi = document.createElement("li");
-            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idUsuario}), obterDadosGraficoCPU(${vFuncionario[i].idUsuario}), obterDadosGraficoDisco(${vFuncionario[i].idUsuario})`);
+            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idUsuario}), obterDadosGraficoCPU(${vFuncionario[i].idUsuario}), obterDadosGraficoDisco(${vFuncionario[i].idUsuario}), pegarProcessos(${vFuncionario[i].idUsuario})`);
             
             Nomefunc.appendChild(nome)
             cLi.appendChild(texto);

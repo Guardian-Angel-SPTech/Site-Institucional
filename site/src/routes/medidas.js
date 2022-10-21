@@ -23,7 +23,7 @@ router.get("/tempo-realDisco/:idUsuario", function (req, res) {
     medidaController.buscarMedidasEmTempoRealDisco(req, res);
 })
 
-router.post("/pegarProcessos", function (req, res) {
+router.get("/pegarProcessos/:idUsuario", function (req, res) {
     medidaController.pegarProcessos(req, res);
 });
 

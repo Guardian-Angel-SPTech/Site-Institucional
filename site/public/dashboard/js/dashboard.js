@@ -1,22 +1,15 @@
 chart()
-pegarProcessos()
 
-obterDadosGraficoRAM()
-obterDadosGraficoCPU()
-obterDadosGraficoDisco()
 
-plotarGraficoCPU()
-plotarGraficoDisco()
-plotarGraficoRAM()
 
-function pegarProcessos() {
+function pegarProcessos(idUsuario) {
     // Preenchendo a tabela com os processos
 
     const process = [];
     const uso = [];
 
-    fetch("../medidas/PegarProcessos", {
-        method: 'POST',
+    fetch(`../medidas/PegarProcessos/${idUsuario}`, {
+        method: 'GET',
         headers: {
             "Content-Type": "application/json"
         }
@@ -162,7 +155,7 @@ function plotarGraficoCPU(resposta, idUsuario) {
     let dados1 = {
         labels: labels1,
         datasets: [{
-            label: 'Ram',
+            label: 'CPU',
             data: [],
             borderColor: '#000',
             tension: 0.1
