@@ -74,7 +74,7 @@ while escolha != 5:
             graficosRAM2.title.set_text(f'Maquina 3 - Memoria RAM - {valores2[-1]}GB')
             graficosRAM2.set_ylim(0, 100)
 
-            conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='2707')
+            conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='sptech')
             cursor = conexao.cursor()
             cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro) VALUES (1, 1, '{:.2f}', NOW())".format(ramU))
             conexao.commit()
@@ -151,7 +151,7 @@ while escolha != 5:
             graficosCPU2.title.set_text(f'Maquina 3 - Consumo CPU - {valores2[-1]}%')
             graficosCPU2.set_ylim(0, 100)
 
-            conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='2707')
+            conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='sptech')
             cursor = conexao.cursor()
             cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro) VALUES (1, 2, '{:.2f}', NOW())".format(freq))
             conexao.commit()
@@ -251,7 +251,7 @@ while escolha != 5:
             graficosDisco2.title.set_text(f'Quantidade ocupada no disco - {valores2[-1]}%')
             graficosDisco2.set_ylim(0, 100)
 
-            conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='2707')
+            conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='sptech')
             cursor = conexao.cursor()
             cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro) VALUES (1, 3, '{:.2f}', NOW())".format(percentage_disk))
             conexao.commit()
