@@ -43,11 +43,7 @@ input[type=number] {
 
 /* Criação Container */
 
-.container{
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-}
+
 
 /* Inicio Menu */
 
@@ -65,15 +61,18 @@ input[type=number] {
 }
 
 .navbar .container{
+    width: 100vw;
+
     justify-content: space-around;
     flex-direction: column;
+    align-items: center;
 }
 
 
 .menu-inferior{
     display: flex;
     flex-direction: row;
-    height: 100px;
+    height: min-content;
     justify-content: space-between;
     width: 90%;
 
@@ -102,6 +101,8 @@ input[type=number] {
 .cont-dir{
     display: flex;
     align-items: center;
+    height: 50px;
+    width: 70px;
 }
 .cont-dir a{
     color: #0a2342;
@@ -609,7 +610,7 @@ input[type=number] {
 .cadastro-dir p{
     font-family: 'Jost';
     color: #444444;
-    font-size: 18px;
+
 }
 
 .cadastro-dir label{
@@ -683,22 +684,10 @@ input[type=number] {
     color: #b89934;
 }
 
-.linha-botao{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-}
 
-.linha-botao button{
-    width: 45%;
-}
 
-.dados-quem{
-    font-weight: bold;
-    font-size: 24px !important;
-    color: #0a2342 !important;
-}
+
+
 
 #dados_usuario{
     display: none;
@@ -765,12 +754,6 @@ footer h1{
     .navbar button{
         display: none;
     }
-
-    .navbar .container{
-        align-items: center;
-    }
-
-  
 
   
 
@@ -886,7 +869,7 @@ footer h1{
     }
 
     .menu-aberto{
-        height: 275px;
+        height:325px;
     }
 
     /* Tela Cadastro */
@@ -931,25 +914,7 @@ footer h1{
         display: block;
     }
 
-    .navbar{
-        height: 120px;
-    }
 
-   
-
-    .navbar .cont-mei{
-        display: none;
-    }
-
-    .navbar button{
-        display: none;
-    }
-
-    .navbar .container{
-        align-items: center;
-    }
-
-  
 
  
    
@@ -1056,9 +1021,7 @@ footer h1{
         display: none;
     }
 
-    .menu-aberto{
-        height: 275px;
-    }
+   
 
     /* Tela Cadastro */
 
@@ -1093,7 +1056,7 @@ footer h1{
         width: 47%;
         height: auto;
     }
-
+    
 
 
 @media (min-width: 992px) {
@@ -1109,7 +1072,7 @@ footer h1{
         margin-top: 0;
     }
     .menu-inferior{
-        width: 100%;
+
         height: 50px;
     }
     .navbar .cont-mei{
@@ -1121,9 +1084,8 @@ footer h1{
     }
 
     .navbar .container{
-        align-items: center;
+        width: 90vw;
     }
-
 
     /* inicio area banner */
 
@@ -1321,5 +1283,7 @@ footer h1{
         display: none;
         visibility: hidden;
     }
-    .menu-aberto{}
+    .menu-aberto{
+        height: 0px;
+    }
 }

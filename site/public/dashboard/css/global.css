@@ -247,7 +247,24 @@ li{
     transform: rotate(45deg);
 }
 
+#CadastroDash.cadastro-dir{
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
 
+#CadastroDash .dados-quem{
+    text-align: center;
+    font: 700 1.75rem 'Inria Sans';
+    color:#0a2342;
+    margin-bottom: 1rem;
+}
+#CadastroDash .n{
+    width: 80vw;
+}
 
 /* ---------------------------- FIM - RIGHT ASIDE ---------------------------- */
 
@@ -323,4 +340,19 @@ display: none;
         left: calc(100% - var(--width));
         padding: 0;
     }
+    #CadastroDash.cadastro-dir{
+        width: 100vw;
+        height: 100vh;
+        margin-top: 0;
+    }
+    #CadastroDash .n{
+        width: 35%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #CadastroDash .form-cadastro button{
+        width: 30rem;
+    }
+
 }

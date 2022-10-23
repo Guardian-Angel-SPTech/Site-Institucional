@@ -11,32 +11,51 @@
     <title>Cadastro</title>
 </head>
 <body onload="funcionario()">
-    <aside class="l-side-bar">
+    <aside class="l-side-bar" id="header">
         <section class="wrapper">
-            <figure class="logo">
-                <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel">
-            </figure>
+            <nav class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo">
+                
+                    </a>
+                </div>
 
-            <label>Olá, <span id="hello-message1">cargo</span></label>
+                <div class="menu">
 
-            <ul class="link-pages">
-                <li>
-                    <a href="#perfil">Perfil</a>
-                </li>
-                <li>
-                    <a href="#func">Funcionários</a>
-                </li>
-                <li>
-                    <a href="#relat">Relatórios</a>
-                </li>
-            </ul>
+                    <div class="logoMenuPequeno">
+                        <a href="index.html">
 
-            <button type="button" id="exit">Sair</button>
+                            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor">
+                        </a>
+                    </div>
+
+                    <p class="ola"> Olá, <span id="nomeFunc"></span></p>
+                    <ul class="grid">
+                        <li><a href="index.html#banner">Perfil</a></li>
+                        <li><a href="Servicos.html">Funcionários</a></li>
+                        <li><a href="Produtos.html">Relatórios</a></li>
+                    </ul>
+                    <button type="button" id="exit">Sair</button>
+                </div>
+
+
+                <div class="toggle iconMenu">
+                    <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+                </div>
+                <div class="toggle icon-close">
+                    <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+                </div>
+            </nav>
+
+
+
         </section>
     </aside>
 
+
     <aside class="r-side-bar">
-        <section>
+        <section class="funcionario">
             <article>
                 <button type="button" class="menu-collapse">
                     Funcionários
@@ -65,7 +84,7 @@
             </article>
         </section>
     </aside>
-        <div class="cadastro-dir">
+        <div class="cadastro-dir" id="CadastroDash">
             <div class="form-cadastro n">
                     <p class="dados-quem">Dados do Usuário:</p>
                     <label for="inp_nome">Nome:</label>
