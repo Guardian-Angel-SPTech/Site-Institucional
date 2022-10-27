@@ -8,6 +8,17 @@ email varchar(45),
 nomeEmpresa varchar(45)
 );
 
+create table funcionario (
+idFuncionario int primary key auto_increment,
+nome varchar(45),
+cpf char(11),
+email varchar(45),
+senha varchar(45),
+nivelAcesso char(1),
+fkEmpresa int,
+foreign key (fkEmpresa) references empresa (idEmpresa)
+);
+
 create table maquina (
 idMaquina int primary key auto_increment,
 nomeMaquina varchar(45),
@@ -22,18 +33,9 @@ cpuLogica int,
 microArquitetura char(10),
 numeroCpu int,
 fkEmpresa int,
-foreign key (fkEmpresa) references empresa (idEmpresa)
-);
-
-create table funcionario (
-idFuncionario int primary key auto_increment,
-nome varchar(45),
-cpf char(11),
-email varchar(45),
-senha varchar(45),
-nivelAcesso char(1),
-fkEmpresa int,
-foreign key (fkEmpresa) references empresa (idEmpresa)
+foreign key (fkEmpresa) references empresa (idEmpresa),
+fkFuncionario int,
+foreign key (fkFuncionario) references funcionario (idFuncionario)
 );
 
 create table registro (
