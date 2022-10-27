@@ -3,7 +3,7 @@ const database = require("../database/config")
 function listar() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     const instrucao = `
-        SELECT * FROM usuario;
+        SELECT * FROM funcionario;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -13,7 +13,7 @@ function entrar(cnpj, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, senha)
     const instrucao = `
         SELECT *
-        FROM usuario
+        FROM funcionario
             INNER JOIN empresa
                 ON idEmpresa = fkEmpresa
         WHERE cnpj = '${cnpj}'
@@ -58,7 +58,7 @@ function listarusuario(idEmpresa) {
 function listar(cnpj){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-        SELECT idUsuario,nome FROM usuario JOIN empresa ON cnpj = ${cnpj};
+        SELECT idFuncionario,nome FROM funcionario JOIN empresa ON cnpj = ${cnpj};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
