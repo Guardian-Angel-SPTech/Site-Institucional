@@ -33,9 +33,7 @@ cpuLogica int,
 microArquitetura char(10),
 numeroCpu int,
 fkEmpresa int,
-foreign key (fkEmpresa) references empresa (idEmpresa),
-fkFuncionario int,
-foreign key (fkFuncionario) references funcionario (idFuncionario)
+foreign key (fkEmpresa) references empresa (idEmpresa)
 );
 
 create table registro (
