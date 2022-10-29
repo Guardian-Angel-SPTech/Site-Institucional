@@ -27,13 +27,22 @@
                         <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor">
                     </div>
 
-                    <p class="ola"> Olá, <span id="nomeFunc"></span></p>
-                    <ul class="grid">
-                        <li><a href="index.html#banner">Perfil</a></li>
-                        <li><a href="Servicos.html">Funcionários</a></li>
-                        <li><a href="Produtos.html">Relatórios</a></li>
-                    </ul>
-                    <button type="button" id="exit">Sair</button>
+                    <p class="ola"> Seja bem-vindo, <span id="nomeFunc"></span></p>
+                    
+
+                    <div class="botaoMenu">
+                        <button class="button ativo"><a href="index.html#banner" >Meu Computador</a></button>
+                        <button class="button"><a href="Servicos.html">Funcionários</a></button>
+                    </div>
+                        
+                        
+                    
+                    <div class="areaBotao">
+                        <button class="button sair"><a href="../index.html">Sair</a></button>
+                        <button class="button"><a href="#">Relatórios</a> </button>
+                    </div>
+                  
+
                 </div>
 
 
@@ -50,38 +59,7 @@
         </section>
     </aside>
 
-    <aside class="r-side-bar">
-        <section>
-
-            <button type="button" class="menu-collapse">
-                Funcionários
-                <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
-            </button>
-            <div id="listaFunc">
-
-            </div>
-
-
-
-
-            <button type="button" class="new-func">
-                <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
-                <a href="novoFuncionario.html">Novo funcionário</a>
-            </button>
-
-
-
-            <button type="button" class="menu-collapse">
-                Meu computador
-                <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
-            </button>
-            <ul class="list-collapse">
-                <!-- li 'alguma coisa' li -->
-            </ul>
-
-        </section>
-    </aside>
-
+   
     <!-- Modal para cadastrar novo usuário -->
     <!-- <section class="modal">
         <div class="modal-input">
@@ -102,12 +80,19 @@
 
     <section class="dashboard" id="1">
         <div class="top-message">
-            <p>Bem vindo ao seu portal</p>
+            <p>Bem vindo a dashboard</p>
 
         </div>
+   
 
         <div>
+            <div class="botoesGrafico">
+                <button>RAM</button>
+                <button>CPU</button>
+                <button>Disco</button>
+            </div>
             <div class="graficos">
+            
                 <div style="display: flex;flex-direction: column; margin-top: 3rem;">
 
                     <div class="process-container" >
@@ -117,10 +102,10 @@
                     <div class="chart-container">
                         <canvas id="chart1"></canvas>
                     </div>
-                    <div class="chart-container">
+                    <div class="chart-container" style="display: none;">
                         <canvas id="chart2"></canvas>
                     </div>
-                    <div class="chart-container">
+                    <div class="chart-container" style="display: none;">
                         <canvas id="chart3"></canvas>
                     </div>
                 </div>
@@ -141,3 +126,44 @@
 <script src="exibirFunc.js"></script>
 
 </html>
+
+<script>
+        if(novoRegistro[0].temperatura >40){
+          critico2.style.backgroundColor = "#ff0000";
+              dados.datasets[0].backgroundColor = "#ff0000";
+              alerta2.style.backgroundColor = "#fff";
+              emergencia2.style.backgroundColor = "#fff";
+            }else if(novoRegistro[0].temperatura >36 && novoRegistro[0].temperatura <=40){
+              emergencia2.style.backgroundColor = "#ff7b00";
+              dados.datasets[0].backgroundColor = "#ff7b00";
+              alerta2.style.backgroundColor = "#fff";
+              critico2.style.backgroundColor = "#fff";
+            }
+            else if(novoRegistro[0].temperatura >33 && novoRegistro[0].temperatura <=36){
+              alerta2.style.backgroundColor = "#fffb00";
+              dados.datasets[0].backgroundColor = "#fffb00";
+              critico2.style.backgroundColor = "#fff";
+              emergencia2.style.backgroundColor = "#fff";
+            }
+            else if(novoRegistro[0].temperatura >26 && novoRegistro[0].temperatura <33){
+              ideal.style.backgroundColor = "#2bd102";
+              dados.datasets[0].backgroundColor = "#2bd102";
+
+            }
+            else if(novoRegistro[0].temperatura >18 && novoRegistro[0].temperatura <=26){
+              alerta1.style.backgroundColor = "#fffb00";
+              dados.datasets[0].backgroundColor = "#fffb00";
+              critico1.style.backgroundColor = "#fff";
+              emergencia1.style.backgroundColor = "#fff";
+            } else if(novoRegistro[0].temperatura >10 && novoRegistro[0].temperatura <=18){
+              emergencia1.style.backgroundColor = "#ff7b00";
+              dados.datasets[0].backgroundColor = "#ff7b00";
+              critico1.style.backgroundColor = "#fff";
+              emergencia1.style.backgroundColor = "#fff";
+            }else{
+              critico1.style.backgroundColor = "#ff0000";
+              dados.datasets[0].backgroundColor = "#ff0000";
+              alerta1.style.backgroundColor = "#fff";
+              emergencia1.style.backgroundColor = "#fff";
+            }
+</script>

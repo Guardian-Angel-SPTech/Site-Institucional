@@ -14,6 +14,9 @@ a{
 
 body{
     background-color: #ececec;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 button{
@@ -37,11 +40,10 @@ li{
 
 /* ---------------------------- INÍCIO - LEFT ASIDE ---------------------------- */
 .l-side-bar{
-    background-color: #6f8fc9;
+    background-image:linear-gradient(#012859,#030c24,#030c24) ;
 height: 15vh;
 width: 100vw;
-    position: fixed;
-    z-index: 1000;
+  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -58,7 +60,10 @@ nav{
 nav .menu{
     opacity: 0;
     visibility: hidden;
-  
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     top: -20rem;
     transition: 0.2s;
 }
@@ -69,9 +74,11 @@ nav.show .menu{
     opacity: 1;
     visibility: visible;
 
-    background-color: #6f8fc9;
+    background-color: #0a2342;
     height: 100vh;
     width: 100vw;
+    display: flex;
+  
     
 
 
@@ -106,15 +113,7 @@ nav.show ul.grid{
 .logo{
     width: 150px;
 }
-.menu ul{
-    display: flex;
-    text-decoration: none;
-    list-style: none;
-}
-.menu ul li{
-  
-    font-size: 17px;
-}
+
 nav .icon-close{
 
     visibility: hidden;
@@ -134,6 +133,7 @@ nav.show div.icon-close{
 .ola{
     font: 500 1.35rem "Inria Sans";
     margin-bottom: 3rem;
+    color: white;
     
 }
 .wrapper{
@@ -204,20 +204,60 @@ li{
     user-select: none;
 }
 
-#exit{
-    height: 50px;
-    background-color: #f24742;
-    border: none;
-   left: 0;
-    width: 100%;
-    font-size: 20px;
+.areaBotao{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     position: absolute;
-    bottom: 0;
+    bottom: 3rem;
+    left: 0;
+    width: 300px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+}
+.botaoMenu button{
+    background-color: transparent;
+    border: none;
+    margin-top: 2rem;
+     
+    background-color: #111b4300;
+    border-bottom: solid 2px white;
+    width: 200px;
+    padding: .5rem .5rem;
+    border-radius: 10px;
+}
+button.ativo{
+    border-bottom:solid 2px  #f2d22e;
+}
+.botaoMenu{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+ .button{
+    font-size: 20px;
+    border: none;
+    color: white;
+    background-color: #111b4300;
+    border-bottom: solid 2px white;
+    padding: .3rem .5rem;
     cursor: pointer;
+    border-radius: 10px;
+  
+}
+.sair{
+    border-bottom:solid 2px red;
 }
 
-#exit:hover{
-    background-color: #ac2b27;
+.button:hover{
+    background-color: #111b43ce;
+}
+.tamanho{
+    width: 100px;
 }
 /* ---------------------------- FIM - LEFT ASIDE ---------------------------- */
 
@@ -269,6 +309,9 @@ li{
 /* ---------------------------- FIM - RIGHT ASIDE ---------------------------- */
 
 @media (min-width: 992px) {
+    body{
+        flex-direction: row;
+    }
     .l-side-bar{
         width: 300px;
         height: 100vh;
