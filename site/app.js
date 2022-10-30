@@ -9,7 +9,7 @@ const PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3305 : 8080;
 const app = express();
 
 const indexRouter = require("./src/routes/index");
-const usuarioRouter = require("./src/routes/usuarios");
+const funcionarioRouter = require("./src/routes/funcionarios");
 const avisosRouter = require("./src/routes/avisos");
 const medidasRouter = require("./src/routes/medidas");
 
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/", indexRouter);
-app.use("/usuarios", usuarioRouter);
+app.use("/funcionarios", funcionarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter)
 

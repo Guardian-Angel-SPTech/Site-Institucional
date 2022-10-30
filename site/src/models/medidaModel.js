@@ -1,6 +1,6 @@
 const database = require("../database/config");
 
-function buscarUltimasMedidasRAM(idUsuario) {
+function buscarUltimasMedidasRAM(idFuncionario) {
 
     instrucaoSql = ''
 
@@ -13,7 +13,7 @@ function buscarUltimasMedidasRAM(idUsuario) {
                     ORDER BY idDado DESC`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkUsuario = idUsuario WHERE fkUsuario = ${idUsuario} and componente = 1 limit 10`;
+        SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = ${idFuncionario} and componente = 1 limit 10`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -23,7 +23,7 @@ function buscarUltimasMedidasRAM(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimasMedidasCPU(idUsuario) {
+function buscarUltimasMedidasCPU(idFuncionario) {
 
     instrucaoSql = ''
 
@@ -36,7 +36,7 @@ function buscarUltimasMedidasCPU(idUsuario) {
                     ORDER BY idDado DESC`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkUsuario = idUsuario WHERE fkUsuario = ${idUsuario} and componente = 2 limit 10`;
+        SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = ${idFuncionario} and componente = 2 limit 10`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -45,7 +45,7 @@ function buscarUltimasMedidasCPU(idUsuario) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-function buscarUltimasMedidasDisco(idUsuario) {
+function buscarUltimasMedidasDisco(idFuncionario) {
 
     instrucaoSql = ''
 
@@ -58,7 +58,7 @@ function buscarUltimasMedidasDisco(idUsuario) {
                     ORDER BY idDado DESC`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `
-        SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkUsuario = idUsuario WHERE fkUsuario = ${idUsuario} and componente = 3 limit 10`;
+        SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = ${idFuncionario} and componente = 3 limit 10`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -69,7 +69,7 @@ function buscarUltimasMedidasDisco(idUsuario) {
 }
 
 
-function buscarMedidasEmTempoRealRAM(idUsuario) {
+function buscarMedidasEmTempoRealRAM(idFuncionario) {
 
     instrucaoSql = ''
 
@@ -82,7 +82,7 @@ function buscarMedidasEmTempoRealRAM(idUsuario) {
                     ORDER BY idDado DESC`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkUsuario = idUsuario WHERE fkUsuario = ${idUsuario} and componente = 1 limit 1`;
+        instrucaoSql = `SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = ${idFuncionario} and componente = 1 limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -92,7 +92,7 @@ function buscarMedidasEmTempoRealRAM(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealCPU(idUsuario) {
+function buscarMedidasEmTempoRealCPU(idFuncionario) {
 
     instrucaoSql = ''
 
@@ -105,7 +105,7 @@ function buscarMedidasEmTempoRealCPU(idUsuario) {
                     ORDER BY idDado DESC`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkUsuario = idUsuario WHERE fkUsuario = ${idUsuario} and componente = 2 limit 1`;
+        instrucaoSql = `SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = ${idFuncionario} and componente = 2 limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -115,7 +115,7 @@ function buscarMedidasEmTempoRealCPU(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealDisco(idUsuario) {
+function buscarMedidasEmTempoRealDisco(idFuncionario) {
 
     instrucaoSql = ''
 
@@ -128,7 +128,7 @@ function buscarMedidasEmTempoRealDisco(idUsuario) {
                     ORDER BY idDado DESC`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkUsuario = idUsuario WHERE fkUsuario = ${idUsuario} and componente = 3 limit 1`;
+        instrucaoSql = `SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = ${idFuncionario} and componente = 3 limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -138,8 +138,8 @@ function buscarMedidasEmTempoRealDisco(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function pegarProcessos(idUsuario) {
-    instrucaoSql = `SELECT processos, usoProcesso FROM maquina where fkUsuario = ${idUsuario} limit 10`;
+function pegarProcessos(idFuncionario) {
+    instrucaoSql = `SELECT processos, usoProcesso FROM maquina where fkFuncionario = ${idFuncionario} limit 10`;
     return database.executar(instrucaoSql);
 }
 

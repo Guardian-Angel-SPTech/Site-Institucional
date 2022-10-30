@@ -19,10 +19,10 @@ function listar(req, res) {
     });
 }
 
-function listarPorUsuario(req, res) {
-    const idUsuario = req.params.idUsuario;
+function listarPorFuncionario(req, res) {
+    const idFuncionario = req.params.idFuncionario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    avisoModel.listarPorFuncionario(idFuncionario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -68,16 +68,16 @@ function pesquisarDescricao(req, res) {
 function publicar(req, res) {
     const titulo = req.body.titulo;
     const descricao = req.body.descricao;
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
     if (titulo == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (descricao == undefined) {
         res.status(400).send("A descrição está indefinido!");
-    } else if (idUsuario == undefined) {
+    } else if (idFuncionario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo, descricao, idUsuario)
+        avisoModel.publicar(titulo, descricao, idFuncionario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -134,7 +134,7 @@ function deletar(req, res) {
 module.exports = {
     testar,
     listar,
-    listarPorUsuario,
+    listarPorFuncionario,
     pesquisarDescricao,
     publicar,
     editar,

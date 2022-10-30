@@ -1,14 +1,14 @@
 var vFuncionario = ""
 const loadF = document.getElementById("listaFunc")
 function funcionario(){
-fetch("../usuarios/verfuncionario", {
+fetch("../funcionarios/verfuncionario", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
     },
     body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
+        // Agora vá para o arquivo routes/funcionario.js
         cnpjServer: sessionStorage.CNPJ_EMPRESA,
     })
 }).then(function (resposta) {
@@ -20,7 +20,7 @@ fetch("../usuarios/verfuncionario", {
             console.log(JSON.stringify(json));
             vFuncionario = json
             
-            loadF.addEventListener('load', listaUsuario())
+            loadF.addEventListener('load', listaFuncionario())
           });
     } else {
         throw ("Houve um erro ao tentar realizar consulta!");
@@ -31,7 +31,7 @@ fetch("../usuarios/verfuncionario", {
 });
 return false;
 }
-function listaUsuario(){
+function listaFuncionario(){
     var cUl = document.createElement("ul");
     var nome = document.createTextNode(vFuncionario[0].nome);
     Nomefunc= document.getElementById("nomeFunc");
@@ -40,7 +40,7 @@ for (i = 0; i < vFuncionario.length; i++) {
             var texto = document.createTextNode(vFuncionario[i].nome);
             cUl.classList.add("list-collapse");
             var cLi = document.createElement("li");
-            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idUsuario}), obterDadosGraficoCPU(${vFuncionario[i].idUsuario}), obterDadosGraficoDisco(${vFuncionario[i].idUsuario}), pegarProcessos(${vFuncionario[i].idUsuario})`);
+            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idFuncionario}), obterDadosGraficoCPU(${vFuncionario[i].idFuncionario}), obterDadosGraficoDisco(${vFuncionario[i].idFuncionario}), pegarProcessos(${vFuncionario[i].idFuncionario})`);
             
             Nomefunc.appendChild(nome)
             cLi.appendChild(texto);

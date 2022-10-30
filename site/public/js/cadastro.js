@@ -1,5 +1,5 @@
 const secao_empresa = document.getElementById("dados_empresa");
-const secao_usuario = document.getElementById("dados_usuario");
+const secao_funcionario = document.getElementById("dados_usuario");
 
 const btn_proximo = document.getElementById("btn_proximo")
 const btn_voltar = document.getElementById("btn_voltar")
@@ -98,14 +98,14 @@ function proximoCampo() {
     }
 
     secao_empresa.style.display = "none";
-    secao_usuario.style.display = "flex";
-    secao_usuario.style.flexDirection = "column";
+    secao_funcionario.style.display = "flex";
+    secao_funcionario.style.flexDirection = "column";
 }
 
 function voltarCampo() {
     secao_empresa.style.display = "flex";
     secao_empresa.style.flexDirection = "column";
-    secao_usuario.style.display = "none";
+    secao_funcionario.style.display = "none";
 }
 
 function validarNome() {
@@ -228,14 +228,14 @@ function cadastrar() {
     const senha = inp_senha.value;
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("/funcionarios/cadastrar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
+            // Agora vá para o arquivo routes/funcionario.js
             nomeUserServer: nomeUser,
             nomeEmpresaServer: nomeEmpresa,
             emailServer: email,
@@ -266,7 +266,7 @@ function login(cnpj, senha) {
     console.log("FORM LOGIN: ", cnpj);
     console.log("FORM SENHA: ", senha);
 
-    fetch("/usuarios/autenticar", {
+    fetch("/funcionarios/autenticar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -285,10 +285,10 @@ function login(cnpj, senha) {
                 console.log(json[0]);
                 console.log(JSON.stringify(json[0]));
 
-                sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.CPF_USUARIO = json.cpf;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ACESSO_USUARIO = json.acesso;
+                sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
+                sessionStorage.CPF_FUNCIONARIO = json.cpf;
+                sessionStorage.NOME_FUNCIONARIO = json.nome;
+                sessionStorage.ACESSO_FUNCIONARIO = json.acesso;
 
                 sessionStorage.ID_EMPRESA = json.idEmpresa;
                 sessionStorage.NOME_EMPRESA = json.nomeEmpresa;

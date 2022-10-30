@@ -78,7 +78,7 @@ function login() {
     console.log("FORM LOGIN: ", cnpj);
     console.log("FORM SENHA: ", senha);
 
-    fetch("/usuarios/autenticar", {
+    fetch("/funcionarios/autenticar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -97,10 +97,10 @@ function login() {
                 console.log(json[0]);
                 console.log(JSON.stringify(json[0]));
 
-                sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.CPF_USUARIO = json.cpf;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ACESSO_USUARIO = json.acesso;
+                sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
+                sessionStorage.CPF_FUNCIONARIO = json.cpf;
+                sessionStorage.NOME_FUNCIONARIO = json.nome;
+                sessionStorage.ACESSO_FUNCIONARIO = json.acesso;
 
                 sessionStorage.ID_EMPRESA = json.idEmpresa;
                 sessionStorage.NOME_EMPRESA = json.nomeEmpresa;

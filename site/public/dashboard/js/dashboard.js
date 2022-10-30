@@ -2,13 +2,13 @@ chart()
 
 
 
-function pegarProcessos(idUsuario) {
+function pegarProcessos(idFuncionario) {
     // Preenchendo a tabela com os processos
 
     const process = [];
     const uso = [];
 
-    fetch(`../medidas/PegarProcessos/${idUsuario}`, {
+    fetch(`../medidas/PegarProcessos/${idFuncionario}`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json"
@@ -39,12 +39,12 @@ function chart() {
 // Atualizando gráficos em tempo real
 let proximaAtualizacao;
 
-function obterDadosGraficoRAM(idUsuario) {
+function obterDadosGraficoRAM(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasRAM/${idUsuario}`, {
+    fetch(`/medidas/ultimasRAM/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
@@ -55,7 +55,7 @@ function obterDadosGraficoRAM(idUsuario) {
                     resposta.reverse();
 
                     console.log("Indo plotar gráfico")
-                    plotarGraficoRAM(resposta, idUsuario);
+                    plotarGraficoRAM(resposta, idFuncionario);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -66,12 +66,12 @@ function obterDadosGraficoRAM(idUsuario) {
         });
 }
 
-function obterDadosGraficoCPU(idUsuario) {
+function obterDadosGraficoCPU(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasCPU/${idUsuario}`, {
+    fetch(`/medidas/ultimasCPU/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
@@ -82,7 +82,7 @@ function obterDadosGraficoCPU(idUsuario) {
                     resposta.reverse();
 
                     console.log("Indo plotar gráfico")
-                    plotarGraficoCPU(resposta, idUsuario);
+                    plotarGraficoCPU(resposta, idFuncionario);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -93,12 +93,12 @@ function obterDadosGraficoCPU(idUsuario) {
         });
 }
 
-function obterDadosGraficoDisco(idUsuario) {
+function obterDadosGraficoDisco(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasDisco/${idUsuario}`, {
+    fetch(`/medidas/ultimasDisco/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
@@ -109,7 +109,7 @@ function obterDadosGraficoDisco(idUsuario) {
                     resposta.reverse();
 
                     console.log("Indo plotar gráfico")
-                    plotarGraficoDisco(resposta, idUsuario);
+                    plotarGraficoDisco(resposta, idFuncionario);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -122,7 +122,7 @@ function obterDadosGraficoDisco(idUsuario) {
 // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-function plotarGraficoRAM(resposta, idUsuario) {
+function plotarGraficoRAM(resposta, idFuncionario) {
     let labels1 = [];
     let dados1 = {
         labels: labels1,
@@ -147,10 +147,10 @@ function plotarGraficoRAM(resposta, idUsuario) {
     };
     var ctx = document.getElementById("chart1").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoRAM(idUsuario, myChart, dados1), 2000);
+    setTimeout(() => atualizarGraficoRAM(idFuncionario, myChart, dados1), 2000);
 }
 
-function plotarGraficoCPU(resposta, idUsuario) {
+function plotarGraficoCPU(resposta, idFuncionario) {
     let labels1 = [];
     let dados1 = {
         labels: labels1,
@@ -175,10 +175,10 @@ function plotarGraficoCPU(resposta, idUsuario) {
     };
     var ctx = document.getElementById("chart2").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoCPU(idUsuario, myChart, dados1), 2000);
+    setTimeout(() => atualizarGraficoCPU(idFuncionario, myChart, dados1), 2000);
 }
 
-function plotarGraficoDisco(resposta, idUsuario) {
+function plotarGraficoDisco(resposta, idFuncionario) {
     let labels1 = [];
     let dados1 = {
         labels: labels1,
@@ -203,7 +203,7 @@ function plotarGraficoDisco(resposta, idUsuario) {
     };
     var ctx = document.getElementById("chart3").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoDisco(idUsuario, myChart, dados1), 2000);
+    setTimeout(() => atualizarGraficoDisco(idFuncionario, myChart, dados1), 2000);
 }
 
 // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
@@ -211,10 +211,10 @@ function plotarGraficoDisco(resposta, idUsuario) {
 
 //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
 //     Para ajustar o "select", ajuste o comando sql em src/models
-function atualizarGraficoRAM(idUsuario, myChart, dados1) {
+function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
     // console.log("Indo atualizar gráfico")
 
-    fetch(`/medidas/tempo-realRAM/${idUsuario}`, {
+    fetch(`/medidas/tempo-realRAM/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
@@ -235,12 +235,12 @@ function atualizarGraficoRAM(idUsuario, myChart, dados1) {
                     myChart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idUsuario, myChart, dados1), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idFuncionario, myChart, dados1), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idUsuario, myChart, dados1), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idFuncionario, myChart, dados1), 2000);
             }
         })
         .catch(function (error) {
@@ -248,10 +248,10 @@ function atualizarGraficoRAM(idUsuario, myChart, dados1) {
         });
 }
 
-function atualizarGraficoCPU(idUsuario, mychart, dados1) {
+function atualizarGraficoCPU(idFuncionario, mychart, dados1) {
     // console.log("Indo atualizar gráfico")
 
-    fetch(`/medidas/tempo-realCPU/${idUsuario}`, {
+    fetch(`/medidas/tempo-realCPU/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
@@ -271,12 +271,12 @@ function atualizarGraficoCPU(idUsuario, mychart, dados1) {
                     mychart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idUsuario, mychart, dados1), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idFuncionario, mychart, dados1), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idUsuario, mychart, dados1), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoCPU(idFuncionario, mychart, dados1), 2000);
             }
         })
         .catch(function (error) {
@@ -284,10 +284,10 @@ function atualizarGraficoCPU(idUsuario, mychart, dados1) {
         });
 }
 
-function atualizarGraficoDisco(idUsuario, mychart, dados1) {
+function atualizarGraficoDisco(idFuncionario, mychart, dados1) {
     // console.log("Indo atualizar gráfico")
 
-    fetch(`/medidas/tempo-realDisco/${idUsuario}`, {
+    fetch(`/medidas/tempo-realDisco/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
@@ -307,12 +307,12 @@ function atualizarGraficoDisco(idUsuario, mychart, dados1) {
                     mychart.update();
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idUsuario, mychart, dados1), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idFuncionario, mychart, dados1), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idUsuario, mychart, dados1), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGraficoDisco(idFuncionario, mychart, dados1), 2000);
             }
         })
         .catch(function (error) {

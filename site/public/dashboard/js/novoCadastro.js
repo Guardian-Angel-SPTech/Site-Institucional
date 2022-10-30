@@ -1,5 +1,5 @@
 const secao_empresa = document.getElementById("dados_empresa");
-const secao_usuario = document.getElementById("dados_usuario");
+const secao_funcionario = document.getElementById("dados_usuario");
 
 const btn_cadastrar = document.getElementById("btn_cadastrar")
 
@@ -123,14 +123,14 @@ function cadastrar() {
     const senha = inp_senha.value;
 
     // Enviando o valor da nova input
-    fetch("/usuarios/registrarusuario", {
+    fetch("/funcionarios/registrarfuncionario", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
+            // Agora vá para o arquivo routes/funcionario.js
             nomeUserServer: nomeUser,
             IdServer: sessionStorage.ID_EMPRESA,
             emailServer: email,

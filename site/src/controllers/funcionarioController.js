@@ -1,14 +1,14 @@
-const usuarioModel = require("../models/usuarioModel");
+const funcionarioModel = require("../models/funcionarioModel");
 
 const sessoes = [];
 
 function testar(req, res) {
-    console.log("ENTRAMOS NA usuarioController");
+    console.log("ENTRAMOS NA funcionarioController");
     res.json("ESTAMOS FUNCIONANDO!");
 }
 
 function listar(req, res) {
-    usuarioModel.listar()
+    funcionarioModel.listar()
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -34,7 +34,7 @@ function entrar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
         
-        usuarioModel.entrar(cnpj, senha)
+        funcionarioModel.entrar(cnpj, senha)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -85,8 +85,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else {
         
-        // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha)
+        // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
+        funcionarioModel.cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -104,7 +104,7 @@ function cadastrar(req, res) {
     }
 }
 
-function registrarusuario(req, res) {
+function registrarfuncionario(req, res) {
     const nomeUser = req.body.nomeUserServer;
     const cpf = req.body.cpfServer;
     const email = req.body.emailServer;
@@ -126,8 +126,8 @@ function registrarusuario(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {     
-        // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.registrarusuario(nomeUser, email, cpf, senha, acesso, idEmpresa)
+        // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
+        funcionarioModel.registrarfuncionario(nomeUser, email, cpf, senha, acesso, idEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -145,13 +145,13 @@ function registrarusuario(req, res) {
     }
 }
 
-function listarusuario(req, res) {
+function listarfuncionario(req, res) {
     const idEmpresa = req.body.idEmpresaServer;
 
     if (idEmpresa == undefined) {
         res.status(400).send("Seu idEmpresa está undefined!");
     } else {
-        usuarioModel.listarusuario(idEmpresa)
+        funcionarioModel.listarfuncionario(idEmpresa)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -172,7 +172,7 @@ function listarusuario(req, res) {
 
 function verfuncionario(req, res){
     const cnpj = req.body.cnpjServer;
-    usuarioModel.listar(cnpj)
+    funcionarioModel.listar(cnpj)
     .then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -188,15 +188,15 @@ function verfuncionario(req, res){
     );
 }
 
-function excluirusuario(req, res) {
-    const idUsuario = req.body.idUsuarioServer;
+function excluirfuncionario(req, res) {
+    const idFuncionario = req.body.idFuncionarioServer;
 
     // Faça as validações dos valores
-    if (idUsuario == undefined) {
-        res.status(400).send("idUsuario está undefined!");
+    if (idFuncionario == undefined) {
+        res.status(400).send("idFuncionario está undefined!");
     } else {
-        // senhae os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.excluirusuario(idUsuario)
+        // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
+        funcionarioModel.excluirfuncionario(idFuncionario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -217,9 +217,9 @@ function excluirusuario(req, res) {
 module.exports = {
     entrar,
     cadastrar,
-    registrarusuario,
-    listarusuario,
-    excluirusuario,
+    registrarfuncionario,
+    listarfuncionario,
+    excluirfuncionario,
     listar,
     testar,
     verfuncionario

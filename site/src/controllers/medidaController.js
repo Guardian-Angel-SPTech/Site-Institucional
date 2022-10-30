@@ -3,10 +3,10 @@ const medidaModel = require("../models/medidaModel");
 function buscarUltimasMedidasRAM(req, res) {
 
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
 
-    medidaModel.buscarUltimasMedidasRAM(idUsuario).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasRAM(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,10 +21,10 @@ function buscarUltimasMedidasRAM(req, res) {
 function buscarUltimasMedidasCPU(req, res) {
 
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
 
-    medidaModel.buscarUltimasMedidasCPU(idUsuario).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasCPU(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -40,10 +40,10 @@ function buscarUltimasMedidasCPU(req, res) {
 function buscarUltimasMedidasDisco(req, res) {
 
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
 
-    medidaModel.buscarUltimasMedidasDisco(idUsuario).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasDisco(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -58,11 +58,11 @@ function buscarUltimasMedidasDisco(req, res) {
 
 function buscarMedidasEmTempoRealRAM(req, res) {
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
   
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealRAM(idUsuario).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealRAM(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -76,11 +76,11 @@ function buscarMedidasEmTempoRealRAM(req, res) {
 }
 function buscarMedidasEmTempoRealCPU(req, res) {
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealCPU(idUsuario).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealCPU(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -94,11 +94,11 @@ function buscarMedidasEmTempoRealCPU(req, res) {
 }
 function buscarMedidasEmTempoRealDisco(req, res) {
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealDisco(idUsuario).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealDisco(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -113,9 +113,9 @@ function buscarMedidasEmTempoRealDisco(req, res) {
 
 function pegarProcessos(req, res) {
 
-    const idUsuario = req.params.idUsuario;
+    const idFuncionario = req.params.idFuncionario;
 
-    medidaModel.pegarProcessos(idUsuario).then(function (resultado) {
+    medidaModel.pegarProcessos(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
