@@ -22,8 +22,7 @@ BEGIN
   	 		SELECT 'Erro ao realizar cadastro.' AS `Resultado`;
   	 	END IF;
 END$$
-DELIMITER ;
-DELIMITER $$
+
 CREATE PROCEDURE stg_registrarFuncionario(
   IN nomeUser VARCHAR(45), IN email VARCHAR(60), IN cpf CHAR(11), 
   IN senha VARCHAR(45), IN acesso CHAR(1), IN fkEmpresa int)
@@ -44,6 +43,3 @@ BEGIN
   	 		SELECT 'Erro ao realizar cadastro.' AS `Resultado`;
   	 	END IF;
 END$$
-DELIMITER ;
-
-drop procedure stg_entrar;
