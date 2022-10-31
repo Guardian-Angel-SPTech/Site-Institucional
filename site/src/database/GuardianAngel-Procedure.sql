@@ -43,3 +43,4 @@ BEGIN
   	 		SELECT 'Erro ao realizar cadastro.' AS `Resultado`;
   	 	END IF;
 END$$
+DELIMITER ;

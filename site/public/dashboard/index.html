@@ -38,7 +38,7 @@
                         
                     
                     <div class="areaBotao">
-                        <button class="button sair"><a href="../index.html">Sair</a></button>
+                        <button class="button sair" onclick="limparSessao()"><a href="../index.html">Sair</a></button>
                         <button class="button"><a href="#">Relatórios</a> </button>
                     </div>
                   
@@ -128,6 +128,9 @@
 </html>
 
 <script>
+    function limparSessao(){
+        sessionStorage.clear();
+    }
         if(novoRegistro[0].temperatura >40){
           critico2.style.backgroundColor = "#ff0000";
               dados.datasets[0].backgroundColor = "#ff0000";
