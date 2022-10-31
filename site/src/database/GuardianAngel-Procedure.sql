@@ -45,5 +45,3 @@ BEGIN
   	 	END IF;
 END$$
 DELIMITER ;
-
-drop procedure stg_entrar;
