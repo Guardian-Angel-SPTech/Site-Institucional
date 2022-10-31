@@ -18,6 +18,8 @@ from psutil import virtual_memory
 import os
 from time import sleep
 import pymysql
+import datetime
+
 
 # Aqui limpa a tela do terminal para ficar mais organizado
 os.system('cls')
@@ -32,8 +34,8 @@ while True:
     # pymysql.connect("endereço do banco de dados", "usuário", "senha")
     # nós jogamos este comando dentro de uma variável para que possamos utilizar ela posteriormente mais facilmente
 
-    #conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='sptech')
-    #cursor = conexao.cursor()
+    conexao = pymysql.connect(db='GuardianAngel', user='aluno', passwd='sptech')
+    cursor = conexao.cursor()
 
 
 
@@ -44,7 +46,10 @@ while True:
     ram = (virtual_memory().total)/1024/1024/1024
     ramU = (virtual_memory().used)/1024/1024/1024
 
-    #cursor.execute("INSERT INTO registro values (null, 1, 1, %s, now())", (ramU))
+    dia = datetime.date.__format__(datetime.date.today(), '%Y/%m/%d')
+    hora = datetime.time.__format__(datetime.time(), '%H:%M:%S')
+
+    cursor.execute("INSERT INTO registro values (null, 1, 1, %s, %s, %s)", (ramU, dia, hora))
 
 
     # Aqui printamos na tela o valor da memória utilizada no momento usando a função convert_gb junto com o print
@@ -57,7 +62,7 @@ while True:
     print("Uso da CPU: ")
     print(psutil.cpu_percent(interval=0),'%')
 
-    #cursor.execute("INSERT INTO registro values (null, 1, 2, %s, now())", (psutil.cpu_percent(interval=0)))
+    cursor.execute("INSERT INTO registro values (null, 1, 2, %s, %s, %s)", (psutil.cpu_percent(interval=0), dia, hora))
 
 
     # Aqui printamos o uso do disco, caso seja no windows, representado por 'C:'
@@ -72,7 +77,7 @@ while True:
         print('{:.2f}'.format(percentage_disk),"%")
         print("=-="*20)
 
-        #cursor.execute("INSERT INTO registro values (null, 1, 3, %s, now())", ('{:.2f}'.format(percentage_disk)))
+        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), dia, hora))
 
     # Aqui printamos o uso do disco, caso seja no linux, reprentado pelo '/'
     else:
@@ -86,11 +91,11 @@ while True:
         print('{:.2f}'.format(percentage_disk),"%")
         print("=-="*20)
 
-        #cursor.execute("INSERT INTO registro values (null, 1, 3, %s, now())", ('{:.2f}'.format(percentage_disk)))
+        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), dia, hora))
 
     sleep(3)
 
     # Aqui é onde realizamos o commit das informações no banco de dados, que seria fechar o pacote para envio
-    #cursor.fetchall()
-    #conexao.commit()
-    #conexao.close() 
+    cursor.fetchall()
+    conexao.commit()
+    conexao.close() 
