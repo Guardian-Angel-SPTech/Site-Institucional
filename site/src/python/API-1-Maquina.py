@@ -47,7 +47,7 @@ while True:
     ramU = (virtual_memory().used)/1024/1024/1024
 
     dia = datetime.date.__format__(datetime.date.today(), '%Y/%m/%d')
-    hora = datetime.time.__format__(datetime.time(), '%H:%M:%S')
+    hora = datetime.datetime.now().strftime('%H:%M:%S')
 
     cursor.execute("INSERT INTO registro values (null, 1, 1, %s, %s, %s)", (ramU, dia, hora))
 
