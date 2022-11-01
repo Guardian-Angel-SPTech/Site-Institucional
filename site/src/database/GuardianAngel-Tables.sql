@@ -24,7 +24,7 @@ idMaquina int primary key auto_increment,
 nomeMaquina varchar(45),
 MAC char(17),
 statusMaquina varchar(45),
-processos varchar(45),
+processo varchar(45),
 usoProcesso decimal(5,2),
 sistOp varchar(45),
 bootTime varchar(45),
@@ -50,7 +50,9 @@ primary key(idRegistro, fkMaquina)
 create table chamado (
 idChamado int auto_increment,
 fkMaquina int,
+foreign key (fkMaquina) references maquina (idMaquina),
 fkRegistro int,
+foreign key (fkRegistro) references registro (idRegistro),
 descChamado varchar(100),
 hora datetime,
 primary key(idChamado, fkMaquina, fkRegistro)
