@@ -5,9 +5,9 @@ Link temporário: https://guardian-angel-sptech.github.io/Site-Institucional/sit
 # Sistema
 <p> Repositório destinado a organização de todos os arquivos relacionados ao sitemas <br> 
   <ul> 
-    <li>Python<li>  
-    <li>Site<li>
-    <li>Database<li>
+    <li>Python</li>  
+    <li>Site</li>
+    <li>Database</li>
     </ul>
  </p>
 
