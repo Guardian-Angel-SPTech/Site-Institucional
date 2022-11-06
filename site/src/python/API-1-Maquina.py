@@ -34,7 +34,7 @@ while True:
     # pymysql.connect("endereço do banco de dados", "usuário", "senha")
     # nós jogamos este comando dentro de uma variável para que possamos utilizar ela posteriormente mais facilmente
 
-    conexao = pymysql.connect(db='GuardianAngel', user='aluno', passwd='sptech')
+    conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='sptech')
     cursor = conexao.cursor()
 
 
@@ -49,7 +49,7 @@ while True:
     dia = datetime.date.__format__(datetime.date.today(), '%Y/%m/%d')
     hora = datetime.datetime.now().strftime('%H:%M:%S')
 
-    cursor.execute("INSERT INTO registro values (null, 1, 1, %s, %s, %s)", (ramU, dia, hora))
+    cursor.execute("INSERT INTO registro values (null, 1, 1, %s, %s, %s)", (ramU, hora, dia))
 
 
     # Aqui printamos na tela o valor da memória utilizada no momento usando a função convert_gb junto com o print
@@ -62,7 +62,7 @@ while True:
     print("Uso da CPU: ")
     print(psutil.cpu_percent(interval=0),'%')
 
-    cursor.execute("INSERT INTO registro values (null, 1, 2, %s, %s, %s)", (psutil.cpu_percent(interval=0), dia, hora))
+    cursor.execute("INSERT INTO registro values (null, 1, 2, %s, %s, %s)", (psutil.cpu_percent(interval=0), hora, dia))
 
 
     # Aqui printamos o uso do disco, caso seja no windows, representado por 'C:'
@@ -77,7 +77,7 @@ while True:
         print('{:.2f}'.format(percentage_disk),"%")
         print("=-="*20)
 
-        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), dia, hora))
+        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
 
     # Aqui printamos o uso do disco, caso seja no linux, reprentado pelo '/'
     else:
@@ -91,7 +91,7 @@ while True:
         print('{:.2f}'.format(percentage_disk),"%")
         print("=-="*20)
 
-        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), dia, hora))
+        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
 
     sleep(3)
 

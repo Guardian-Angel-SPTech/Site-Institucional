@@ -40,7 +40,7 @@ for (i = 0; i < vFuncionario.length; i++) {
             var texto = document.createTextNode(vFuncionario[i].nome);
             cUl.classList.add("list-collapse");
             var cLi = document.createElement("li");
-            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idFuncionario}), obterDadosGraficoCPU(${vFuncionario[i].idFuncionario}), obterDadosGraficoDisco(${vFuncionario[i].idFuncionario}), pegarProcessos(${vFuncionario[i].idFuncionario})`);
+            cLi.setAttribute('Onclick', `obterDadosGraficoRAM(${vFuncionario[i].idFuncionario}), obterDadosGraficoCPU(${vFuncionario[i].idFuncionario}), obterDadosGraficoDisco(${vFuncionario[i].idFuncionario})`);
             
             Nomefunc.appendChild(nome)
             cLi.appendChild(texto);

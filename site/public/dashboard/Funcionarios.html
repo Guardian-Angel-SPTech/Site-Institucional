@@ -1,32 +1,102 @@
-<aside class="r-side-bar">
-    <section>
+<!DOCTYPE html>
+<html lang="pt">
 
-        <button type="button" class="menu-collapse">
-            Funcionários
-            <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
-        </button>
-        <div id="listaFunc">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="../css/styleGuardian.css">
+    <title>Cadastro</title>
+</head>
 
-        </div>
+<body onload="funcionario()">
+
+    <aside class="l-side-bar" id="header">
+        <section class="wrapper">
+            <nav class="container">
+                <div class="logo">
+                    <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo">
+                </div>
+
+                <div class="menu">
+
+                    <div class="logoMenuPequeno">
+                        <a href="index.html">
+                            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor">
+                        </a>
+                    </div>
+
+                    <p class="ola"> Seja bem-vindo, <span id="nomeFunc"></span></p>
+
+
+                    <div class="botaoMenu">
+                        <button class="button ativo"><a href="index.html#banner">Meu Computador</a></button>
+                        <button class="button"><a href="Funcionarios.html">Funcionários</a></button>
+                    </div>
 
 
 
-
-        <button type="button" class="new-func">
-            <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
-            <a href="novoFuncionario.html">Novo funcionário</a>
-        </button>
-
+                    <div class="areaBotao">
+                        <button class="button sair" onclick="limparSessao()"><a href="../index.html">Sair</a></button>
+                        <button class="button"><a href="#">Relatórios</a> </button>
+                    </div>
 
 
-        <button type="button" class="menu-collapse">
-            Meu computador
-            <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
-        </button>
-        <ul class="list-collapse">
-            <!-- li 'alguma coisa' li -->
-        </ul>
+                </div>
 
-    </section>
-</aside>
 
+                <div class="toggle iconMenu">
+                    <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+                </div>
+                <div class="toggle icon-close">
+                    <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+                </div>
+            </nav>
+
+
+
+        </section>
+    </aside>
+
+
+    <aside class="r-side-bar">
+        <section class="funcionario">
+            <article>
+                <button type="button" class="menu-collapse">
+                    Funcionários
+                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+                </button>
+
+                <div id="listaFunc">
+                </div>
+            </article>
+
+            <article>
+                <button type="button" class="new-func">
+                    <img src="../assets/svg/cross.svg" alt="Cruz do botão novo funcionário">
+                    <a href="novoFuncionario.html">Novo funcionário</a>
+                </button>
+            </article>
+
+            <article>
+                <button type="button" class="menu-collapse">
+                    Meu computador
+                    <img class="btn-arrow" src="../assets/svg/arrow.svg" alt="Seta do menu">
+                </button>
+                <ul class="list-collapse">
+                    <!-- li 'alguma coisa' li -->
+                </ul>
+            </article>
+        </section>
+    </aside>
+
+</body>
+
+</html>
+<script src="/dashboard/js/novoCadastro.js"></script>
+<script src="exibirFunc.js"></script>
+<script src="js/global.js"></script>
+<script src="js/dashboard.js"></script>

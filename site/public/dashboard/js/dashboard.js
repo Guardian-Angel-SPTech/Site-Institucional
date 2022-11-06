@@ -2,34 +2,34 @@ chart()
 
 
 
-function pegarProcessos(idFuncionario) {
-    // Preenchendo a tabela com os processos
+// function pegarProcessos(idFuncionario) {
+//     // Preenchendo a tabela com os processos
 
-    const process = [];
-    const uso = [];
+//     const process = [];
+//     const uso = [];
 
-    fetch(`../medidas/PegarProcessos/${idFuncionario}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(function (resposta) {
-        if (resposta.ok) {
-            resposta.json().then(json => {
-                console.log(json)
-                json.forEach(element => {
-                    process.push(element.processos)
-                    uso.push(element.usoProcesso)
-                    document.getElementById("process").innerHTML = ""
-                    for (let i = 0; i < process.length; i++) {
-                        document.getElementById("process").innerHTML += `Processo - ${process[i]} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Uso da CPU - ${uso[i]}<br>`
-                    }
-                });
-            })
-        }
-    })
+//     fetch(`../medidas/PegarProcessos/${idFuncionario}`, {
+//         method: 'GET',
+//         headers: {
+//             "Content-Type": "application/json"
+//         }
+//     }).then(function (resposta) {
+//         if (resposta.ok) {
+//             resposta.json().then(json => {
+//                 console.log(json)
+//                 json.forEach(element => {
+//                     process.push(element.processos)
+//                     uso.push(element.usoProcesso)
+//                     document.getElementById("process").innerHTML = ""
+//                     for (let i = 0; i < process.length; i++) {
+//                         document.getElementById("process").innerHTML += `Processo - ${process[i]} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Uso da CPU - ${uso[i]}<br>`
+//                     }
+//                 });
+//             })
+//         }
+//     })
 
-}
+// }
 
 // Gráficos
 function chart() {
