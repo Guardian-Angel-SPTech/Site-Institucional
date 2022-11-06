@@ -33,7 +33,9 @@ cpuLogica int,
 microArquitetura char(10),
 numeroCpu int,
 fkEmpresa int,
-foreign key (fkEmpresa) references empresa (idEmpresa)
+foreign key (fkEmpresa) references empresa (idEmpresa),
+fkFuncionario int,
+foreign key (fkFuncionario) references funcionario (idFuncionario)
 );
 
 create table registro (
@@ -57,3 +59,6 @@ descChamado varchar(100),
 hora datetime,
 primary key(idChamado, fkMaquina, fkRegistro)
 );
+
+SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN 
+funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = idFuncionario and componente = 1 limit 10;
