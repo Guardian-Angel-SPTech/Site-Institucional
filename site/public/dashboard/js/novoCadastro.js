@@ -77,7 +77,7 @@ function  gerarEmail() {
     let dominio = '@gmail.com'
     const verificaEspaco = nome.indexOf(' ') >= 0 ? true : false;
     if (verificaEspaco) {
-        let nomeSemEspaco = nome.replace(' ', '.')
+        let nomeSemEspaco = nome.replaceAll(' ', '.')
         nomeSemEspaco = nomeSemEspaco.toLowerCase()
         let email = nomeSemEspaco + dominio
         return email

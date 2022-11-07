@@ -45,8 +45,9 @@ function listaFuncionario(){
         const div = document.createElement('button')
         div.className = 'funcionario'
         div.innerHTML = element.nome
-        var aux = element.idFuncionario
+        div.innerHTML += `<p> Socorro</p>`
         loadF.appendChild(div)
+        var aux = element.idFuncionario
         div.setAttribute('Onclick', `voltar(${aux})`);
         
         

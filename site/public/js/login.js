@@ -107,7 +107,7 @@ function login() {
                 sessionStorage.CNPJ_EMPRESA = json.cnpj;
 
                 setTimeout(() => {
-                    window.location = "dashboard/index.html";
+                    window.location = "dashboard/funcionarios.html";
                 }, 1000);
             });
 
