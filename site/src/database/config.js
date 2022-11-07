@@ -21,7 +21,7 @@ const sqlServerConfig = {
 const mySqlConfig = {
     host: "localhost",
     database: "GuardianAngel",
-    user: "aluno",
+    user: "root",
     password: "sptech",
 };
 
