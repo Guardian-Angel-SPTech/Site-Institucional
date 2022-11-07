@@ -22,11 +22,15 @@ import datetime
 
 
 # Aqui limpa a tela do terminal para ficar mais organizado
-os.system('cls')
+def limpa_tela():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 
 # Aqui é a função que faz com que o programa fique rodando em loop infinito
 while True:
-    os.system('cls')
+    limpa_tela()
     print('Monitoramento de Máquina Guardian Angel')
 
     # Aqui é onde realizamos a conexão com o banco de dados que desejamos
