@@ -1,6 +1,5 @@
 const secao_empresa = document.getElementById("dados_empresa");
 const secao_funcionario = document.getElementById("dados_usuario");
-
 const btn_cadastrar = document.getElementById("btn_cadastrar")
 
 btn_cadastrar.addEventListener('click', checarCadastro)
@@ -73,54 +72,44 @@ function validarCPF() {
     }
 }
 
-function validarEmail() {
-    const email = document.getElementById('inp_email').value
-    const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
-
-    // Validando email se os caracteres do email é válido
-    if (email == '') {
-        alert('Email vazio')
-        return false
-    }
-
-    if (regex.test(email)) {
-        return true
+function  gerarEmail() {
+    const nome = document.getElementById('inp_nome').value
+    let dominio = '@gmail.com'
+    const verificaEspaco = nome.indexOf(' ') >= 0 ? true : false;
+    if (verificaEspaco) {
+        let nomeSemEspaco = nome.replace(' ', '.')
+        nomeSemEspaco = nomeSemEspaco.toLowerCase()
+        let email = nomeSemEspaco + dominio
+        return email
     } else {
-        alert('Email inválido')
-        return false
+        alert("Por favor insira nome e sobrenome!")
     }
+ }
+
+function gerarSenha() {
+    const nome = document.getElementById('inp_nome').value
+    let senha_bruta = document.getElementById('inp_cpf').value
+    let senha = `#GF${senha_bruta}` 
+    return senha
 }
 
-function validarConfimarSenha() {
-    const senha = document.getElementById('inp_senha').value
-    const senhaConf = document.getElementById('inp_conf_senha').value
-
-    if (senha == senhaConf) {
-        return true
-    } else {
-        alert('As senhas não conferem')
-        return false
-    }
-}
 
 function checarCadastro() {
-    if (!validarNome() | !validarCPF() | !validarEmail() | !validarEmail() | !validarConfimarSenha()) {
+    if (!validarNome() | !validarCPF() | !gerarEmail() | !gerarSenha()) {
         return false
     }
-
     cadastrar()
 }
 
 // Enviando os dados para o banco
 function cadastrar() {
-
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     const nomeUser = inp_nome.value;
-    const email = inp_email.value;
+    const email = gerarEmail();
     const cpf = inp_cpf.value;
-    const acesso = '1';
-    const senha = inp_senha.value;
+    const acesso = select_acess.value;
+    const senha = gerarSenha();
 
     // Enviando o valor da nova input
     fetch("/funcionarios/registrarfuncionario", {

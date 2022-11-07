@@ -43,9 +43,9 @@ idRegistro int auto_increment,
 fkMaquina int,
 componente varchar(20),
 registroComponente decimal,
-horaRegistro datetime,
+horaRegistro time,
 foreign key (fkMaquina) references maquina (idMaquina),
-dataRegistro datetime,
+dataRegistro date,
 primary key(idRegistro, fkMaquina)
 );
 

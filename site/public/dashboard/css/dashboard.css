@@ -96,6 +96,14 @@ margin-top:2rem;
 }
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
+.funcionario{
+    background-color: #f2f2f2;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 10vh;
+}
+
 @media (min-width: 992px) {
     .top-message{
         height: 30px;
