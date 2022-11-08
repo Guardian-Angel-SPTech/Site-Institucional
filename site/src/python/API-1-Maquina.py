@@ -64,9 +64,10 @@ while True:
     # Aqui printamos o uso da CPU, usando interval = 0, para que faça a leitura em tempo real
     print("=-="*20)
     print("Uso da CPU: ")
-    print(psutil.cpu_percent(interval=0),'%')
+    uso_cpu = psutil.cpu_percent(interval=1.5)
+    print(uso_cpu,'%')
 
-    cursor.execute("INSERT INTO registro values (null, 1, 2, %s, %s, %s)", (psutil.cpu_percent(interval=0), hora, dia))
+    cursor.execute("INSERT INTO registro values (null, 1, 2, %s, %s, %s)", (uso_cpu, hora, dia))
 
 
     # Aqui printamos o uso do disco, caso seja no windows, representado por 'C:'

@@ -1,163 +1,148 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/dashboard.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/imgs/icone-aba.jpg"
-      type="image/x-icon"
-    />
-    <script
-      type="text/javascript"
-      src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"
-    ></script>
-    <title>Guardian Angel</title>
-  </head>
 
-  <body onload="funcionarioTecnico()">
-    <!-- Barra de navegação lateral -->
-    <aside class="l-side-bar" id="header">
-      <section class="wrapper">
-        <nav class="container">
-          <div class="logo">
-            <img
-              src="../assets/imgs/logo_v3.png"
-              alt="Logotipo da Guardian Angel"
-              class="logo"
-            />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <title>Guardian Angel</title>
+</head>
 
-          <div class="menu">
-            <div class="logoMenuPequeno">
-              <img
-                src="../assets/imgs/logo_v3.png"
-                alt="Logotipo da Guardian Angel"
-                class="logoMenor"
-              />
-            </div>
-
-            <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
-
-            <div class="botaoMenu">
-              <button class="button ativo">
-                <a href="index.html#banner">Meu Computador</a>
-              </button>
-              <button class="button">
-                <a href="Funcionarios.html">Funcionários</a>
-              </button>
-            </div>
-
-            <div class="areaBotao">
-              <button class="button sair" onclick="limparSessao()">
-                <a href="../index.html">Sair</a>
-              </button>
-              <button class="button"><a href="#">Relatórios</a></button>
-            </div>
-          </div>
-
-          <div class="toggle iconMenu">
-            <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
-          </div>
-          <div class="toggle icon-close">
-            <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-          </div>
-        </nav>
-      </section>
-    </aside>
-
-    <section class="dashboard" id="1">
-      <div class="top-message">
-        <p>Bem vindo a dashboard</p>
-      </div>
-
-      <div>
-        <div class="botoesGrafico">
-          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario)">RAM</button>
-          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario)">CPU</button>
-          <button id="buttonDisco" onclick="obterDadosGraficoDiscos(idFuncionario)">
-            Disco
-          </button>
+<body onload="funcionarioTecnico()">
+  <!-- Barra de navegação lateral -->
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
         </div>
-        <div class="graficos">
-          <div style="display: flex; flex-direction: column; margin-top: 3rem">
-            <div class="process-container">
-              <span id="process" style="height: 100%; width: 100%"></span>
-            </div>
 
-            <div class="chart-container">
-              <canvas id="chart1"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart2"></canvas>
-            </div>
-            <div class="chart-container teste">
-              <canvas id="chart3"></canvas>
-            </div>
+        <div class="menu">
+          <div class="logoMenuPequeno">
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+          </div>
+
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+
+          <div class="botaoMenu">
+            <button class="button ativo">
+              <a href="index.html#banner">Meu Computador</a>
+            </button>
+            <button class="button">
+              <a href="Funcionarios.html">Funcionários</a>
+            </button>
+          </div>
+
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="#">Relatórios</a></button>
           </div>
         </div>
-      </div>
+
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
     </section>
-  </body>
+  </aside>
 
-  <script src="exibirFunc.js"></script>
-  <script src="js/global.js"></script>
-  <script src="js/dashboard.js"></script>
+  <section class="dashboard" id="1">
+    <div class="top-message">
+      <p>Bem vindo a dashboard</p>
+    </div>
+
+    <div>
+      <div class="botoesGrafico">
+        <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario)">RAM</button>
+        <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario)">CPU</button>
+        <button id="buttonDisco" onclick="obterDadosGraficoDiscos(idFuncionario)">Disco</button>
+      </div>
+      <div class="graficos">
+        <div style="display: flex; flex-direction: column; margin-top: 3rem">
+          <div class="process-container">
+            <span id="process" style="height: 100%; width: 100%"></span>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="chart1"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart2"></canvas>
+          </div>
+          <div class="chart-container teste">
+            <canvas id="chart3"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+<script src="exibirFunc.js"></script>
+<script src="js/global.js"></script>
+<script src="js/dashboard.js"></script>
+
 </html>
 
 <script>
-    const URL = new URLSearchParams(window.location.search);
-    var idFuncionario = URL.get("idFuncionario");
-//   if (novoRegistro[0].temperatura > 40) {
-//     critico2.style.backgroundColor = "#ff0000";
-//     dados.datasets[0].backgroundColor = "#ff0000";
-//     alerta2.style.backgroundColor = "#fff";
-//     emergencia2.style.backgroundColor = "#fff";
-//   } else if (
-//     novoRegistro[0].temperatura > 36 &&
-//     novoRegistro[0].temperatura <= 40
-//   ) {
-//     emergencia2.style.backgroundColor = "#ff7b00";
-//     dados.datasets[0].backgroundColor = "#ff7b00";
-//     alerta2.style.backgroundColor = "#fff";
-//     critico2.style.backgroundColor = "#fff";
-//   } else if (
-//     novoRegistro[0].temperatura > 33 &&
-//     novoRegistro[0].temperatura <= 36
-//   ) {
-//     alerta2.style.backgroundColor = "#fffb00";
-//     dados.datasets[0].backgroundColor = "#fffb00";
-//     critico2.style.backgroundColor = "#fff";
-//     emergencia2.style.backgroundColor = "#fff";
-//   } else if (
-//     novoRegistro[0].temperatura > 26 &&
-//     novoRegistro[0].temperatura < 33
-//   ) {
-//     ideal.style.backgroundColor = "#2bd102";
-//     dados.datasets[0].backgroundColor = "#2bd102";
-//   } else if (
-//     novoRegistro[0].temperatura > 18 &&
-//     novoRegistro[0].temperatura <= 26
-//   ) {
-//     alerta1.style.backgroundColor = "#fffb00";
-//     dados.datasets[0].backgroundColor = "#fffb00";
-//     critico1.style.backgroundColor = "#fff";
-//     emergencia1.style.backgroundColor = "#fff";
-//   } else if (
-//     novoRegistro[0].temperatura > 10 &&
-//     novoRegistro[0].temperatura <= 18
-//   ) {
-//     emergencia1.style.backgroundColor = "#ff7b00";
-//     dados.datasets[0].backgroundColor = "#ff7b00";
-//     critico1.style.backgroundColor = "#fff";
-//     emergencia1.style.backgroundColor = "#fff";
-//   } else {
-//     critico1.style.backgroundColor = "#ff0000";
-//     dados.datasets[0].backgroundColor = "#ff0000";
-//     alerta1.style.backgroundColor = "#fff";
-//     emergencia1.style.backgroundColor = "#fff";
-//   }
+  const URL = new URLSearchParams(window.location.search);
+  var idFuncionario = URL.get("idFuncionario");
+  //   if (novoRegistro[0].temperatura > 40) {
+  //     critico2.style.backgroundColor = "#ff0000";
+  //     dados.datasets[0].backgroundColor = "#ff0000";
+  //     alerta2.style.backgroundColor = "#fff";
+  //     emergencia2.style.backgroundColor = "#fff";
+  //   } else if (
+  //     novoRegistro[0].temperatura > 36 &&
+  //     novoRegistro[0].temperatura <= 40
+  //   ) {
+  //     emergencia2.style.backgroundColor = "#ff7b00";
+  //     dados.datasets[0].backgroundColor = "#ff7b00";
+  //     alerta2.style.backgroundColor = "#fff";
+  //     critico2.style.backgroundColor = "#fff";
+  //   } else if (
+  //     novoRegistro[0].temperatura > 33 &&
+  //     novoRegistro[0].temperatura <= 36
+  //   ) {
+  //     alerta2.style.backgroundColor = "#fffb00";
+  //     dados.datasets[0].backgroundColor = "#fffb00";
+  //     critico2.style.backgroundColor = "#fff";
+  //     emergencia2.style.backgroundColor = "#fff";
+  //   } else if (
+  //     novoRegistro[0].temperatura > 26 &&
+  //     novoRegistro[0].temperatura < 33
+  //   ) {
+  //     ideal.style.backgroundColor = "#2bd102";
+  //     dados.datasets[0].backgroundColor = "#2bd102";
+  //   } else if (
+  //     novoRegistro[0].temperatura > 18 &&
+  //     novoRegistro[0].temperatura <= 26
+  //   ) {
+  //     alerta1.style.backgroundColor = "#fffb00";
+  //     dados.datasets[0].backgroundColor = "#fffb00";
+  //     critico1.style.backgroundColor = "#fff";
+  //     emergencia1.style.backgroundColor = "#fff";
+  //   } else if (
+  //     novoRegistro[0].temperatura > 10 &&
+  //     novoRegistro[0].temperatura <= 18
+  //   ) {
+  //     emergencia1.style.backgroundColor = "#ff7b00";
+  //     dados.datasets[0].backgroundColor = "#ff7b00";
+  //     critico1.style.backgroundColor = "#fff";
+  //     emergencia1.style.backgroundColor = "#fff";
+  //   } else {
+  //     critico1.style.backgroundColor = "#ff0000";
+  //     dados.datasets[0].backgroundColor = "#ff0000";
+  //     alerta1.style.backgroundColor = "#fff";
+  //     emergencia1.style.backgroundColor = "#fff";
+  //   }
 </script>

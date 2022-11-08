@@ -63,7 +63,7 @@ function obterDadosGraficoCPU(idFuncionario) {
         });
 }
 
-function obterDadosGraficoDisco(idFuncionario) {
+function obterDadosGraficoDiscos(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
@@ -106,7 +106,7 @@ function plotarGraficoRAM(resposta, idFuncionario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         var horario = registro.horaRegistro;
-        dados1.datasets[0].data.push(registro.RegistroComponente);
+        dados1.datasets[0].data.push(registro.registroComponente);
         labels1.push(horario);
         dados1.datas
     }
@@ -134,7 +134,7 @@ function plotarGraficoCPU(resposta, idFuncionario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         var horario = registro.horaRegistro;
-        dados1.datasets[0].data.push(registro.RegistroComponente);
+        dados1.datasets[0].data.push(registro.registroComponente);
         labels1.push(horario);
         dados1.datas
     }
@@ -162,7 +162,7 @@ function plotarGraficoDisco(resposta, idFuncionario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         var horario = registro.horaRegistro;
-        dados1.datasets[0].data.push(registro.RegistroComponente);
+        dados1.datasets[0].data.push(registro.registroComponente);
         labels1.push(horario);
         dados1.datas
     }
@@ -199,7 +199,7 @@ function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
                     dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
 
                     dados1.datasets[0].data.shift(); // apagar o primeiro de ram
-                    dados1.datasets[0].data.push(novoRegistro[0].RegistroComponente); // incluir uma nova medida de ram
+                    dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
 
 
                     myChart.update();
@@ -235,7 +235,7 @@ function atualizarGraficoCPU(idFuncionario, mychart, dados1) {
                     dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
 
                     dados1.datasets[0].data.shift(); // apagar o primeiro de ram
-                    dados1.datasets[0].data.push(novoRegistro[0].RegistroComponente); // incluir uma nova medida de ram
+                    dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
 
 
                     mychart.update();
@@ -271,7 +271,7 @@ function atualizarGraficoDisco(idFuncionario, mychart, dados1) {
                     dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
 
                     dados1.datasets[0].data.shift(); // apagar o primeiro de ram
-                    dados1.datasets[0].data.push(novoRegistro[0].RegistroComponente); // incluir uma nova medida de ram
+                    dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
 
 
                     mychart.update();
