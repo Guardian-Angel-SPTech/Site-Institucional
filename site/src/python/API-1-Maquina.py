@@ -38,7 +38,7 @@ while True:
     # pymysql.connect("endereço do banco de dados", "usuário", "senha")
     # nós jogamos este comando dentro de uma variável para que possamos utilizar ela posteriormente mais facilmente
 
-    conexao = pymysql.connect(db='GuardianAngel', user='root', passwd='sptech')
+    conexao = pymysql.connect(db='GuardianAngel', user='aluno', passwd='sptech')
     cursor = conexao.cursor()
 
 

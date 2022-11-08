@@ -1,96 +1,118 @@
 <!DOCTYPE html>
 <html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/imgs/icone-aba.jpg"
+      type="image/x-icon"
+    />
+    <script
+      type="text/javascript"
+      src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"
+    ></script>
+    <title>Guardian Angel</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/dashboard.css" />
-  <link rel="stylesheet" href="css/global.css" />
-  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
-  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
-  <title>Guardian Angel</title>
-</head>
-
-<body onload="funcionarioTecnico()">
-  <!-- Barra de navegação lateral -->
-  <aside class="l-side-bar" id="header">
-    <section class="wrapper">
-      <nav class="container">
-        <div class="logo">
-          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
-        </div>
-
-        <div class="menu">
-          <div class="logoMenuPequeno">
-            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+  <body onload="funcionarioTecnico()">
+    <!-- Barra de navegação lateral -->
+    <aside class="l-side-bar" id="header">
+      <section class="wrapper">
+        <nav class="container">
+          <div class="logo">
+            <img
+              src="../assets/imgs/logo_v3.png"
+              alt="Logotipo da Guardian Angel"
+              class="logo"
+            />
           </div>
 
-          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+          <div class="menu">
+            <div class="logoMenuPequeno">
+              <img
+                src="../assets/imgs/logo_v3.png"
+                alt="Logotipo da Guardian Angel"
+                class="logoMenor"
+              />
+            </div>
 
-          <div class="botaoMenu">
-            <button class="button ativo">
-              <a href="index.html#banner">Meu Computador</a>
-            </button>
-            <button class="button">
-              <a href="Funcionarios.html">Funcionários</a>
-            </button>
+            <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+
+            <div class="botaoMenu">
+              <a href="index.html#banner"
+                ><button class="button ativo">Meu Computador</button></a
+              >
+              <a href="Funcionarios.html"
+                ><button class="button">Funcionários</button></a
+              >
+            </div>
+
+            <div class="areaBotao">
+              <button class="button sair" onclick="limparSessao()">
+                <a href="../index.html">Sair</a>
+              </button>
+              <button class="button"><a href="#">Relatórios</a></button>
+            </div>
           </div>
 
-          <div class="areaBotao">
-            <button class="button sair" onclick="limparSessao()">
-              <a href="../index.html">Sair</a>
-            </button>
-            <button class="button"><a href="#">Relatórios</a></button>
+          <div class="toggle iconMenu">
+            <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+          </div>
+          <div class="toggle icon-close">
+            <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+          </div>
+        </nav>
+      </section>
+    </aside>
+
+    <section class="dashboard" id="1">
+      <div class="top-message">
+        <p>Bem vindo a dashboard</p>
+      </div>
+
+      <div>
+        <div class="botoesGrafico">
+          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario)">
+            RAM
+          </button>
+          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario)">
+            CPU
+          </button>
+          <button
+            id="buttonDisco"
+            onclick="obterDadosGraficoDiscos(idFuncionario)"
+          >
+            Disco
+          </button>
+        </div>
+        <div class="graficos">
+          <div style="display: flex; flex-direction: column; margin-top: 3rem">
+            <div class="process-container">
+              <span id="process" style="height: 100%; width: 100%"></span>
+            </div>
+
+            <div class="chart-container">
+              <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart2"></canvas>
+            </div>
+            <div class="chart-container teste">
+              <canvas id="chart3"></canvas>
+            </div>
           </div>
         </div>
-
-        <div class="toggle iconMenu">
-          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
-        </div>
-        <div class="toggle icon-close">
-          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-        </div>
-      </nav>
+      </div>
     </section>
-  </aside>
+  </body>
 
-  <section class="dashboard" id="1">
-    <div class="top-message">
-      <p>Bem vindo a dashboard</p>
-    </div>
-
-    <div>
-      <div class="botoesGrafico">
-        <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario)">RAM</button>
-        <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario)">CPU</button>
-        <button id="buttonDisco" onclick="obterDadosGraficoDiscos(idFuncionario)">Disco</button>
-      </div>
-      <div class="graficos">
-        <div style="display: flex; flex-direction: column; margin-top: 3rem">
-          <div class="process-container">
-            <span id="process" style="height: 100%; width: 100%"></span>
-          </div>
-
-          <div class="chart-container">
-            <canvas id="chart1"></canvas>
-          </div>
-          <div class="chart-container">
-            <canvas id="chart2"></canvas>
-          </div>
-          <div class="chart-container teste">
-            <canvas id="chart3"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</body>
-
-<script src="exibirFunc.js"></script>
-<script src="js/global.js"></script>
-<script src="js/dashboard.js"></script>
-
+  <script src="exibirFunc.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/dashboard.js"></script>
 </html>
 
 <script>
