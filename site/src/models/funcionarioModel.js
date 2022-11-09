@@ -23,6 +23,20 @@ function entrar(cnpj, senha) {
     return database.executar(instrucao);
 }
 
+function entrarE(email, senha) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
+    const instrucao = `
+        SELECT *
+        FROM funcionario
+            INNER JOIN empresa
+                ON idEmpresa = fkEmpresa
+        WHERE funcionario.email = '${email}'
+        AND senha = MD5('${senha}') LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 // Coloque os mesmos parâmetros aqui. Vá para a const instrucao
 function cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha);
@@ -84,4 +98,5 @@ module.exports = {
     listarfuncionario,
     excluirfuncionario,
     listar,
+    entrarE
 };

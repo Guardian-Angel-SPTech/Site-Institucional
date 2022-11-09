@@ -58,6 +58,40 @@ function entrar(req, res) {
 
 }
 
+function entrarE(req, res) {
+    const email = req.body.emailServer;
+    const senha = req.body.senhaServer;
+
+    if (email == undefined) {
+        res.status(400).send("Seu cnpj está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está indefinida!");
+    } else {
+        
+        funcionarioModel.entrarE(email, senha)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length == 0) {
+                        res.status(403).send("CNPJ e/ou senha inválido(s)");
+                    } else {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     const nomeUser = req.body.nomeUserServer;
@@ -222,5 +256,6 @@ module.exports = {
     excluirfuncionario,
     listar,
     testar,
-    verfuncionario
+    verfuncionario,
+    entrarE
 }

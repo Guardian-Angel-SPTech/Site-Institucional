@@ -36,4 +36,8 @@ router.post("/autenticar", function (req, res) {
     funcionarioController.entrar(req, res);
 });
 
+router.post("/autenticarE", function (req, res) {
+    funcionarioController.entrarE(req, res);
+});
+
 module.exports = router;

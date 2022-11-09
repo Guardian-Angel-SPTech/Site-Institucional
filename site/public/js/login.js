@@ -4,9 +4,76 @@ function login() {
     const inpLogin = document.getElementById('inp_login').value.replace(/[^\d]+/g, '');
     const parsed = Number.parseInt(inpLogin);
     if (Number.isNaN(parsed)) {
-        alert('caractere')
+        const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
+        const email = document.getElementById('inp_login').value
+
+        // Validando email se os caracteres do email é válido
+        if (email == '') {
+            alert('Email vazio')
+            return false
+        }
+        
+            if (regex.test(email)) {
+            //
+                const senha = document.getElementById('inp_senha').value
+                    console.log("FORM LOGIN: ", email);
+                    console.log("FORM SENHA: ", senha);
+            
+                    fetch("/funcionarios/autenticarE", {
+                        method: "POST",
+                        headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        emailServer: email,
+                        senhaServer: senha
+                    })
+                    }).then(function (resposta) {
+                        console.log("ESTOU NO THEN DO login()!")
+            
+                    if (resposta.ok) {
+                        console.log(resposta);
+            
+                        resposta.json().then(json => {
+                        console.log(json[0]);
+                        console.log(JSON.stringify(json[0]));
+            
+                        sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
+                        sessionStorage.CPF_FUNCIONARIO = json.cpf;
+                        sessionStorage.NOME_FUNCIONARIO = json.nome;
+                        sessionStorage.ACESSO_FUNCIONARIO = json.acesso;
+            
+                        sessionStorage.ID_EMPRESA = json.idEmpresa;
+                        sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
+                        sessionStorage.CNPJ_EMPRESA = json.cnpj;
+            
+                        setTimeout(() => {
+                            window.location = "dashboard/index.html";
+                        }, 1000);
+                    });
+                    return true;
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+                    alert("E-mail ou senha inválidos")
+            
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            
+                }).catch(function (erro) {
+                    console.log(erro);
+                    alert("Erro ao realizar o login")
+                })
+            
+                return false;  
+            //
+            } else {
+                alert('Email inválido')
+                return false
+            }
     } else{
-        function validarCnpj() {
+        
             const cnpj = document.getElementById('inp_login').value.replace(/[^\d]+/g, '');
             
             if (cnpj == '') {
@@ -72,32 +139,27 @@ function login() {
                     alert("CNPJ inválido")
                     return false;
                 } else {
-                    return true;
-                }
-            }
+                    const senha = document.getElementById('inp_senha').value
             
-            const cnpj = document.getElementById('inp_login').value
-            const senha = document.getElementById('inp_senha').value
+                    console.log("FORM LOGIN: ", cnpj);
+                    console.log("FORM SENHA: ", senha);
             
-            console.log("FORM LOGIN: ", cnpj);
-            console.log("FORM SENHA: ", senha);
+                    fetch("/funcionarios/autenticar", {
+                        method: "POST",
+                        headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        cnpjServer: cnpj,
+                        senhaServer: senha
+                    })
+                    }).then(function (resposta) {
+                        console.log("ESTOU NO THEN DO login()!")
             
-            fetch("/funcionarios/autenticar", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    cnpjServer: cnpj,
-                    senhaServer: senha
-                })
-            }).then(function (resposta) {
-                console.log("ESTOU NO THEN DO login()!")
+                    if (resposta.ok) {
+                        console.log(resposta);
             
-                if (resposta.ok) {
-                    console.log(resposta);
-            
-                    resposta.json().then(json => {
+                        resposta.json().then(json => {
                         console.log(json[0]);
                         console.log(JSON.stringify(json[0]));
             
@@ -114,7 +176,7 @@ function login() {
                             window.location = "dashboard/funcionarios.html";
                         }, 1000);
                     });
-            
+                    return true;
                 } else {
                     console.log("Houve um erro ao tentar realizar o login!");
                     alert("cnpj ou senha inválidos")
@@ -130,7 +192,6 @@ function login() {
                 })
             
                 return false;
-        
-        
+                }
     }
 }
