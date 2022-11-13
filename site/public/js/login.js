@@ -6,6 +6,7 @@ function login() {
     if (Number.isNaN(parsed)) {
         const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi
         const email = document.getElementById('inp_login').value
+        
 
         // Validando email se os caracteres do email é válido
         if (email == '') {
@@ -46,9 +47,12 @@ function login() {
                         sessionStorage.ID_EMPRESA = json.idEmpresa;
                         sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
                         sessionStorage.CNPJ_EMPRESA = json.cnpj;
+
+                        
             
                         setTimeout(() => {
                             window.location = "dashboard/index.html";
+                            
                         }, 1000);
                     });
                     return true;
