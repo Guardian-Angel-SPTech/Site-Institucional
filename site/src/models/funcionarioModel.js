@@ -72,7 +72,7 @@ function listarfuncionario(idEmpresa) {
 function listar(cnpj){
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-        SELECT idFuncionario,nome FROM funcionario JOIN empresa ON cnpj = ${cnpj} and funcionario.fkempresa = empresa.idEmpresa;
+        SELECT idFuncionario,nome, nivelAcesso FROM funcionario JOIN empresa ON cnpj = ${cnpj} and funcionario.fkempresa = empresa.idEmpresa;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

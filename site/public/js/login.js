@@ -34,7 +34,6 @@ function login() {
             
                     if (resposta.ok) {
                         console.log(resposta);
-            
                         resposta.json().then(json => {
                         console.log(json[0]);
                         console.log(JSON.stringify(json[0]));
@@ -42,7 +41,7 @@ function login() {
                         sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
                         sessionStorage.CPF_FUNCIONARIO = json.cpf;
                         sessionStorage.NOME_FUNCIONARIO = json.nome;
-                        sessionStorage.ACESSO_FUNCIONARIO = json.acesso;
+                        sessionStorage.ACESSO_FUNCIONARIO = json.nivelAcesso;
             
                         sessionStorage.ID_EMPRESA = json.idEmpresa;
                         sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
@@ -166,11 +165,12 @@ function login() {
                         resposta.json().then(json => {
                         console.log(json[0]);
                         console.log(JSON.stringify(json[0]));
-            
+                        
+                        
                         sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
                         sessionStorage.CPF_FUNCIONARIO = json.cpf;
                         sessionStorage.NOME_FUNCIONARIO = json.nome;
-                        sessionStorage.ACESSO_FUNCIONARIO = json.acesso;
+                        sessionStorage.ACESSO_FUNCIONARIO = json.nivelAcesso;
             
                         sessionStorage.ID_EMPRESA = json.idEmpresa;
                         sessionStorage.NOME_EMPRESA = json.nomeEmpresa;
