@@ -28,6 +28,10 @@ router.post("/verfuncionario", function (req, res) {
     funcionarioController.verfuncionario(req, res);
 })
 
+router.post("/verfuncionarioTec", function (req, res) {
+    funcionarioController.verfuncionarioTec(req, res);
+})
+
 router.post("/excluirfuncionario", function (req, res) {
     funcionarioController.excluirfuncionario(req, res);
 })

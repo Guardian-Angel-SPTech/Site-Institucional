@@ -78,6 +78,15 @@ function listar(cnpj){
     return database.executar(instrucao);
 }
 
+function listarTec(cnpj, cpf){
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    SELECT idFuncionario,nome, nivelAcesso FROM funcionario JOIN empresa ON cnpj = ${cnpj} and cpf = ${cpf} and funcionario.fkempresa = empresa.idEmpresa;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function excluirfuncionario(idFuncionario) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function excluirFuncionario():", idFuncionario);
 
@@ -98,5 +107,6 @@ module.exports = {
     listarfuncionario,
     excluirfuncionario,
     listar,
-    entrarE
+    entrarE,
+    listarTec
 };

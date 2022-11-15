@@ -47,12 +47,9 @@ function listaFuncionario(){
         div.innerHTML = element.nome
         loadF.appendChild(div)
         var aux = element.idFuncionario
-        div.setAttribute('Onclick', `voltar(${aux})`);
-        
-        
-        Nomefunc.appendChild(nome)  
+        div.setAttribute('Onclick', `voltar(${aux})`);  
     }
-
+        funcionarioTecnico()
     }
 
     function voltar(id) {
@@ -60,7 +57,7 @@ function listaFuncionario(){
     }
     
     function funcionarioTecnico(){
-        fetch("../funcionarios/verfuncionario", {
+        fetch("../funcionarios/verfuncionarioTec", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -69,6 +66,7 @@ function listaFuncionario(){
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/funcionario.js
                 cnpjServer: sessionStorage.CNPJ_EMPRESA,
+                cpfServer: sessionStorage.CPF_FUNCIONARIO
             })
         }).then(function (resposta) {
         
@@ -78,8 +76,9 @@ function listaFuncionario(){
                     console.log(json);
                     console.log(JSON.stringify(json));
                     vFuncionario = json
-                    
-                    listaTecnico()
+                    var nomet = document.createTextNode(vFuncionario[0].nome);
+                    Nomefunc= document.getElementById("nomeFunc");
+                    Nomefunc.appendChild(nomet);
                   });
             } else {
                 throw ("Houve um erro ao tentar realizar consulta!");
@@ -90,37 +89,3 @@ function listaFuncionario(){
         });
         return false;
     }
-
-    function listaTecnico(){
-    var nomet = document.createTextNode(vFuncionario[0].nome);
-    Nomefunc= document.getElementById("nomeFunc");
-    Nomefunc.appendChild(nomet);
-    fetch("../funcionarios/verfuncionario", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/funcionario.js
-            cnpjServer: sessionStorage.CNPJ_EMPRESA,
-        })
-    }).then(function (resposta) {
-    
-        console.log("resposta: ", resposta);
-        if (resposta.ok) {
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-                vFuncionario = json
-                
-              });
-        } else {
-            throw ("Houve um erro ao tentar realizar consulta!");
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        alert("Houve um erro ao tentar realizar consulta!")
-    });
-    return false;
-}

@@ -222,6 +222,25 @@ function verfuncionario(req, res){
     );
 }
 
+function verfuncionarioTec(req, res){
+    const cnpj = req.body.cnpjServer;
+    const cpf = req.body.cpfServer;
+    funcionarioModel.listarTec(cnpj, cpf)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+
 function excluirfuncionario(req, res) {
     const idFuncionario = req.body.idFuncionarioServer;
 
@@ -257,5 +276,6 @@ module.exports = {
     listar,
     testar,
     verfuncionario,
-    entrarE
+    entrarE,
+    verfuncionarioTec
 }
