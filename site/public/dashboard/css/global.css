@@ -56,6 +56,7 @@ nav{
     justify-content: space-around;
     align-items: center;
     width: 80%;
+    height: 100%;
 }
 nav .menu{
     opacity: 0;
@@ -305,7 +306,36 @@ button.ativo{
 #CadastroDash .n{
     width: 80vw;
 }
-
+.container h1{
+    font: 700 1.75rem 'Inria Sans';
+    color:#0a2342;
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+}
+#listaFunc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 65vw;
+    margin-top: 4rem;
+    
+}
+#funcionarios .container{
+    position: relative;
+}
+#btn_cadastrar_func button{
+    position: absolute;
+    right: 0rem;
+    background-color: #012859;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: .3rem .5rem;
+    font: 500 1.25rem 'Inria Sans';
+    cursor: pointer;
+    outline: none;
+}
 /* ---------------------------- FIM - RIGHT ASIDE ---------------------------- */
 
 @media (min-width: 992px) {
@@ -324,6 +354,7 @@ button.ativo{
             margin-bottom: 2rem;
     }
    
+
 
     nav .menu{
         opacity: 1;
@@ -373,16 +404,6 @@ display: none;
     }
 
 
-    .r-side-bar{
-        background-color: #d9d9d9;
-        --width: 200px;
-        width: var(--width);
-        height: 9   0vh;
-        position: fixed;
-        bottom: 0;
-        left: calc(100% - var(--width));
-        padding: 0;
-    }
     #CadastroDash.cadastro-dir{
         width: 100vw;
         height: 100vh;

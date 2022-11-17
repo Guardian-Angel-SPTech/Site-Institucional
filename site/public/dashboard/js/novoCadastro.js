@@ -133,7 +133,7 @@ function cadastrar() {
         console.log("resposta: ", resposta);
         alert("Cadastro realizado!")
         setTimeout(() => {
-            window.location = "index.html";
+            window.location = "funcionarios.html";
         }, 1000);
         if (resposta.ok) {
         } else {

@@ -165,6 +165,7 @@ function registrarfuncionario(req, res) {
             .then(
                 function (resultado) {
                     res.json(resultado);
+                   
                 }
             ).catch(
                 function (erro) {

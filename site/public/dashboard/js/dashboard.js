@@ -99,14 +99,15 @@ function plotarGraficoRAM(resposta, idFuncionario) {
         datasets: [{
             label: 'Ram',
             data: [],
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(238, 81, 81)',
             tension: 0.1
         }],
     };
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        var horario = registro.horaRegistro;
+        var horario = registro.dataRegistro;
         dados1.datasets[0].data.push(registro.registroComponente);
+        
         labels1.push(horario);
         dados1.datas
     }
@@ -127,7 +128,7 @@ function plotarGraficoCPU(resposta, idFuncionario) {
         datasets: [{
             label: 'CPU',
             data: [],
-            borderColor: '#000',
+            borderColor: '#38cd4b',
             tension: 0.1
         }],
     };
@@ -155,7 +156,7 @@ function plotarGraficoDisco(resposta, idFuncionario) {
         datasets: [{
             label: 'Disco',
             data: [],
-            borderColor: '#656565',
+            borderColor: '#0086d3',
             tension: 0.1
         }],
     };
@@ -288,4 +289,17 @@ function atualizarGraficoDisco(idFuncionario, mychart, dados1) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
+}
+
+if(novoRegistro[0].registroComponente < 20){
+  dados1.datasets[0].borderColor = 'rgba(255, 88 , 22)';
+
+}else if(novoRegistro[0].registroComponente >= 20 && novoRegistro[0].registroComponente < 40){
+  dados1.datasets[0].borderColor = 'rgba(255, 159, 64, 0.2)';
+}else if(novoRegistro[0].registroComponente >= 40 && novoRegistro[0].registroComponente < 60){
+    dados1.datasets[0].borderColor = 'rgba(255, 205, 86, 0.2)';
+}else if(novoRegistro[0].registroComponente >= 60 && novoRegistro[0].registroComponente < 80){
+    dados1.datasets[0].borderColor = 'rgba(75, 192, 192, 0.2)';
+}else{
+    dados1.datasets[0].borderColor = 'rgba(54, 162, 235, 0.2)';
 }

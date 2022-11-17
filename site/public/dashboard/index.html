@@ -18,7 +18,7 @@
     <title>Guardian Angel</title>
   </head>
 
-  <body onload="funcionarioTecnico()">
+  <body onload="funcionarioTecnico()" style="overflow-y: hidden;">
     <!-- Barra de navegação lateral -->
     <aside class="l-side-bar" id="header">
       <section class="wrapper">
@@ -76,15 +76,15 @@
 
       <div>
         <div class="botoesGrafico">
-          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario)">
+          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
             RAM
           </button>
-          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario)">
+          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
             CPU
           </button>
           <button
             id="buttonDisco"
-            onclick="obterDadosGraficoDiscos(idFuncionario)"
+            onclick="obterDadosGraficoDiscos(idFuncionario), esconder3()"
           >
             Disco
           </button>
@@ -118,53 +118,21 @@
 <script>
   const URL = new URLSearchParams(window.location.search);
   var idFuncionario = URL.get("idFuncionario");
-  //   if (novoRegistro[0].temperatura > 40) {
-  //     critico2.style.backgroundColor = "#ff0000";
-  //     dados.datasets[0].backgroundColor = "#ff0000";
-  //     alerta2.style.backgroundColor = "#fff";
-  //     emergencia2.style.backgroundColor = "#fff";
-  //   } else if (
-  //     novoRegistro[0].temperatura > 36 &&
-  //     novoRegistro[0].temperatura <= 40
-  //   ) {
-  //     emergencia2.style.backgroundColor = "#ff7b00";
-  //     dados.datasets[0].backgroundColor = "#ff7b00";
-  //     alerta2.style.backgroundColor = "#fff";
-  //     critico2.style.backgroundColor = "#fff";
-  //   } else if (
-  //     novoRegistro[0].temperatura > 33 &&
-  //     novoRegistro[0].temperatura <= 36
-  //   ) {
-  //     alerta2.style.backgroundColor = "#fffb00";
-  //     dados.datasets[0].backgroundColor = "#fffb00";
-  //     critico2.style.backgroundColor = "#fff";
-  //     emergencia2.style.backgroundColor = "#fff";
-  //   } else if (
-  //     novoRegistro[0].temperatura > 26 &&
-  //     novoRegistro[0].temperatura < 33
-  //   ) {
-  //     ideal.style.backgroundColor = "#2bd102";
-  //     dados.datasets[0].backgroundColor = "#2bd102";
-  //   } else if (
-  //     novoRegistro[0].temperatura > 18 &&
-  //     novoRegistro[0].temperatura <= 26
-  //   ) {
-  //     alerta1.style.backgroundColor = "#fffb00";
-  //     dados.datasets[0].backgroundColor = "#fffb00";
-  //     critico1.style.backgroundColor = "#fff";
-  //     emergencia1.style.backgroundColor = "#fff";
-  //   } else if (
-  //     novoRegistro[0].temperatura > 10 &&
-  //     novoRegistro[0].temperatura <= 18
-  //   ) {
-  //     emergencia1.style.backgroundColor = "#ff7b00";
-  //     dados.datasets[0].backgroundColor = "#ff7b00";
-  //     critico1.style.backgroundColor = "#fff";
-  //     emergencia1.style.backgroundColor = "#fff";
-  //   } else {
-  //     critico1.style.backgroundColor = "#ff0000";
-  //     dados.datasets[0].backgroundColor = "#ff0000";
-  //     alerta1.style.backgroundColor = "#fff";
-  //     emergencia1.style.backgroundColor = "#fff";
-  //   }
+
+  function esconder1(){
+    document.getElementById("chart1").style.display = "block";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+  }
+  function esconder2(){
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "block";
+    document.getElementById("chart3").style.display = "none";
+  }
+  function esconder3(){
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "block";
+  }
 </script>
+

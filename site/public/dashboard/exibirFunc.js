@@ -38,19 +38,27 @@ function listaFuncionario(){
     console.log(vFuncionario)
     var nome = document.createTextNode(vFuncionario[0].nome);
     Nomefunc= document.getElementById("nomeFunc");
-  
+   LF =  document.getElementById("listaFunc");
     for (let i = 0; i < vFuncionario.length; i++) {
         const element = vFuncionario[i];
         console.log(element)
         const div = document.createElement('button')
         div.className = 'funcionario'
+
         div.innerHTML = element.nome
         loadF.appendChild(div)
         var aux = element.idFuncionario
         div.setAttribute('Onclick', `voltar(${aux})`);  
+        if( i > 15){
+            LF.style.cssText = `padding-top : calc(${i*2}% + 10% ) ; height: 500px ; overflow-y: scroll;`;
+        }
+        
+
+
     }
         funcionarioTecnico()
     }
+
 
     function voltar(id) {
         window.location = `index.html?idFuncionario=${id}` ;

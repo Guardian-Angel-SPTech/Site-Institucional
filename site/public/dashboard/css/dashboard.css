@@ -67,6 +67,14 @@ margin-top:2rem;
     position: relative;  
     width:80vw;
 }
+#funcionarios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 .botoesGrafico{
     display: flex;
     flex-direction: row;
@@ -97,11 +105,15 @@ margin-top:2rem;
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
 .funcionario{
-    background-color: #f2f2f2;
+    background-color: #e2e0e0;
     border: none;
     outline: none;
     width: 100%;
-    height: 10vh;
+    padding: 0.5rem;
+    margin-top: .5rem;
+    border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 @media (min-width: 992px) {
@@ -119,7 +131,7 @@ margin-top:2rem;
     .chart-container{
         position: relative;  
         width:40vw;
-        margin-top: 2rem;
+        
     }
 .graficos{
    
