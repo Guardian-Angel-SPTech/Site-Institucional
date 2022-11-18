@@ -19,6 +19,7 @@ import os
 from time import sleep
 import pymysql
 import datetime
+import pymssql
 
 
 # Aqui limpa a tela do terminal para ficar mais organizado
@@ -27,7 +28,15 @@ def limpa_tela():
         os.system('cls')
     else:
         os.system('clear')
+server = "guardian-angel.database.windows.net"
+database = "guardianAngel"
+username = "admGuardianAngel"
+password = "guardian#angel#grupo7"
 
+# Construct connection string
+
+conexaoA = pymssql.connect(server = server, user = username, password = password, database = database)
+conexaoW = pymysql.connect(db='GuardianAngel', user='aluno', passwd='sptech')
 # Aqui é a função que faz com que o programa fique rodando em loop infinito
 while True:
     limpa_tela()
@@ -37,10 +46,9 @@ while True:
     # Para isso, basta digitar:
     # pymysql.connect("endereço do banco de dados", "usuário", "senha")
     # nós jogamos este comando dentro de uma variável para que possamos utilizar ela posteriormente mais facilmente
-
-    conexao = pymysql.connect(db='GuardianAngel', user='aluno', passwd='sptech')
-    cursor = conexao.cursor()
-
+    
+    cursor = conexaoA.cursor()
+    cursorW = conexaoW.cursor()
 
 
     # Definindo a memória para GB
@@ -53,8 +61,9 @@ while True:
     dia = datetime.date.__format__(datetime.date.today(), '%Y/%m/%d')
     hora = datetime.datetime.now().strftime('%H:%M:%S')
 
-    cursor.execute("INSERT INTO registro values (null, 1, 1, %s, %s, %s)", (ramU, hora, dia))
+    cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) values (1, 1, %s, %s, %s)", (ramU, hora, dia))
 
+    cursorW.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) values (1, 1, %s, %s, %s)", (ramU, hora, dia))
 
     # Aqui printamos na tela o valor da memória utilizada no momento usando a função convert_gb junto com o print
     print("Memória RAM sendo utilizada:")
@@ -67,7 +76,9 @@ while True:
     uso_cpu = psutil.cpu_percent(interval=1.5)
     print(uso_cpu,'%')
 
-    cursor.execute("INSERT INTO registro values (null, 1, 2, %s, %s, %s)", (uso_cpu, hora, dia))
+    cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) values (1, 2, %s, %s, %s)", (uso_cpu, hora, dia))
+
+    cursorW.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) values (1, 2, %s, %s, %s)", (uso_cpu, hora, dia))
 
 
     # Aqui printamos o uso do disco, caso seja no windows, representado por 'C:'
@@ -82,7 +93,9 @@ while True:
         print('{:.2f}'.format(percentage_disk),"%")
         print("=-="*20)
 
-        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
+        cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro) values (1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
+
+        cursorW.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro) values (1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
 
     # Aqui printamos o uso do disco, caso seja no linux, reprentado pelo '/'
     else:
@@ -96,11 +109,14 @@ while True:
         print('{:.2f}'.format(percentage_disk),"%")
         print("=-="*20)
 
-        cursor.execute("INSERT INTO registro values (null, 1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
+        cursor.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) values (1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
+
+        cursorW.execute("INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) values (1, 3, %s, %s, %s)", ('{:.2f}'.format(percentage_disk), hora, dia))
 
     sleep(3)
 
     # Aqui é onde realizamos o commit das informações no banco de dados, que seria fechar o pacote para envio
-    cursor.fetchall()
-    conexao.commit()
-    conexao.close() 
+    conexaoA.commit()
+    conexaoW.commit()
+
+conexaoA.close() 
