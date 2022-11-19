@@ -62,5 +62,9 @@ insert into funcionario(nome, email, senha, fkempresa) values
 insert into maquina(idMaquina,sistOp,fkEmpresa) values
 (null, "Windows", 1);
 
-SELECT * FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN 
-funcionario ON fkFuncionario = idFuncionario WHERE fkFuncionario = idFuncionario and componente = 1 limit 10;
+SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+										INNER JOIN funcionario ON funcionario.fkMaquina = idMaquina 
+                                        and idFuncionario = 1 and componente = 1 order by idRegistro desc limit 10;
+                                        
+SELECT registroComponente FROM registro INNER JOIN Maquina ON fkMaquina = idMaquina INNER JOIN 
+        funcionario ON idFuncionario = 1 and componente = 1 order by idRegistro desc limit 1;
