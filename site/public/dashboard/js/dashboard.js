@@ -192,6 +192,19 @@ function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
 
                 response.json().then(function (novoRegistro) {
 
+    if(novoRegistro[0].registroComponente < 20){
+        dados1.datasets[0].borderColor = 'rgba(0, 0 , 255)';
+    
+    }else if(novoRegistro[0].registroComponente >= 20 && novoRegistro[0].registroComponente < 40){
+        dados1.datasets[0].borderColor = 'rgba(255, 0, 0, 0.2)';
+    }else if(novoRegistro[0].registroComponente >= 40 && novoRegistro[0].registroComponente < 60){
+        dados1.datasets[0].borderColor = 'rgba(255, 205, 86, 0.2)';
+    }else if(novoRegistro[0].registroComponente >= 60 && novoRegistro[0].registroComponente < 80){
+        dados1.datasets[0].borderColor = 'rgba(75, 192, 192, 0.2)';
+    }else{
+        dados1.datasets[0].borderColor = 'rgba(54, 162, 235, 0.2)';
+    }
+
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico: ${dados1}`);
 
@@ -291,15 +304,3 @@ function atualizarGraficoDisco(idFuncionario, mychart, dados1) {
         });
 }
 
-if(novoRegistro[0].registroComponente < 20){
-  dados1.datasets[0].borderColor = 'rgba(255, 88 , 22)';
-
-}else if(novoRegistro[0].registroComponente >= 20 && novoRegistro[0].registroComponente < 40){
-  dados1.datasets[0].borderColor = 'rgba(255, 159, 64, 0.2)';
-}else if(novoRegistro[0].registroComponente >= 40 && novoRegistro[0].registroComponente < 60){
-    dados1.datasets[0].borderColor = 'rgba(255, 205, 86, 0.2)';
-}else if(novoRegistro[0].registroComponente >= 60 && novoRegistro[0].registroComponente < 80){
-    dados1.datasets[0].borderColor = 'rgba(75, 192, 192, 0.2)';
-}else{
-    dados1.datasets[0].borderColor = 'rgba(54, 162, 235, 0.2)';
-}
