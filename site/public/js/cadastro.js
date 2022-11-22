@@ -250,7 +250,8 @@ function cadastrar() {
 
         if (resposta.ok) {
             // Logando o usuário e mandando para o dashboard/index
-            login(cnpj, senha)
+            // login(cnpj, senha)
+            alert("SALVE, É OS CRIA")
         } else {
             throw ("Houve um erro ao tentar realizar o cadastro!");
         }

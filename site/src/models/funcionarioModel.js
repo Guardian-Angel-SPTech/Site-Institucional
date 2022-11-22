@@ -42,7 +42,10 @@ function cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha) {
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    const instrucao = `CALL stg_cadastrarNovaEmpresa('${cnpj}', '${email}', '${nomeEmpresa}', '${nomeUser}','${cpf}', '${senha}', '${acesso}')`;
+    const instrucao = `INSERT INTO empresa (cnpj, email, nomeEmpresa) VALUES ('${cnpj}','${email}','${nomeEmpresa}');
+    DECLARE @valor INT = (SELECT TOP 1 idEmpresa FROM empresa ORDER BY idEmpresa DESC);
+    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email} ','${senha}','${acesso}',@valor,NULL)
+    `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
