@@ -12,12 +12,11 @@ function listar() {
 function entrar(cnpj, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, senha)
     const instrucao = `
-        SELECT *
-        FROM funcionario
+    SELECT TOP 1 * from  funcionario
             INNER JOIN empresa
                 ON idEmpresa = fkEmpresa
         WHERE cnpj = '${cnpj}'
-        AND senha = MD5('${senha}') LIMIT 1;
+        AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -26,12 +25,12 @@ function entrar(cnpj, senha) {
 function entrarE(email, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     const instrucao = `
-        SELECT *
+        SELECT TOP 1
         FROM funcionario
             INNER JOIN empresa
                 ON idEmpresa = fkEmpresa
         WHERE funcionario.email = '${email}'
-        AND senha = MD5('${senha}') LIMIT 1;
+        AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

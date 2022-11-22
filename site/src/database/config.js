@@ -3,10 +3,10 @@ const sql = require('mssql');
 
 // CONEXÃO DO SQL SERVER - AZURE (NUVEM)
 const sqlServerConfig = {
-    server: "SEU_SERVIDOR",
-    database: "SEU_BANCO_DE_DADOS",
-    user: "SEU_USUARIO",
-    password: "SUA_SENHA",
+    server: "guardian-angel.database.windows.net",
+    database: "guardianAngel",
+    user: "admGuardianAngel",
+    password: "guardian#angel#grupo7",
     pool: {
         max: 10,
         min: 0,
