@@ -1,3 +1,5 @@
+-- MD5 NÃO FUNCIONA NA AZURE PARA INSERÇÕES USA HASHBYTES('MD5','SENHA')
+
 INSERT INTO empresa (cnpj, email, nomeEmpresa)
 		VALUES (50664774000195, "exemploEmail@gmail.com", "exemploEmpresa");
 
