@@ -12,7 +12,7 @@ function listar() {
 function entrar(cnpj, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, senha)
     const instrucao = `
-    SELECT TOP 1 * from  funcionario
+    SELECT * from  funcionario
             INNER JOIN empresa
                 ON idEmpresa = fkEmpresa
         WHERE cnpj = '${cnpj}'
@@ -25,7 +25,7 @@ function entrar(cnpj, senha) {
 function entrarE(email, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha)
     const instrucao = `
-        SELECT TOP 1
+        SELECT *
         FROM funcionario
             INNER JOIN empresa
                 ON idEmpresa = fkEmpresa
