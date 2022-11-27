@@ -55,8 +55,9 @@ function registrarfuncionario(nomeUser, email, cpf, senha, acesso, idEmpresa) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrarfuncionario():", nomeUser, cpf, acesso, senha, idEmpresa);
 
     const instrucao = `
-        CALL stg_registrarFuncionario ('${nomeUser}', '${email}', '${cpf}', '${senha}', '${acesso}', '${idEmpresa}')
-    `;
+        EXEC stg_cadastrarFuncionario @nome = N'${nomeUser}', @email = N'${email}',
+        @cpf = N'${cpf}', @senha = N'#GF${senha}', @acesso = N'${acesso}', @fkEmpresa = '${idEmpresa}';
+    `
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);

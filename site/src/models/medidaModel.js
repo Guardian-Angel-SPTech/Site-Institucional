@@ -5,14 +5,16 @@ function buscarUltimasMedidasRAM(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
-    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
-    and componente = 1 order by idRegistro desc;`;
+      SELECT TOP 10 registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where    idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 1
+      ORDER BY idRegistro desc;`
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
-      INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
-      and componente = 1 order by idRegistro desc LIMIT 10;`
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 1
+      ORDER BY idRegistro desc LIMIT 10;`
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -29,14 +31,16 @@ function buscarUltimasMedidasCPU(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
-    INNER JOIN funcionario ON idFuncionario = ${idFuncionario} 
-    and componente = 2 order by idRegistro desc; `;
+      SELECT TOP 10 registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where    idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 2
+      ORDER BY idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
-    INNER JOIN funcionario ON idFuncionario = ${idFuncionario} 
-    and componente = 2 order by idRegistro desc LIMIT 10; `;
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 2
+      ORDER BY idRegistro desc LIMIT 10;`;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -51,14 +55,16 @@ function buscarUltimasMedidasDisco(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = ` SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
-    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
-    and componente = 3 order by idRegistro desc; `;
+    instrucaoSql = ` SELECT TOP 10 registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where    idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
+      ORDER BY idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
-    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
-    and componente = 3 order by idRegistro desc LIMIT 10 ; `;
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
+      ORDER BY idRegistro desc LIMIT 10;`;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -78,8 +84,11 @@ function buscarMedidasEmTempoRealRAM(idFuncionario) {
     funcionario ON idFuncionario = ${idFuncionario} and componente = 1 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
-      funcionario ON idFuncionario = ${idFuncionario} and componente = 1 order by idRegistro desc limit 1`;
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 1
+      ORDER BY idRegistro desc LIMIT 1;
+      `;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -99,8 +108,10 @@ function buscarMedidasEmTempoRealCPU(idFuncionario) {
     funcionario ON idFuncionario = ${idFuncionario} and componente = 2 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
-      funcionario ON idFuncionario = ${idFuncionario} and componente = 2 order by idRegistro desc LIMIT 1`;
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 2
+      ORDER BY idRegistro desc LIMIT 1;`;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -121,8 +132,10 @@ function buscarMedidasEmTempoRealDisco(idFuncionario) {
     funcionario ON idFuncionario = ${idFuncionario} and componente = 3 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
-      funcionario ON idFuncionario = ${idFuncionario} and componente = 3 order by idRegistro desc LIMIT 1`;
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where        idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
+      ORDER BY idRegistro desc LIMIT 1;`;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
