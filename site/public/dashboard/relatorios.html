@@ -55,7 +55,7 @@
               <button class="button sair" onclick="limparSessao()">
                 <a href="../index.html">Sair</a>
               </button>
-              <button class="button"><a href="relatorios.html">Relatórios</a></button>
+              <button class="button ativo"><a href="relatorios.html">Relatórios</a></button>
             </div>
           </div>
 
@@ -69,24 +69,15 @@
       </section>
     </aside>
 
-    <section class="dashboard" id="1">
+    <div class="dashboard" id="conteudo">
       <div class="top-message">
-        <p>Bem vindo a dashboard</p>
+        <p>Relatório mês : <span id="mes"></span></p>
       </div>
 
       <div>
-        <div class="botoesGrafico">
-          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
-            RAM
-          </button>
-          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
-            CPU
-          </button>
-          <button
-            id="buttonDisco"
-            onclick="obterDadosGraficoDiscos(idFuncionario), esconder3()"
-          >
-            Disco
+        <div class="botoes">
+          <button onclick="gerarpdf()" >
+            Gerar PDF
           </button>
         </div>
         <div class="graficos">
@@ -98,23 +89,31 @@
             <div class="chart-container">
               <canvas id="chart1"></canvas>
             </div>
-            <div class="chart-container">
-              <canvas id="chart2"></canvas>
-            </div>
-            <div class="chart-container teste">
-              <canvas id="chart3"></canvas>
+     
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    <div id="editor"></div>
+  
   </body>
 
   <script src="exibirFunc.js"></script>
   <script src="js/global.js"></script>
+  <script src="js/pdf.js"></script>
 </html>
 
+
+
 <script>
+  function gerarpdf(){
+    fetch('/utilitarios/gerarpdf/').then(function(response) {
+     alert("PDF gerado com sucesso!");
+    }).catch(function(err) {
+      alert("Erro ao gerar PDF!");
+    });
+  }
   function verificarURL() {
     
     const url = document.URL;
@@ -129,26 +128,39 @@
         document.head.appendChild(imported); 
       }
 }
+const date = new Date();
+var month = date.getMonth()+1;
+
+console.log(month);
+
+    if(month == 1){
+        document.getElementById('mes').innerHTML = 'Janeiro';
+    } else if(month == 2){
+        document.getElementById('mes').innerHTML = 'Fevereiro';
+    } else if(month == 3){
+        document.getElementById('mes').innerHTML = 'Março';
+    } else if(month == 4){
+        document.getElementById('mes').innerHTML = 'Abril';
+    } else if(month == 5){
+        document.getElementById('mes').innerHTML = 'Maio';
+    } else if(month == 6){
+        document.getElementById('mes').innerHTML = 'Junho';
+    } else if(month == 7){
+        document.getElementById('mes').innerHTML = 'Julho';
+    } else if(month == 8){
+        document.getElementById('mes').innerHTML = 'Agosto';
+    } else if(month == 9){
+        document.getElementById('mes').innerHTML = 'Setembro';
+    } else if(month == 10){
+        document.getElementById('mes').innerHTML = 'Outubro';
+    } else if(month == 11){
+        document.getElementById('mes').innerHTML = 'Novembro';
+    } else if(month == 12){
+        document.getElementById('mes').innerHTML = 'Dezembro';
+    }
+   
+
 </script>
 
-<script>
-  const URL = new URLSearchParams(window.location.search);
-  var idFuncionario = URL.get("idFuncionario");
 
-  function esconder1(){
-    document.getElementById("chart1").style.display = "block";
-    document.getElementById("chart2").style.display = "none";
-    document.getElementById("chart3").style.display = "none";
-  }
-  function esconder2(){
-    document.getElementById("chart1").style.display = "none";
-    document.getElementById("chart2").style.display = "block";
-    document.getElementById("chart3").style.display = "none";
-  }
-  function esconder3(){
-    document.getElementById("chart1").style.display = "none";
-    document.getElementById("chart2").style.display = "none";
-    document.getElementById("chart3").style.display = "block";
-  }
-</script>
 

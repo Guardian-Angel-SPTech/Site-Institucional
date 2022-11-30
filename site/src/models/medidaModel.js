@@ -152,6 +152,29 @@ function pegarProcessos(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function mediaCPUDiaria(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = ``;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where        idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
+      ORDER BY idRegistro desc LIMIT 1;`;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
   buscarUltimasMedidasRAM,
   buscarUltimasMedidasCPU,
@@ -160,4 +183,5 @@ module.exports = {
   buscarMedidasEmTempoRealCPU,
   buscarMedidasEmTempoRealDisco,
   pegarProcessos,
+  mediaCPUDiaria,
 };

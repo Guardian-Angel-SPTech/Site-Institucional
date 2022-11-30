@@ -15,9 +15,12 @@ router.get("/listar", function (req, res) {
 router.post("/cadastrar", function (req, res) {
     funcionarioController.cadastrar(req, res);
 })
-
-router.post("/registrarfuncionario", function (req, res) {
+router.post("/registrarMaquina", function (req, res) {
     funcionarioController.registrarfuncionario(req, res);
+})
+
+router.post("/registrarfuncionarioeMaquina", function (req, res) {
+    funcionarioController.registrarfuncionarioeMaquina(req, res);
 })
 
 router.post("/listarfuncionario", function (req, res) {

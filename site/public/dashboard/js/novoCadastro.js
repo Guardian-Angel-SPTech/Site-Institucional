@@ -110,9 +110,10 @@ function cadastrar() {
     const cpf = inp_cpf.value;
     const acesso = select_acess.value;
     const senha = gerarSenha();
-
+    const sisOp = inp_sisOp.value;
+    const empresaRelacionada = sessionStorage.ID_EMPRESA;
     // Enviando o valor da nova input
-    fetch("/funcionarios/registrarfuncionario", {
+    fetch("/funcionarios/registrarfuncionarioeMaquina", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -121,12 +122,12 @@ function cadastrar() {
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/funcionario.js
             nomeUserServer: nomeUser,
-            IdServer: sessionStorage.ID_EMPRESA,
             emailServer: email,
             cpfServer: cpf,
-            cnpjServer: sessionStorage.CNPJ_EMPRESA,
             acessoServer: acesso,
             senhaServer: senha,
+            sisOpServer: sisOp,
+            fkEmpresaServer: empresaRelacionada
         })
     }).then(function (resposta) {
 

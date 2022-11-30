@@ -12,6 +12,7 @@ const indexRouter = require("./src/routes/index");
 const funcionarioRouter = require("./src/routes/funcionarios");
 const avisosRouter = require("./src/routes/avisos");
 const medidasRouter = require("./src/routes/medidas");
+const utilitariosRouter = require("./src/routes/utilitarios");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,6 +24,7 @@ app.use("/", indexRouter);
 app.use("/funcionarios", funcionarioRouter);
 app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter)
+app.use("/utilitarios", utilitariosRouter)
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

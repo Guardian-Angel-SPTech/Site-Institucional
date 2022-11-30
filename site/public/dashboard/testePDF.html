@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="convertHTMLToPDF()">Gerar PDF</button>
+    <div id="PDFID">
+        <h2>HTML de exemplo para jsPDF</h2>
+         
+        <p>HTML é a linguagem de marcação padrão para a criação de páginas da web</p>
+        <h4>O que é HTML?</h4>
+        <ul>
+        <li>HTML stands for Hyper Text Markup Language</li>
+        <li>HTML is the standard markup language for creating Web pages</li>
+        <li>HTML describes the structure of a Web page</li>
+        <li>HTML consists of a series of elements</li>
+        <li>HTML elements tell the browser how to display the content</li>
+        <li>HTML elements label pieces of content such as "this is a heading", "this is a paragraph", "this is a link", etc.</li>
+        </ul>
+        <p>
+        <!-- It is a Paragraph tag for creating the paragraph -->
+        <b> HTML </b> stands for <i> <u> Hyper Text Markup Language. </u> </i> It is used to create a web pages and
+        applications. This language
+        is easily understandable by the user and also be modifiable. It is actually a Markup language, hence it provides
+        a flexible way for designing the
+        web pages along with the text.
+        </p>
+        HTML file is made up of different elements. <b> An element </b> is a collection of <i> start tag, end tag,
+        attributes and the text between them</i>.
+        </p>
+        </div>
+</body>
+</html>
+
+<script>
+function convertHTMLToPDF() {
+const {jsPDF}=window.jspdf; 
+var doc=new jsPDF ('l','mm', [1200, 1210]);
+var pdfjs=document.querySelector('#PDFID'); 
+doc.html (pdfjs, {
+callback: function (doc) {
+doc.save ("output.pdf");
+},
+x: 10,
+y: 10
+});
+}  
+</script>

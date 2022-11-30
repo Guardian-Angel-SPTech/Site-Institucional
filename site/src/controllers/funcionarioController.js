@@ -138,13 +138,43 @@ function cadastrar(req, res) {
     }
 }
 
-function registrarfuncionario(req, res) {
+function registrarMaquina(req, res) {
+    const sisOP = req.body.sisOpServer;
+    const fkEmpresa = req.body.fkEmpresaServer;
+
+    // Faça as validações dos valores
+    if (sisOp == undefined) {
+        res.status(400).send("Sistema Operacional Indefinido");
+    } else if (fkEmpresa == undefined) {
+        res.status(400).send("Empresa pode não estar logada");
+    } else {     
+        // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
+        funcionarioModel.registrarfuncionario(sisOP, fkEmpresa)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                   
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+function registrarfuncionarioeMaquina(req, res) {
     const nomeUser = req.body.nomeUserServer;
     const cpf = req.body.cpfServer;
     const email = req.body.emailServer;
     const acesso = req.body.acessoServer;
-    const idEmpresa = req.body.IdServer;
     const senha = req.body.senhaServer;
+    const sisOp = req.body.sisOpServer;
+    const fkEmpresa = req.body.fkEmpresaServer;
 
     // Faça as validações dos valores
     if (nomeUser == undefined) {
@@ -155,13 +185,15 @@ function registrarfuncionario(req, res) {
         res.status(400).send("O cpf está undefined!");
     } else if (acesso == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (idEmpresa == undefined) {
-        res.status(400).send("idEmpresa está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else {     
+    }     if (sisOp == undefined) {
+        res.status(400).send("Sistema Operacional Indefinido");
+    } else if (fkEmpresa == undefined) {
+        res.status(400).send("Empresa pode não estar logada");
+    }else {     
         // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
-        funcionarioModel.registrarfuncionario(nomeUser, email, cpf, senha, acesso, idEmpresa)
+        funcionarioModel.registrarfuncionarioeMaquina(nomeUser, cpf,email, senha, acesso, sisOp, fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -271,7 +303,7 @@ function excluirfuncionario(req, res) {
 module.exports = {
     entrar,
     cadastrar,
-    registrarfuncionario,
+    registrarfuncionarioeMaquina,
     listarfuncionario,
     excluirfuncionario,
     listar,

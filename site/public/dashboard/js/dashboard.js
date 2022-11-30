@@ -48,7 +48,7 @@ function obterDadosGraficoCPU(idFuncionario) {
                 console.log("Obtendo dados: Resposta Ok")
 
                 response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    alert(`Dados recebidos:  ${resposta})}`);
                     resposta.reverse();
 
                     console.log("Indo plotar gráfico")

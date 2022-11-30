@@ -50,14 +50,22 @@ function cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha) {
 
     return database.executar(instrucao);
 }
+function registraMaquina(sysop, fkEmpresa){
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", sysop, fkEmpresa);
 
-function registrarfuncionario(nomeUser, email, cpf, senha, acesso, idEmpresa) {
-    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrarfuncionario():", nomeUser, cpf, acesso, senha, idEmpresa);
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    const instrucao = `INSERT INTO maquina (sisOp, fkEmpresa) VALUES ('${sysop}','${fkEmpresa}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
 
+    return database.executar(instrucao);
+}
+function registrarfuncionarioeMaquina(nomeUser,cpf, email, senha, acesso, sisOP, fkEmpresa) {
     const instrucao = `
-        EXEC stg_cadastrarFuncionario @nome = N'${nomeUser}', @email = N'${email}',
-        @cpf = N'${cpf}', @senha = N'#GF${senha}', @acesso = N'${acesso}', @fkEmpresa = '${idEmpresa}';
-    `
+    INSERT INTO maquina(sistOp,fkEmpresa) values('${sisOP}','${fkEmpresa}');
+    declare @valor int = (select top 1 idMaquina from maquina order by idMaquina desc);
+    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email} ','${senha}','${acesso}','${fkEmpresa}',@valor)`;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
@@ -106,7 +114,7 @@ function excluirfuncionario(idFuncionario) {
 module.exports = {
     entrar,
     cadastrar,
-    registrarfuncionario,
+    registrarfuncionarioeMaquina,
     listarfuncionario,
     excluirfuncionario,
     listar,
