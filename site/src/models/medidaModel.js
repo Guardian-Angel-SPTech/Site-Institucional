@@ -5,10 +5,9 @@ function buscarUltimasMedidasRAM(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-      SELECT TOP 10 registroComponente FROM registro 
-      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where    idFuncionario = ${idFuncionario}) 
-      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 1
-      ORDER BY idRegistro desc;`
+    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+    and componente = 1 order by idRegistro desc;`
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
       SELECT registroComponente FROM registro 
@@ -31,10 +30,9 @@ function buscarUltimasMedidasCPU(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-      SELECT TOP 10 registroComponente FROM registro 
-      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where    idFuncionario = ${idFuncionario}) 
-      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 2
-      ORDER BY idRegistro desc;`;
+    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+    and componente = 2 order by idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
       SELECT registroComponente FROM registro 
@@ -55,10 +53,9 @@ function buscarUltimasMedidasDisco(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = ` SELECT TOP 10 registroComponente FROM registro 
-      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where    idFuncionario = ${idFuncionario}) 
-      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
-      ORDER BY idRegistro desc;`;
+    instrucaoSql = `   SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+    and componente = 3 order by idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
       SELECT registroComponente FROM registro 
