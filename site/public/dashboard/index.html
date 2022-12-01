@@ -88,6 +88,11 @@
           >
             Disco
           </button>
+          <button id="buttonSwap"
+            onclick="obterDadosGraficoDiscos(idFuncionario), esconder4()"
+          >
+            Swap
+          </button>
         </div>
         <div class="graficos">
           <div style="display: flex; flex-direction: column; margin-top: 3rem">
@@ -139,16 +144,25 @@
     document.getElementById("chart1").style.display = "block";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
   }
   function esconder2(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "block";
     document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
   }
   function esconder3(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "block";
+    document.getElementById("chart4").style.display = "none";
+  }
+  function esconder4(){
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "block";
   }
 </script>
 

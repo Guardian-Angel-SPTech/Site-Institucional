@@ -98,9 +98,13 @@ margin-top:2rem;
     background-color:  #38cd4b;
     border : solid 1px #16be2c;
 }
-.botoesGrafico button:last-child{
+.botoesGrafico button:nth-child(3n){
     background-color:  #0086d3;
     border : solid 1px #0278bd;
+}
+.botoesGrafico button:last-child{
+    background-color:  #ffd000;
+    border : solid 1px #cc9d02;
 }
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
