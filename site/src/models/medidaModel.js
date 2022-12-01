@@ -5,7 +5,7 @@ function buscarUltimasMedidasRAM(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    SELECT TOP 10 registroComponente,horaRegistro FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
     INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
     and componente = 1 order by idRegistro desc;`
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -30,7 +30,7 @@ function buscarUltimasMedidasCPU(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    SELECT TOP 10 registroComponente, horaRegistro FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
     INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
     and componente = 2 order by idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -53,7 +53,7 @@ function buscarUltimasMedidasDisco(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `   SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    instrucaoSql = `   SELECT TOP 10 registroComponente,horaRegistro FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
     INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
     and componente = 3 order by idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -77,7 +77,7 @@ function buscarMedidasEmTempoRealRAM(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `SELECT TOP 1 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    instrucaoSql = `SELECT TOP 1 registroComponente, horaRegistro FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 1 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
@@ -101,7 +101,7 @@ function buscarMedidasEmTempoRealCPU(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `SELECT TOP 1 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    instrucaoSql = `SELECT TOP 1 registroComponente,horaRegistro FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 2 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
@@ -125,7 +125,7 @@ function buscarMedidasEmTempoRealDisco(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 1 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    SELECT TOP 1 registroComponente,horaRegistro FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 3 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
@@ -156,7 +156,7 @@ function mediaCPUDiaria(idFuncionario) {
     instrucaoSql = ``;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente FROM registro 
+      SELECT registroComponente,horaRegistro FROM registro 
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where        idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
       ORDER BY idRegistro desc LIMIT 1;`;

@@ -14,7 +14,7 @@ function obterDadosGraficoRAM(idFuncionario) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasRAMm/`, {
+    fetch(`/medidas/ultimasRAM/`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -49,7 +49,7 @@ function obterDadosGraficoCPU(idFuncionario) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasCPUm/`, {
+    fetch(`/medidas/ultimasCPU/`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -84,7 +84,7 @@ function obterDadosGraficoDiscos(idFuncionario) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasDiscom/`, {
+    fetch(`/medidas/ultimasDisco/`, {
             cache: 'no-store',
             method: "POST",
             headers: {
