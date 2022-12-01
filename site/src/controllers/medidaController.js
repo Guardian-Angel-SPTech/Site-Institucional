@@ -1,5 +1,21 @@
 const medidaModel = require("../models/medidaModel");
 
+function buscarBateria(req, res) {
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.buscarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasRAM(req, res) {
 
 
@@ -110,6 +126,25 @@ function buscarUltimasMedidasDiscom(req, res) {
     }).catch(function (erro) {
         console.log(erro);
         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarBateria(req, res) {
+
+    const idFuncionario = req.params.idFuncionario;
+  
+    console.log(`Recuperando dados da bateria em tempo real`);
+
+    medidaModel.atualizarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as dados da bateria.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -246,6 +281,7 @@ function pegarProcessos(req, res) {
 }
 
 module.exports = {
+    buscarBateria,
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasDisco,
@@ -256,6 +292,7 @@ module.exports = {
     buscarUltimasMedidasRAMm,
     buscarUltimasMedidasCPUm,
     buscarUltimasMedidasDiscom,
+    atualizarBateria,
     buscarMedidasEmTempoRealRAMm,
     buscarMedidasEmTempoRealCPUm,
     buscarMedidasEmTempoRealDiscom

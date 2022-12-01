@@ -3,6 +3,10 @@ const router = express.Router();
 
 const medidaController = require("../controllers/medidaController");
 
+router.get("/bateria/:idFuncionario", function (req, res) {
+    medidaController.buscarBateria(req, res);
+});
+
 router.get("/ultimasRAM/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasRAM(req, res);
 });
@@ -30,6 +34,11 @@ router.post("/ultimasDiscom", function (req, res) {
 router.get("/tempo-realRAM/:idFuncionario", function (req, res) {
     medidaController.buscarMedidasEmTempoRealRAM(req, res);
 })
+
+
+router.post("/atualizarBateria", function (req, res) {
+    medidaController.atualizarBateria(req, res);
+});
 
 router.post("/tempo-realRAMm", function (req, res) {
     medidaController.buscarMedidasEmTempoRealRAMm(req, res);

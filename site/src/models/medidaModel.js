@@ -1,5 +1,35 @@
 const database = require("../database/config");
 
+function buscarBateria(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT TOP 5 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    FROM registro
+    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    ORDER BY idRegistro desc;`
+    
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    FROM registro
+    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    ORDER BY idRegistro desc
+    LIMIT 5;`
+    
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
 function buscarUltimasMedidasRAM(idFuncionario) {
   instrucaoSql = "";
 
@@ -62,6 +92,33 @@ function buscarUltimasMedidasDisco(idFuncionario) {
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
       ORDER BY idRegistro desc LIMIT 10;`;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function atualizarBateria(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+      SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      ORDER BY idRegistro desc;`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      ORDER BY idRegistro desc
+      LIMIT 1;`;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
