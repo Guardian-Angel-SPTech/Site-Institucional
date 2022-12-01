@@ -195,7 +195,7 @@ function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
                 response.json().then(function (novoRegistro) {
 
 
-                    console.log(`Dados recebidos: ${JSON.stringify(formatHour())}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro.horaRegistro)}`);
                     console.log(`Dados atuais do gráfico: ${dados1}`);
 
                     // tirando e colocando valores no gráfico
