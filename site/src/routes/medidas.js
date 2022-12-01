@@ -11,6 +11,14 @@ router.get("/ultimasRAM/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasRAM(req, res);
 });
 
+router.get("/ultimasSwap/:idFuncionario", function (req, res) {
+    medidaController.buscarUltimasMedidasSwap(req, res);
+});
+
+router.post("/ultimasSwapm", function (req, res) {
+    medidaController.buscarUltimasMedidasSwapm(req, res);
+});
+
 router.post("/ultimasRAMm", function (req, res) {
     medidaController.buscarUltimasMedidasRAMm(req, res);
 });
@@ -35,6 +43,10 @@ router.get("/tempo-realRAM/:idFuncionario", function (req, res) {
     medidaController.buscarMedidasEmTempoRealRAM(req, res);
 })
 
+router.get("/tempo-realSwap/:idFuncionario", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealSwap(req, res);
+})
+
 
 router.post("/atualizarBateria", function (req, res) {
     medidaController.atualizarBateria(req, res);
@@ -42,6 +54,10 @@ router.post("/atualizarBateria", function (req, res) {
 
 router.post("/tempo-realRAMm", function (req, res) {
     medidaController.buscarMedidasEmTempoRealRAMm(req, res);
+});
+
+router.post("/tempo-realSwapm", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealSwapm(req, res);
 });
 
 router.get("/tempo-realCPU/:idFuncionario", function (req, res) {

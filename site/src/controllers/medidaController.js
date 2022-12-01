@@ -35,6 +35,25 @@ function buscarUltimasMedidasRAM(req, res) {
     });
 }
 
+function buscarUltimasMedidasSwap(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    medidaModel.buscarUltimasMedidasSwap(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasRAMm(req, res) {
 
 
@@ -42,6 +61,25 @@ function buscarUltimasMedidasRAMm(req, res) {
 
 
     medidaModel.buscarUltimasMedidasRAM(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarUltimasMedidasSwapm(req, res) {
+
+
+    const idFuncionario = req.body.funcionarioServer;
+
+
+    medidaModel.buscarUltimasMedidasSwap(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -168,6 +206,25 @@ function buscarMedidasEmTempoRealRAM(req, res) {
     });
 }
 
+function buscarMedidasEmTempoRealSwap(req, res) {
+
+    const idFuncionario = req.params.idFuncionario;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealSwap(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarMedidasEmTempoRealRAMm(req, res) {
 
     const idFuncionario = req.body.funcionarioServer;
@@ -175,6 +232,25 @@ function buscarMedidasEmTempoRealRAMm(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.buscarMedidasEmTempoRealRAM(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealSwapm(req, res) {
+
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealSwap(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -357,17 +433,21 @@ function pegarDownloadTempoReal(req, res) {
 module.exports = {
     buscarBateria,
     buscarUltimasMedidasRAM,
+    buscarUltimasMedidasSwap,
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasDisco,
     buscarMedidasEmTempoRealRAM,
+    buscarMedidasEmTempoRealSwap,
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealDisco,
     pegarProcessos,
     buscarUltimasMedidasRAMm,
+    buscarUltimasMedidasSwapm,
     buscarUltimasMedidasCPUm,
     buscarUltimasMedidasDiscom,
     atualizarBateria,
     buscarMedidasEmTempoRealRAMm,
+    buscarMedidasEmTempoRealSwapm,
     buscarMedidasEmTempoRealCPUm,
     buscarMedidasEmTempoRealDiscom,
     pegarDownload,

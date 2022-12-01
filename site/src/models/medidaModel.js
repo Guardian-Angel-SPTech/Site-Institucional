@@ -55,6 +55,31 @@ function buscarUltimasMedidasRAM(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function buscarUltimasMedidasSwap(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro' FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+    and componente = 5 order by idRegistro desc;`
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 5
+      ORDER BY idRegistro desc LIMIT 10;`
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 function buscarUltimasMedidasCPU(idFuncionario) {
   instrucaoSql = "";
 
@@ -141,6 +166,30 @@ function buscarMedidasEmTempoRealRAM(idFuncionario) {
       SELECT registroComponente FROM registro 
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 1
+      ORDER BY idRegistro desc LIMIT 1;
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoRealSwap(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    funcionario ON idFuncionario = ${idFuncionario} and componente = 5 order by idRegistro desc`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 5
       ORDER BY idRegistro desc LIMIT 1;
       `;
   } else {
@@ -326,9 +375,11 @@ function pegarDownloadTempoReal(idFuncionario) {
 
 module.exports = {
   buscarUltimasMedidasRAM,
+  buscarUltimasMedidasSwap,
   buscarUltimasMedidasCPU,
   buscarUltimasMedidasDisco,
   buscarMedidasEmTempoRealRAM,
+  buscarMedidasEmTempoRealSwap,
   buscarMedidasEmTempoRealCPU,
   buscarMedidasEmTempoRealDisco,
   pegarProcessos,

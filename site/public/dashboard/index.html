@@ -89,7 +89,7 @@
             Disco
           </button>
           <button id="buttonSwap"
-            onclick="obterDadosGraficoDiscos(idFuncionario), esconder4()"
+            onclick="obterDadosGraficoSwap(idFuncionario), esconder4()"
           >
             Swap
           </button>
@@ -117,6 +117,9 @@
             </div>
             <div class="chart-container">
               <canvas id="chart2"></canvas>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart4"></canvas>
             </div>
             <div class="chart-container">
               <canvas id="chart6"></canvas>
@@ -164,24 +167,32 @@
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
   }
   function esconder2(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "block";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
   }
   function esconder3(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "block";
     document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
   }
   function esconder4(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "block";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
   }
 
   function esconder5(){
