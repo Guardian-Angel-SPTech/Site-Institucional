@@ -55,4 +55,25 @@ router.get("/pegarProcessos/:idFuncionario", function (req, res) {
     medidaController.pegarProcessos(req, res);
 });
 
+// INDIVIDUAL DO MIGUEL - NÃO MEXA SEU PUTO/A
+
+router.get("/pegarUpload/:idFuncionario", function (req, res) {
+    medidaController.pegarUpload(req, res);
+});
+
+router.get("/pegarUploadTempoReal/:idFuncionario", function (req, res) {
+    medidaController.pegarUploadTempoReal(req, res);
+});
+
+
+router.get("/pegarDownload/:idFuncionario", function (req, res) {
+    medidaController.pegarDownload(req, res);
+});
+
+router.get("/pegarDownloadTempoReal/:idFuncionario", function (req, res) {
+    medidaController.pegarDownloadTempoReal(req, res);
+});
+
+
+
 module.exports = router;

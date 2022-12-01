@@ -245,6 +245,80 @@ function pegarProcessos(req, res) {
     });
 }
 
+function pegarUpload(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    medidaModel.pegarUpload(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarUploadTempoReal(req, res) {
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.pegarUploadTempoReal(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarDownload(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    medidaModel.pegarDownload(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarDownloadTempoReal(req, res) {
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.pegarDownloadTempoReal(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasCPU,
@@ -258,5 +332,9 @@ module.exports = {
     buscarUltimasMedidasDiscom,
     buscarMedidasEmTempoRealRAMm,
     buscarMedidasEmTempoRealCPUm,
-    buscarMedidasEmTempoRealDiscom
+    buscarMedidasEmTempoRealDiscom,
+    pegarDownload,
+    pegarUpload,
+    pegarDownloadTempoReal,
+    pegarUploadTempoReal
 }
