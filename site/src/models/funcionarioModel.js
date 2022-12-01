@@ -61,11 +61,10 @@ function registraMaquina(sysop, fkEmpresa){
 
     return database.executar(instrucao);
 }
-function registrarfuncionarioeMaquina(nomeUser,cpf, email, senha, acesso, sisOP, fkEmpresa) {
+function registrarfuncionario(nomeUser,cpf, email, senha, acesso, fkEmpresa) {
     const instrucao = `
-    INSERT INTO maquina(sistOp,fkEmpresa) values('${sisOP}','${fkEmpresa}');
-    declare @valor int = (select top 1 idMaquina from maquina order by idMaquina desc);
-    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email} ','${senha}','${acesso}','${fkEmpresa}',@valor)`;
+  
+    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email} ','${senha}','${acesso}','${fkEmpresa}',null)`;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
@@ -114,7 +113,7 @@ function excluirfuncionario(idFuncionario) {
 module.exports = {
     entrar,
     cadastrar,
-    registrarfuncionarioeMaquina,
+    registrarfuncionario,
     listarfuncionario,
     excluirfuncionario,
     listar,

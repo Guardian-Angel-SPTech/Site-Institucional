@@ -167,7 +167,7 @@ function registrarMaquina(req, res) {
             );
     }
 }
-function registrarfuncionarioeMaquina(req, res) {
+function registrarfuncionario(req, res) {
     const nomeUser = req.body.nomeUserServer;
     const cpf = req.body.cpfServer;
     const email = req.body.emailServer;
@@ -187,13 +187,11 @@ function registrarfuncionarioeMaquina(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }     if (sisOp == undefined) {
-        res.status(400).send("Sistema Operacional Indefinido");
-    } else if (fkEmpresa == undefined) {
+    }else if (fkEmpresa == undefined) {
         res.status(400).send("Empresa pode não estar logada");
     }else {     
         // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
-        funcionarioModel.registrarfuncionarioeMaquina(nomeUser, cpf,email, senha, acesso, sisOp, fkEmpresa)
+        funcionarioModel.registrarfuncionario(nomeUser, cpf,email, senha, acesso, fkEmpresa)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -303,7 +301,7 @@ function excluirfuncionario(req, res) {
 module.exports = {
     entrar,
     cadastrar,
-    registrarfuncionarioeMaquina,
+    registrarfuncionario,
     listarfuncionario,
     excluirfuncionario,
     listar,

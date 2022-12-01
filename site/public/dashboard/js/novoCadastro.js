@@ -110,10 +110,10 @@ function cadastrar() {
     const cpf = inp_cpf.value;
     const acesso = select_acess.value;
     const senha = gerarSenha();
-    const sisOp = inp_sisOp.value;
+
     const empresaRelacionada = sessionStorage.ID_EMPRESA;
     // Enviando o valor da nova input
-    fetch("/funcionarios/registrarfuncionarioeMaquina", {
+    fetch("/funcionarios/registrarfuncionario", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -126,7 +126,7 @@ function cadastrar() {
             cpfServer: cpf,
             acessoServer: acesso,
             senhaServer: senha,
-            sisOpServer: sisOp,
+   
             fkEmpresaServer: empresaRelacionada
         })
     }).then(function (resposta) {
