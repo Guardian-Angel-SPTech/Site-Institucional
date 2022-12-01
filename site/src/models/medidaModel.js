@@ -1,11 +1,41 @@
 const database = require("../database/config");
 
+function buscarBateria(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT TOP 5 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    FROM registro
+    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    ORDER BY idRegistro desc;`
+    
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    FROM registro
+    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    ORDER BY idRegistro desc
+    LIMIT 5;`
+    
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
 function buscarUltimasMedidasRAM(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro' FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
     INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
     and componente = 1 order by idRegistro desc;`
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -30,7 +60,7 @@ function buscarUltimasMedidasCPU(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    SELECT TOP 7 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
     INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
     and componente = 2 order by idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -53,7 +83,7 @@ function buscarUltimasMedidasDisco(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `   SELECT TOP 10 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    instrucaoSql = `   SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
     INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
     and componente = 3 order by idRegistro desc;`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -73,11 +103,38 @@ function buscarUltimasMedidasDisco(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function atualizarBateria(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+      SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      ORDER BY idRegistro desc;`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      ORDER BY idRegistro desc
+      LIMIT 1;`;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 function buscarMedidasEmTempoRealRAM(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `SELECT TOP 1 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 1 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
@@ -101,7 +158,7 @@ function buscarMedidasEmTempoRealCPU(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `SELECT TOP 1 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 2 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
@@ -125,7 +182,7 @@ function buscarMedidasEmTempoRealDisco(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 1 registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 3 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
@@ -156,7 +213,7 @@ function mediaCPUDiaria(idFuncionario) {
     instrucaoSql = ``;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente FROM registro 
+      SELECT registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro 
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where        idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
       ORDER BY idRegistro desc LIMIT 1;`;

@@ -44,27 +44,17 @@ function cadastrar(nomeUser, nomeEmpresa, cpf, cnpj, email, acesso, senha) {
     //  e na ordem de inserção dos dados.
     const instrucao = `INSERT INTO empresa (cnpj, email, nomeEmpresa) VALUES ('${cnpj}','${email}','${nomeEmpresa}');
     DECLARE @valor INT = (SELECT TOP 1 idEmpresa FROM empresa ORDER BY idEmpresa DESC);
-    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email} ','${senha}','${acesso}',@valor,NULL)
+    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email}','${senha}','${acesso}',@valor,NULL)
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);
 }
-function registraMaquina(sysop, fkEmpresa){
-    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", sysop, fkEmpresa);
 
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    const instrucao = `INSERT INTO maquina (sisOp, fkEmpresa) VALUES ('${sysop}','${fkEmpresa}');
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-
-    return database.executar(instrucao);
-}
 function registrarfuncionario(nomeUser,cpf, email, senha, acesso, fkEmpresa) {
     const instrucao = `
   
-    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email} ','${senha}','${acesso}','${fkEmpresa}',null)`;
+    INSERT INTO [dbo].[funcionario] VALUES('${nomeUser}','${cpf}','${email}','${senha}','${acesso}','${fkEmpresa}',null)`;
     console.log("Executando a instrução SQL: \n" + instrucao);
 
     return database.executar(instrucao);

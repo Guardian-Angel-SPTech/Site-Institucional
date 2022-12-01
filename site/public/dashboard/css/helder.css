@@ -1,0 +1,18 @@
+/* !Atenção! Se você não for o "Helder" não altere esse arquivo  */
+main{
+    height: 100%;
+    width: 100%;
+}
+
+.battery{
+    height: 200px;
+    width: 100%;
+    background: #f00;
+    display: flex;
+    justify-content: center;
+}
+.battery > article{
+    background: green;
+    height: 100%;
+    width: 49%;
+}

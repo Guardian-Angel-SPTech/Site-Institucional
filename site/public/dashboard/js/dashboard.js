@@ -48,7 +48,7 @@ function obterDadosGraficoCPU(idFuncionario) {
                 console.log("Obtendo dados: Resposta Ok")
 
                 response.json().then(function (resposta) {
-                    alert(`Dados recebidos:  ${resposta})}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
                     console.log("Indo plotar gráfico")
@@ -93,6 +93,7 @@ function obterDadosGraficoDiscos(idFuncionario) {
 // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
 // A função *plotarGrafico* também invoca a função *atualizarGrafico*
 function plotarGraficoRAM(resposta, idFuncionario) {
+    
     let labels1 = [];
     let dados1 = {
         labels: labels1,
@@ -105,7 +106,8 @@ function plotarGraficoRAM(resposta, idFuncionario) {
     };
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        var horario = registro.dataRegistro;
+        
+        var horario = registro.horaRegistro;
         dados1.datasets[0].data.push(registro.registroComponente);
         
         labels1.push(horario);
@@ -249,20 +251,8 @@ function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
 
                 response.json().then(function (novoRegistro) {
 
-    if(novoRegistro[0].registroComponente < 20){
-        dados1.datasets[0].borderColor = 'rgba(0, 0 , 255)';
-    
-    }else if(novoRegistro[0].registroComponente >= 20 && novoRegistro[0].registroComponente < 40){
-        dados1.datasets[0].borderColor = 'rgba(255, 0, 0, 0.2)';
-    }else if(novoRegistro[0].registroComponente >= 40 && novoRegistro[0].registroComponente < 60){
-        dados1.datasets[0].borderColor = 'rgba(255, 205, 86, 0.2)';
-    }else if(novoRegistro[0].registroComponente >= 60 && novoRegistro[0].registroComponente < 80){
-        dados1.datasets[0].borderColor = 'rgba(75, 192, 192, 0.2)';
-    }else{
-        dados1.datasets[0].borderColor = 'rgba(54, 162, 235, 0.2)';
-    }
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro.horaRegistro)}`);
                     console.log(`Dados atuais do gráfico: ${dados1}`);
 
                     // tirando e colocando valores no gráfico
