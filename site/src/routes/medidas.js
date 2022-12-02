@@ -54,5 +54,8 @@ router.post("/tempo-realDiscom", function (req, res) {
 router.get("/pegarProcessos/:idFuncionario", function (req, res) {
     medidaController.pegarProcessos(req, res);
 });
+router.get("/mediaCPUDiaria/:idFuncionario", function (req, res) {
+    medidaController.mediaCPUDiaria(req, res);
+});
 
 module.exports = router;

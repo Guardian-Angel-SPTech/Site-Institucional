@@ -149,17 +149,14 @@ function pegarProcessos(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
-function mediaCPUDiaria(idFuncionario) {
+function mediaCPUDiaria(fkMaquina) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = ``;
+    instrucaoSql = ` SELECT AVG(registroComponente),FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 2 and fkMaquina = ${fkMaquina} group by dataRegistro`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro 
-      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where        idFuncionario = ${idFuncionario}) 
-      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 3
-      ORDER BY idRegistro desc LIMIT 1;`;
+      `;
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"

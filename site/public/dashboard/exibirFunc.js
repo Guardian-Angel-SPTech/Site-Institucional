@@ -46,8 +46,9 @@ function listaFuncionario(){
             const element = vFuncionario[i];
             console.log(element)
             const div = document.createElement('button')
+            const div2 = document.createElement('button')
             div.className = 'funcionario'
-    
+            div2.className = 'Relatório'
             div.innerHTML = element.nome
             loadF.appendChild(div)
             var aux = element.idFuncionario
@@ -64,6 +65,9 @@ function listaFuncionario(){
 
     function voltar(id) {
         window.location = `index.html?idFuncionario=${id}` ;
+    }
+    function voltar2(id) {
+        window.location = `relatorios.html?idFuncionario=${id}` ;
     }
     
     function funcionarioTecnico(){

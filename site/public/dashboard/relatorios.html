@@ -55,7 +55,7 @@
               <button class="button sair" onclick="limparSessao()">
                 <a href="../index.html">Sair</a>
               </button>
-              <button class="button ativo"><a href="relatorios.html">Relatórios</a></button>
+              <button class="button"><a href="relatorios.html">Relatórios</a></button>
             </div>
           </div>
 
@@ -69,15 +69,24 @@
       </section>
     </aside>
 
-    <div class="dashboard" id="conteudo">
+    <section class="dashboard" id="1">
       <div class="top-message">
-        <p>Relatório mês : <span id="mes"></span></p>
+        <p>Bem vindo a dashboard</p>
       </div>
 
       <div>
-        <div class="botoes">
-          <button onclick="gerarpdf()" >
-            Gerar PDF
+        <div class="botoesGrafico">
+          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
+            RAM
+          </button>
+          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
+            CPU
+          </button>
+          <button
+            id="buttonDisco"
+            onclick="obterDadosGraficoDiscos(idFuncionario), esconder3()"
+          >
+            Disco
           </button>
         </div>
         <div class="graficos">
@@ -89,22 +98,21 @@
             <div class="chart-container">
               <canvas id="chart1"></canvas>
             </div>
-     
+            <div class="chart-container">
+              <canvas id="chart2"></canvas>
+            </div>
+            <div class="chart-container teste">
+              <canvas id="chart3"></canvas>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="editor"></div>
-  
+    </section>
   </body>
 
   <script src="exibirFunc.js"></script>
   <script src="js/global.js"></script>
-  <script src="js/pdf.js"></script>
 </html>
-
-
 
 <script>
   function gerarpdf(){
@@ -114,20 +122,6 @@
       alert("Erro ao gerar PDF!");
     });
   }
-  function verificarURL() {
-    
-    const url = document.URL;
-    
-      if(url != 'http://localhost:8080/dashboard/index.html#banner'){
-        var imported = document.createElement('script');
-        imported.src = 'js/dashboard.js';
-        document.head.appendChild(imported); 
-      } else{
-        var imported = document.createElement('script');
-        imported.src = 'js/dashboardM.js';
-        document.head.appendChild(imported); 
-      }
-}
 const date = new Date();
 var month = date.getMonth()+1;
 
@@ -164,3 +158,27 @@ console.log(month);
 
 
 
+
+<script>
+  const URL = new URLSearchParams(window.location.search);
+  var idFuncionario = URL.get("idFuncionario");
+
+  function esconder1(){
+    document.getElementById("chart1").style.display = "block";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
+  }
+  function esconder2(){
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "block";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
+  }
+  function esconder3(){
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "block";
+    document.getElementById("chart4").style.display = "none";
+  }
+</script>
