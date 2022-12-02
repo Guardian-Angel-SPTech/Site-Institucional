@@ -9,7 +9,7 @@ function buscarBateria(idFuncionario) {
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     ORDER BY idRegistro desc;`
-    
+
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
     SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
@@ -17,7 +17,7 @@ function buscarBateria(idFuncionario) {
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     ORDER BY idRegistro desc
     LIMIT 5;`
-    
+
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -29,6 +29,34 @@ function buscarBateria(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function buscarBateriaMesAnterior(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    FROM registro
+    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    ORDER BY idRegistro desc;`
+
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      ORDER BY idRegistro desc
+      LIMIT 1;`
+
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
 function buscarUltimasMedidasRAM(idFuncionario) {
   instrucaoSql = "";
@@ -104,6 +132,7 @@ function buscarUltimasMedidasCPU(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 function buscarUltimasMedidasDisco(idFuncionario) {
   instrucaoSql = "";
 
@@ -375,6 +404,7 @@ function pegarDownloadTempoReal(idFuncionario) {
 
 module.exports = {
   buscarBateria,
+  buscarBateriaMesAnterior,
   buscarUltimasMedidasRAM,
   buscarUltimasMedidasSwap,
   buscarUltimasMedidasCPU,
@@ -383,6 +413,7 @@ module.exports = {
   buscarMedidasEmTempoRealSwap,
   buscarMedidasEmTempoRealCPU,
   buscarMedidasEmTempoRealDisco,
+  atualizarBateria,
   pegarProcessos,
   mediaCPUDiaria,
   pegarDownload,

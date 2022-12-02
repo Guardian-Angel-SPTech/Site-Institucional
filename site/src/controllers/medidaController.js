@@ -16,6 +16,22 @@ function buscarBateria(req, res) {
     });
 }
 
+function buscarBateriaMesAnterior(req, res) {
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.buscarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasRAM(req, res) {
 
 
@@ -171,8 +187,6 @@ function buscarUltimasMedidasDiscom(req, res) {
 function atualizarBateria(req, res) {
 
     const idFuncionario = req.params.idFuncionario;
-  
-    console.log(`Recuperando dados da bateria em tempo real`);
 
     medidaModel.atualizarBateria(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
@@ -182,10 +196,28 @@ function atualizarBateria(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as dados da bateria.", erro.sqlMessage);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+function atualizarBateriaMesAnterior(req, res) {
+
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.atualizarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function buscarMedidasEmTempoRealRAM(req, res) {
 
@@ -432,6 +464,7 @@ function pegarDownloadTempoReal(req, res) {
 
 module.exports = {
     buscarBateria,
+    buscarBateriaMesAnterior,
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasSwap,
     buscarUltimasMedidasCPU,
@@ -446,6 +479,7 @@ module.exports = {
     buscarUltimasMedidasCPUm,
     buscarUltimasMedidasDiscom,
     atualizarBateria,
+    atualizarBateriaMesAnterior,
     buscarMedidasEmTempoRealRAMm,
     buscarMedidasEmTempoRealSwapm,
     buscarMedidasEmTempoRealCPUm,

@@ -3,6 +3,13 @@
 main{
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.title{
+    text-align: center;
 }
 
 .battery{
@@ -13,6 +20,5 @@ main{
 }
 
 .chart-container{
-    height: 100%;
-    width: 20%;
+    width:80%;
 }

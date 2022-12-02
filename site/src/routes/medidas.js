@@ -3,8 +3,12 @@ const router = express.Router();
 
 const medidaController = require("../controllers/medidaController");
 
-router.get("/bateria/:idFuncionario", function (req, res) {
+router.get("/buscarBateria/:idFuncionario", function (req, res) {
     medidaController.buscarBateria(req, res);
+});
+
+router.get("/buscarBateriaMesAnterior/:idFuncionario", function (req, res) {
+    medidaController.buscarBateriaMesAnterior(req, res);
 });
 
 router.get("/ultimasRAM/:idFuncionario", function (req, res) {
@@ -31,12 +35,16 @@ router.post("/ultimasCPUm", function (req, res) {
     medidaController.buscarUltimasMedidasCPUm(req, res);
 });
 
-router.get("/ultimasDisco/:idFuncionario", function (req, res) {
+router.post("/ultimasDisco/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasDisco(req, res);
 });
 
 router.post("/ultimasDiscom", function (req, res) {
     medidaController.buscarUltimasMedidasDiscom(req, res);
+});
+
+router.post("/atualizarBateria/:idFuncionario", function (req, res) {
+    medidaController.atualizarBateria(req, res);
 });
 
 router.get("/tempo-realRAM/:idFuncionario", function (req, res) {
@@ -46,11 +54,6 @@ router.get("/tempo-realRAM/:idFuncionario", function (req, res) {
 router.get("/tempo-realSwap/:idFuncionario", function (req, res) {
     medidaController.buscarMedidasEmTempoRealSwap(req, res);
 })
-
-
-router.post("/atualizarBateria", function (req, res) {
-    medidaController.atualizarBateria(req, res);
-});
 
 router.post("/tempo-realRAMm", function (req, res) {
     medidaController.buscarMedidasEmTempoRealRAMm(req, res);
