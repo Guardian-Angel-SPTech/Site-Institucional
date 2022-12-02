@@ -1,5 +1,37 @@
 const medidaModel = require("../models/medidaModel");
 
+function buscarBateria(req, res) {
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.buscarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarBateriaMesAnterior(req, res) {
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.buscarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasRAM(req, res) {
 
 
@@ -19,6 +51,25 @@ function buscarUltimasMedidasRAM(req, res) {
     });
 }
 
+function buscarUltimasMedidasSwap(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    medidaModel.buscarUltimasMedidasSwap(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasRAMm(req, res) {
 
 
@@ -26,6 +77,25 @@ function buscarUltimasMedidasRAMm(req, res) {
 
 
     medidaModel.buscarUltimasMedidasRAM(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarUltimasMedidasSwapm(req, res) {
+
+
+    const idFuncionario = req.body.funcionarioServer;
+
+
+    medidaModel.buscarUltimasMedidasSwap(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -114,6 +184,41 @@ function buscarUltimasMedidasDiscom(req, res) {
     });
 }
 
+function atualizarBateria(req, res) {
+
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.atualizarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function atualizarBateriaMesAnterior(req, res) {
+
+    const idFuncionario = req.params.idFuncionario;
+
+    medidaModel.atualizarBateria(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar bateria.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 function buscarMedidasEmTempoRealRAM(req, res) {
 
     const idFuncionario = req.params.idFuncionario;
@@ -133,6 +238,25 @@ function buscarMedidasEmTempoRealRAM(req, res) {
     });
 }
 
+function buscarMedidasEmTempoRealSwap(req, res) {
+
+    const idFuncionario = req.params.idFuncionario;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealSwap(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarMedidasEmTempoRealRAMm(req, res) {
 
     const idFuncionario = req.body.funcionarioServer;
@@ -140,6 +264,25 @@ function buscarMedidasEmTempoRealRAMm(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.buscarMedidasEmTempoRealRAM(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealSwapm(req, res) {
+
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealSwap(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -261,19 +404,108 @@ function mediaCPUDiaria(req, res) {
     });
 }
 
+function pegarUpload(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    medidaModel.pegarUpload(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarUploadTempoReal(req, res) {
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.pegarUploadTempoReal(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarDownload(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    medidaModel.pegarDownload(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarDownloadTempoReal(req, res) {
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.pegarDownloadTempoReal(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
+    buscarBateria,
+    buscarBateriaMesAnterior,
     buscarUltimasMedidasRAM,
+    buscarUltimasMedidasSwap,
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasDisco,
     buscarMedidasEmTempoRealRAM,
+    buscarMedidasEmTempoRealSwap,
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealDisco,
     pegarProcessos,
     buscarUltimasMedidasRAMm,
+    buscarUltimasMedidasSwapm,
     buscarUltimasMedidasCPUm,
     buscarUltimasMedidasDiscom,
+    atualizarBateria,
+    atualizarBateriaMesAnterior,
     buscarMedidasEmTempoRealRAMm,
+    buscarMedidasEmTempoRealSwapm,
     buscarMedidasEmTempoRealCPUm,
     buscarMedidasEmTempoRealDiscom,
+<<<<<<< HEAD
     mediaCPUDiaria,
+=======
+    pegarDownload,
+    pegarUpload,
+    pegarDownloadTempoReal,
+    pegarUploadTempoReal
+>>>>>>> refs/remotes/origin/main
 }

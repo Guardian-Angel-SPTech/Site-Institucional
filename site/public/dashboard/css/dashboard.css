@@ -85,10 +85,11 @@ margin-top:2rem;
 .botoesGrafico button{
     font: 400 1.25rem "Inria Sans";
     padding: .2rem 1.5rem;
-    width: 100px;
+    width: min-content;
     color: white;
     border: none;
     border-radius: 7px;
+    margin-left: 30px;
 }
 .botoesGrafico button:first-child{
     background-color: rgb(238, 81, 81);
@@ -102,10 +103,19 @@ margin-top:2rem;
     background-color:  #0086d3;
     border : solid 1px #0278bd;
 }
-.botoesGrafico button:last-child{
+.botoesGrafico button:nth-child(4n){
     background-color:  #ffd000;
     border : solid 1px #cc9d02;
 }
+.botoesGrafico button:nth-child(5n){
+    background-color:  #02a2ff;
+    border : solid 1px #008ada;
+}
+.botoesGrafico button:nth-child(6n){
+    background-color:  #3de553;
+    border : solid 1px #38cd4b;;
+}
+
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
 .funcionario{
