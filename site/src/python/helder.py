@@ -96,9 +96,14 @@ while True:
     
 
     # Pegando a porcentagem de bateria
-    bateria = psutil.sensors_battery().percent
-    print("Porcentagem de bateria: ")
-    print('{:.2f}'.format(bateria),"%")
+    try:
+        psutil.sensors_battery().percent
+    except:
+        print("=-="*20)
+    else:
+        bateria = psutil.sensors_battery().percent
+        print("Porcentagem de bateria: ")
+        print('{:.2f}'.format(bateria),"%")
 
     sql = "INSERT INTO registro (fkMaquina, componente, registroComponente, horaRegistro, dataRegistro) VALUES (%s, %s, %s, %s, %s)"
     data = (1, 4, bateria, hora, dia)
