@@ -1,4 +1,5 @@
 /* !Atenção! Se você não for o "Helder" não altere esse arquivo  */
+
 main{
     height: 100%;
     width: 100%;
@@ -7,12 +8,11 @@ main{
 .battery{
     height: 200px;
     width: 100%;
-    background: #f00;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
-.battery > article{
-    background: green;
+
+.chart-container{
     height: 100%;
-    width: 49%;
+    width: 20%;
 }
