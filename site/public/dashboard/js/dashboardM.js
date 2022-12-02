@@ -14,7 +14,7 @@ function obterDadosGraficoRAM(idFuncionario) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasRAM/`, {
+    fetch(`/medidas/ultimasRAMm/`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -44,12 +44,47 @@ function obterDadosGraficoRAM(idFuncionario) {
         });
 }
 
+function obterDadosGraficoSwap(idFuncionario) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimasSwapm/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                funcionarioServer: sessionStorage.ID_FUNCIONARIO
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    plotarGraficoSwap(resposta, idFuncionario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
 function obterDadosGraficoCPU(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasCPU/`, {
+    fetch(`/medidas/ultimasCPUm/`, {
             method: "POST",
             headers: {
             "Content-Type": "application/json"
@@ -84,7 +119,7 @@ function obterDadosGraficoDiscos(idFuncionario) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasDisco/`, {
+    fetch(`/medidas/ultimasDiscom/`, {
             cache: 'no-store',
             method: "POST",
             headers: {
@@ -144,6 +179,35 @@ function plotarGraficoRAM(resposta, idFuncionario) {
     var ctx = document.getElementById("chart1").getContext("2d");
     let myChart = new Chart(ctx, config);
     setTimeout(() => atualizarGraficoRAM(idFuncionario, myChart, dados1), 2000);
+}
+
+function plotarGraficoSwap(resposta, idFuncionario) {
+    let labels1 = [];
+    let dados1 = {
+        labels: labels1,
+        datasets: [{
+            label: 'Swap',
+            data: [],
+            borderColor: '#ffd000',
+            tension: 0.1
+        }],
+    };
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        var horario = registro.dataRegistro;
+        dados1.datasets[0].data.push(registro.registroComponente);
+        
+        labels1.push(horario);
+        dados1.datas
+    }
+
+    const config = {
+        type: 'line',
+        data: dados1,
+    };
+    var ctx = document.getElementById("chart4").getContext("2d");
+    let myChart = new Chart(ctx, config);
+    setTimeout(() => atualizarGraficoSwap(idFuncionario, myChart, dados1), 2000);
 }
 
 function plotarGraficoCPU(resposta, idFuncionario) {
@@ -246,6 +310,52 @@ function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                 proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idFuncionario, myChart, dados1), 2000);
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function atualizarGraficoSwap(idFuncionario, myChart, dados1) {
+    // console.log("Indo atualizar gráfico")
+
+    fetch(`/medidas/tempo-realSwapm/`, {
+            cache: 'no-store',
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                funcionarioServer: sessionStorage.ID_FUNCIONARIO
+            })
+        }).then(function (response) {
+            if (response.ok) {
+
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico: ${dados1}`);
+
+                    // tirando e colocando valores no gráfico
+                    dados1.labels.shift(); // apagar o primeiro
+                    dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
+
+                    dados1.datasets[0].data.shift(); // apagar o primeiro de ram
+                    dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
+
+
+                    myChart.update();
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGraficoSwap(idFuncionario, myChart, dados1), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoSwap(idFuncionario, myChart, dados1), 2000);
             }
         })
         .catch(function (error) {
