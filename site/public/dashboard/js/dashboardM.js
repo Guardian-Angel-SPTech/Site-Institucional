@@ -119,17 +119,8 @@ function obterDadosGraficoDiscos(idFuncionario) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasDiscom/`, {
-            cache: 'no-store',
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/funcionario.js
-                funcionarioServer: sessionStorage.ID_FUNCIONARIO
-            })
+    fetch(`/medidas/ultimasDisco/${idFuncionario}`, {
+            cache: 'no-store'
         }).then(function (response) {
             if (response.ok) {
                 console.log("Obtendo dados: Resposta Ok")

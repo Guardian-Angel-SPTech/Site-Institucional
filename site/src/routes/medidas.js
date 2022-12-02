@@ -35,7 +35,7 @@ router.post("/ultimasCPUm", function (req, res) {
     medidaController.buscarUltimasMedidasCPUm(req, res);
 });
 
-router.post("/ultimasDisco/:idFuncionario", function (req, res) {
+router.get("/ultimasDisco/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasDisco(req, res);
 });
 

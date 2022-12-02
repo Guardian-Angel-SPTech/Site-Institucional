@@ -500,12 +500,11 @@ module.exports = {
     buscarMedidasEmTempoRealSwapm,
     buscarMedidasEmTempoRealCPUm,
     buscarMedidasEmTempoRealDiscom,
-<<<<<<< HEAD
+
     mediaCPUDiaria,
-=======
     pegarDownload,
     pegarUpload,
     pegarDownloadTempoReal,
     pegarUploadTempoReal
->>>>>>> refs/remotes/origin/main
+
 }

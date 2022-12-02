@@ -50,9 +50,12 @@ function listaFuncionario(){
             div.className = 'funcionario'
             div2.className = 'Relatório'
             div.innerHTML = element.nome
+            div2.innerHTML = 'Relatório'
             loadF.appendChild(div)
+            loadF.appendChild(div2)
             var aux = element.idFuncionario
             div.setAttribute('Onclick', `voltar(${aux})`);  
+            div2.setAttribute('Onclick', `voltar2(${aux})`);
             if( i > 15){
                 LF.style.cssText = `padding-top : calc(${i*2}% + 10% ) ; height: 500px ; overflow-y: scroll;`;
             }

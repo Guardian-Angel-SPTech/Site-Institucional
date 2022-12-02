@@ -90,7 +90,7 @@ function obterDadosGraficoCPU(idFuncionario) {
         });
 }
 
-function obterDadosGraficoDiscos(idFuncionario) {
+function obterDadosGraficoDisco(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
