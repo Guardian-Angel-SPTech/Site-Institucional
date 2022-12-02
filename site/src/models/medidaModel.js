@@ -166,6 +166,7 @@ function atualizarBateria(idFuncionario) {
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       ORDER BY idRegistro desc;`;
+      
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
       SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
