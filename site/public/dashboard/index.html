@@ -41,6 +41,7 @@
             </div>
 
             <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+            
 
             <div class="botaoMenu">
               <a href="index.html#banner"
@@ -71,7 +72,7 @@
 
     <section class="dashboard" id="1">
       <div class="top-message">
-        <p>Bem vindo a dashboard</p>
+        <p>Dashboard do funcionário: <span id="funcDash"></span></p>
       </div>
 
       <div>
@@ -160,6 +161,7 @@
 <script>
   const URL = new URLSearchParams(window.location.search);
   var idFuncionario = URL.get("idFuncionario");
+
 
   function esconder1(){
     document.getElementById("chart1").style.display = "block";
