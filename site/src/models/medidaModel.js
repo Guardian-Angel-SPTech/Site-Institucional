@@ -374,6 +374,7 @@ function pegarDownloadTempoReal(idFuncionario) {
 }
 
 module.exports = {
+  buscarBateria,
   buscarUltimasMedidasRAM,
   buscarUltimasMedidasSwap,
   buscarUltimasMedidasCPU,
