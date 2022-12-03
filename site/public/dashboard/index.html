@@ -154,6 +154,10 @@
         var imported = document.createElement('script');
         imported.src = 'js/dashboardM.js';
         document.head.appendChild(imported); 
+        document.getElementsByClassName("top-message")[0].style.display = "none";
+        document.getElementById("buttonUpload").style.display = "none";
+        document.getElementById("buttonSwap").style.display = "none";
+        document.getElementById("buttonDownload").style.display = "none";
       }
 }
 </script>
