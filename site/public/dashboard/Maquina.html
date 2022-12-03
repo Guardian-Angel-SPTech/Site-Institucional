@@ -11,10 +11,11 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="../css/styleGuardian.css" />
+  
     <title>Cadastro</title>
   </head>
-  <body onload="funcionario()">
+
+  <body onload="maquina()">
     <aside class="l-side-bar" id="header">
       <section class="wrapper">
         <nav class="container">
@@ -26,7 +27,7 @@
             />
           </div>
 
-          <div class="menu">
+          <div class="menu" style="width: 400px;">
             <div class="logoMenuPequeno">
               <a href="index.html">
                 <img
@@ -37,15 +38,15 @@
               </a>
             </div>
 
-            <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+            <p class="ola">Maquinas</p>
 
             <div class="botaoMenu">
-              <button class="button ativo">
-                <a href="index.html#banner">Meu Computador</a>
-              </button>
-              <button class="button">
-                <a href="Funcionarios.html">Funcionários</a>
-              </button>
+              <a href="index.html#banner">
+                <button class="button">Meu Computador</button>
+              </a>
+              <a href="Funcionarios.html">
+                <button class="button ativo">Funcionários</button>
+              </a>
             </div>
 
             <div class="areaBotao">
@@ -54,7 +55,8 @@
               </button>
               <button class="button"><a href="Maquina.html">Relatórios</a></button>
             </div>
-          </div>
+          </div> 
+          
 
           <div class="toggle iconMenu">
             <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
@@ -65,27 +67,32 @@
         </nav>
       </section>
     </aside>
-    <div class="cadastro-dir" id="CadastroDash">
-      <div class="form-cadastro n">
-        <p class="dados-quem">Dados do Usuário:</p>
-        <label for="inp_nome">Nome e sobrenome:</label>
-        <input type="text" id="inp_nome" />
-        <label for="inp_cpf">CPF:</label>
-        <input type="text" id="inp_cpf" />
-        <label for="inp_acess">Nível de acesso:</label>
-        <select id="select_acess">
-          <option value="1">-- Selecione uma opção --</option>
-          <option value="2">Técnico</option>
-          <option value="3">Usuário</option>
-        </select>
-        <div class="linha-botao">
-          <button id="btn_cadastrar">Cadastrar</button>
+
+    <section id="funcionarios">
+      <div class="container">
+        <h1>Maquinas</h1>
+       
+        <div class="botoesFuncionario">
+          <div id="listaFunc">
+          
+          </div>
+       
         </div>
+     
       </div>
-    </div>
+    </section>
   </body>
 </html>
-<script src="/dashboard/js/novoCadastro.js"></script>
-<script src="exibirFunc.js"></script>
+<script src="exibirMaquina.js"></script>
 <script src="js/global.js"></script>
 <script src="js/dashboard.js"></script>
+
+<script>
+  function limparSessao() {
+    sessionStorage.clear();
+  }
+
+  if (sessionStorage.ACESSO_FUNCIONARIO != 1) {
+    document.getElementById('btn_cadastrar_func').style.display = 'none'
+  }
+</script>

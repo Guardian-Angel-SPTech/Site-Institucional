@@ -9,27 +9,6 @@ function listar() {
     return database.executar(instrucao);
 }
 
-function verNomePorId(idFuncionario) {
-    instrucaoSql = "";
-  
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-      instrucaoSql = `
-      select nome from funcionario where idFuncionario = ${idFuncionario};`
-  
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-      instrucaoSql = `
-      select nome from funcionario where idFuncionario = ${idFuncionario};`
-    } else {
-      console.log(
-        "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
-      );
-      return;
-    }
-  
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-  }
-
 function entrar(cnpj, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, senha)
     const instrucao = `
@@ -99,6 +78,15 @@ function listar(cnpj){
     return database.executar(instrucao);
 }
 
+function listarMaquina(cnpj){
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+       SELECT idMaquina ,sistOp FROM maquina JOIN empresa ON cnpj = ${cnpj} and maquina.fkempresa = empresa.idEmpresa;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarTec(cnpj, cpf){
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
@@ -126,6 +114,7 @@ module.exports = {
     cadastrar,
     registrarfuncionario,
     listarfuncionario,
+    listarMaquina,
     excluirfuncionario,
     listar,
     entrarE,

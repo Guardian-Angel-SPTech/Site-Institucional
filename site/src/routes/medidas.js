@@ -82,8 +82,24 @@ router.post("/tempo-realDiscom", function (req, res) {
 router.get("/pegarProcessos/:idFuncionario", function (req, res) {
     medidaController.pegarProcessos(req, res);
 });
-router.get("/mediaCPUDiaria/:idFuncionario", function (req, res) {
+router.get("/mediaCPUDiaria/:idMaquina", function (req, res) {
     medidaController.mediaCPUDiaria(req, res);
+});
+router.get("/mediaCPUDiariaTempoReal/", function (req, res) {
+    medidaController.buscarCPUDiariatempoReal(req, res);
+});
+router.get("/mediaRAMDiaria/:idMaquina", function (req, res) {
+    medidaController.mediaRAMDiaria(req, res);
+});
+router.get("/mediaRAMDiariaTempoReal/", function (req, res) {
+    medidaController.buscarRAMDiariatempoReal(req, res);
+});
+
+router.get("/mediaDiscoDiaria/:idMaquina", function (req, res) {
+    medidaController.mediaDiscoDiaria(req, res);
+});
+router.get("/mediaRAMDiariaTempoReal/", function (req, res) {
+    medidaController.buscarDiscoDiariatempoReal(req, res);
 });
 
 // INDIVIDUAL DO MIGUEL - NÃO MEXA SEU PUTO/A
