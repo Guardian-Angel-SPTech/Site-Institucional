@@ -1,165 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/dashboard.css" />
-    <link rel="stylesheet" href="css/global.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/imgs/icone-aba.jpg"
-      type="image/x-icon"
-    />
-    <script
-      type="text/javascript"
-      src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"
-    ></script>
-    <title>Guardian Angel</title>
-  </head>
 
-  <body onload="funcionarioTecnico(), verificarURL(),nomeFunc()" style="overflow-y: hidden;">
-    <!-- Barra de navegação lateral -->
-    <aside class="l-side-bar" id="header">
-      <section class="wrapper">
-        <nav class="container">
-          <div class="logo">
-            <img
-              src="../assets/imgs/logo_v3.png"
-              alt="Logotipo da Guardian Angel"
-              class="logo"
-            />
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <title>Guardian Angel</title>
+</head>
 
-          <div class="menu">
-            <div class="logoMenuPequeno">
-              <img
-                src="../assets/imgs/logo_v3.png"
-                alt="Logotipo da Guardian Angel"
-                class="logoMenor"
-              />
-            </div>
-
-            <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
-            
-
-            <div class="botaoMenu">
-              <a href="index.html#banner"
-                ><button class="button" onclick="obterDadosGraficoRAMpc()">Meu Computador</button></a
-              >
-              <a href="Funcionarios.html"
-                ><button class="button">Funcionários</button></a
-              >
-            </div>
-
-            <div class="areaBotao">
-              <button class="button sair" onclick="limparSessao()">
-                <a href="../index.html">Sair</a>
-              </button>
-              <button class="button"><a href="Maquina.html">Relatórios</a></button>
-            </div>
-          </div>
-
-          <div class="toggle iconMenu">
-            <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
-          </div>
-          <div class="toggle icon-close">
-            <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-          </div>
-        </nav>
-      </section>
-    </aside>
-
-    <section class="dashboard" id="1">
-      <div class="top-message">
-        <p>Dashboard do funcionário: <span id="funcDash"></span></p>
-      </div>
-
-      <div>
-        <div class="botoesGrafico">
-          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
-            RAM
-          </button>
-          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
-            CPU
-          </button>
-          <button
-            id="buttonDisco"
-            onclick="obterDadosGraficoDisco(idFuncionario), esconder3()"
-          >
-            Disco
-          </button>
-          <button id="buttonSwap"
-            onclick="obterDadosGraficoSwap(idFuncionario), esconder4()"
-          >
-            Swap
-          </button>
-
-          <button id="buttonUpload"
-            onclick="pegarUpload(idFuncionario), esconder5()"
-          >
-            Upload
-          </button>
-
-          <button id="buttonDownload"
-            onclick="pegarDownload(idFuncionario), esconder6()"
-          >
-            Download
-          </button>
+<body onload="funcionarioTecnico(), verificarURL(),nomeFunc()" style="overflow-y: hidden;">
+  <!-- Barra de navegação lateral -->
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
         </div>
-        <div class="graficos">
-          <div style="display: flex; flex-direction: column; margin-top: 3rem">
-            <div class="process-container">
-              <span id="process" style="height: 100%; width: 100%"></span>
-            </div>
 
-            <div class="chart-container">
-              <canvas id="chart1"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart2"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart4"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart6"></canvas>
-            </div>
-            <div class="chart-container">
-              <canvas id="chart7"></canvas>
-            </div>
-            <div class="chart-container teste">
-              <canvas id="chart3"></canvas>
-            </div>
+        <div class="menu">
+          <div class="logoMenuPequeno">
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+          </div>
+
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+
+
+          <div class="botaoMenu">
+            <a href="index.html#banner"><button class="button" onclick="obterDadosGraficoRAMpc()">Meu
+                Computador</button></a>
+            <a href="Funcionarios.html"><button class="button">Funcionários</button></a>
+          </div>
+
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="Maquina.html">Relatórios</a></button>
           </div>
         </div>
-      </div>
+
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
     </section>
-  </body>
+  </aside>
 
-  <script src="exibirFunc.js"></script>
-  <script src="js/global.js"></script>
+  <section class="dashboard" id="1">
+    <div class="top-message">
+      <p>Dashboard do funcionário: <span id="funcDash"></span></p>
+    </div>
+
+    <div>
+      <div class="botoesGrafico">
+        <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
+          RAM
+        </button>
+        <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
+          CPU
+        </button>
+        <button id="buttonDisco" onclick="obterDadosGraficoDisco(idFuncionario), esconder3()">
+          Disco
+        </button>
+        <button id="buttonSwap" onclick="obterDadosGraficoSwap(idFuncionario), esconder4()">
+          Swap
+        </button>
+
+        <button id="buttonUpload" onclick="pegarUpload(idFuncionario), pegarMediaUpload(), esconder5()">
+          Upload
+        </button>
+
+        <button id="buttonDownload" onclick="pegarDownload(idFuncionario), pegarMediaDownload(), esconder6()">
+          Download
+        </button>
+      </div>
+
+      <div class="graficos">
+        <div style="display: flex; flex-direction: column; margin-top: 3rem">
+          <div class="process-container">
+            <span id="process" style="height: 100%; width: 100%"></span>
+          </div>
+
+          <div class="chart-container">
+            <canvas id="chart1"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart2"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart4"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart6"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart7"></canvas>
+          </div>
+          <div class="chart-container teste">
+            <canvas id="chart3"></canvas>
+          </div>
+        </div>
+        <div id="Textos_NET" style="display: none;">
+          <span id="mediaUP">a</span>
+          <span id="mediaDOWN">a</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+<script src="exibirFunc.js"></script>
+<script src="js/global.js"></script>
+
 </html>
 
 <script>
   function verificarURL() {
-    
+
     const url = document.URL;
-    
-      if(url != 'http://localhost:8080/dashboard/index.html#banner'){
-        var imported = document.createElement('script');
-        imported.src = 'js/dashboard.js';
-        document.head.appendChild(imported); 
-      } else{
-        var imported = document.createElement('script');
-        imported.src = 'js/dashboardM.js';
-        document.head.appendChild(imported); 
-        document.getElementsByClassName("top-message")[0].style.display = "none";
-        document.getElementById("buttonUpload").style.display = "none";
-        document.getElementById("buttonSwap").style.display = "none";
-        document.getElementById("buttonDownload").style.display = "none";
-      }
-}
+
+    if (url != 'http://localhost:8080/dashboard/index.html#banner') {
+      var imported = document.createElement('script');
+      imported.src = 'js/dashboard.js';
+      document.head.appendChild(imported);
+    } else {
+      var imported = document.createElement('script');
+      imported.src = 'js/dashboardM.js';
+      document.head.appendChild(imported);
+      document.getElementsByClassName("top-message")[0].style.display = "none";
+      document.getElementById("buttonUpload").style.display = "none";
+      document.getElementById("buttonSwap").style.display = "none";
+      document.getElementById("buttonDownload").style.display = "none";
+    }
+  }
 </script>
 
 <script>
@@ -168,55 +148,65 @@
   var nomeFunc = URL.get("nomeFuncionario");
 
 
-  function esconder1(){
+  function esconder1() {
     document.getElementById("chart1").style.display = "block";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart6").style.display = "none";
     document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
   }
-  function esconder2(){
+
+  function esconder2() {
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "block";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart6").style.display = "none";
     document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
   }
-  function esconder3(){
+
+  function esconder3() {
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "block";
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart6").style.display = "none";
     document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
   }
-  function esconder4(){
+
+  function esconder4() {
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "block";
     document.getElementById("chart6").style.display = "none";
     document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
   }
 
-  function esconder5(){
+  function esconder5() {
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart6").style.display = "block";
     document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "block";
+    document.getElementById("mediaDOWN").style.display = "none";
   }
 
-  function esconder6(){
+  function esconder6() {
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart7").style.display = "block";
     document.getElementById("chart6").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "block";
+    document.getElementById("mediaUP").style.display = "none";
   }
 </script>
-

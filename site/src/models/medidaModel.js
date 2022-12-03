@@ -423,6 +423,10 @@ function pegarDiscoDiariaTempoReal(idMaquina) {
   return database.executar(instrucaoSql);
 }
 
+
+
+// INDIVIDUAL MIGUEL
+
 function pegarUpload(idFuncionario) {
   instrucaoSql = "";
 
@@ -448,6 +452,27 @@ function pegarUpload(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function pegarMediaUpload(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT avg(registroComponente) as registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+    and componente = 6;`
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = ``
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 function pegarDownload(idFuncionario) {
   instrucaoSql = "";
 
@@ -462,6 +487,27 @@ function pegarDownload(idFuncionario) {
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 7
       ORDER BY idRegistro desc LIMIT 10;`
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function pegarMediaDownload(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT avg(registroComponente) as registroComponente FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+    INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+    and componente = 7;`
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = ``
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -538,8 +584,12 @@ module.exports = {
   pegarRAMDiariaTempoReal,
   mediaDiscoDiaria,
   pegarDiscoDiariaTempoReal,
+  
+  
   pegarDownload,
   pegarUpload,
   pegarDownloadTempoReal,
-  pegarUploadTempoReal
+  pegarUploadTempoReal,
+  pegarMediaDownload,
+  pegarMediaUpload
 };

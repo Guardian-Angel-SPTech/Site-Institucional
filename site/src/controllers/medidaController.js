@@ -496,11 +496,12 @@ function buscarDiscoDiariatempoReal(req, res) {
     });
 }
 
+
+
+// INDIVIDUAL MIGUEL
+
 function pegarUpload(req, res) {
-
-
     const idFuncionario = req.params.idFuncionario;
-
 
     medidaModel.pegarUpload(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
@@ -533,11 +534,26 @@ function pegarUploadTempoReal(req, res) {
     });
 }
 
+function pegarMediaUpload(req, res) {
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.pegarMediaUpload(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function pegarDownload(req, res) {
-
-
     const idFuncionario = req.params.idFuncionario;
-
 
     medidaModel.pegarDownload(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
@@ -558,6 +574,24 @@ function pegarDownloadTempoReal(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.pegarDownloadTempoReal(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function pegarMediaDownload(req, res) {
+    const idFuncionario = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.pegarMediaDownload(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -599,9 +633,12 @@ module.exports = {
     buscarRAMDiariatempoReal,
     mediaDiscoDiaria,
     buscarDiscoDiariatempoReal,
+    
+    
     pegarDownload,
     pegarUpload,
     pegarDownloadTempoReal,
-    pegarUploadTempoReal
-
+    pegarUploadTempoReal,
+    pegarMediaDownload,
+    pegarMediaUpload
 }

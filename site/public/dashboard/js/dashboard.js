@@ -442,6 +442,10 @@ function plotarGraficoMediaDisco(resposta, idMaquina) {
     setTimeout(() => atualizarMediaDisco(idMaquina, myChart, dados1), 2000);
 }
 
+
+
+
+
 function plotarGraficoUpload(resposta, idFuncionario) {
     let labels1 = [];
     let dados1 = {
@@ -498,6 +502,8 @@ function plotarGraficoDownload(resposta, idFuncionario) {
     let myChart = new Chart(ctx, config);
     setTimeout(() => atualizarGraficoDownload(idFuncionario, myChart, dados1), 2000);
 }
+
+
 
 // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
 // buscando a última medida inserida em tabela contendo as capturas, 
@@ -766,6 +772,9 @@ function atualizarMediaDisco(idMaquina, myChart, dados1) {
         });
 }
 
+
+
+
 function pegarUpload(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
@@ -783,6 +792,33 @@ function pegarUpload(idFuncionario) {
 
                     console.log("Indo plotar gráfico")
                     plotarGraficoUpload(resposta, idFuncionario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function pegarMediaUpload(idFuncionario) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/pegarMediaUpload/${idFuncionario}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    mediaUP.innerHTML = resposta[0].registroComponente.toFixed(2) + ' Mbps';
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -848,6 +884,33 @@ function pegarDownload(idFuncionario) {
 
                     console.log("Indo plotar gráfico")
                     plotarGraficoDownload(resposta, idFuncionario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function pegarMediaDownload(idFuncionario) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/pegarMediaDownload/${idFuncionario}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    mediaDOWN.innerHTML = resposta[0].registroComponente.toFixed(2) + ' Mbps';
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');

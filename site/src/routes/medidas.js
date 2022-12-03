@@ -102,7 +102,7 @@ router.get("/mediaRAMDiariaTempoReal/", function (req, res) {
     medidaController.buscarDiscoDiariatempoReal(req, res);
 });
 
-// INDIVIDUAL DO MIGUEL - NÃO MEXA SEU PUTO/A
+// INDIVIDUAL MIGUEL
 
 router.get("/pegarUpload/:idFuncionario", function (req, res) {
     medidaController.pegarUpload(req, res);
@@ -112,6 +112,9 @@ router.get("/pegarUploadTempoReal/:idFuncionario", function (req, res) {
     medidaController.pegarUploadTempoReal(req, res);
 });
 
+router.get("/pegarMediaUpload/:idFuncionario", function (req, res) {
+    medidaController.pegarMediaUpload(req, res);
+});
 
 router.get("/pegarDownload/:idFuncionario", function (req, res) {
     medidaController.pegarDownload(req, res);
@@ -119,6 +122,10 @@ router.get("/pegarDownload/:idFuncionario", function (req, res) {
 
 router.get("/pegarDownloadTempoReal/:idFuncionario", function (req, res) {
     medidaController.pegarDownloadTempoReal(req, res);
+});
+
+router.get("/pegarMediaDownload/:idFuncionario", function (req, res) {
+    medidaController.pegarMediaDownload(req, res);
 });
 
 
