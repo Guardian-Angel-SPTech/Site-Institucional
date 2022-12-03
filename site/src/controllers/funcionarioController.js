@@ -7,6 +7,25 @@ function testar(req, res) {
     res.json("ESTAMOS FUNCIONANDO!");
 }
 
+function verNomePorId(req, res) {
+
+
+    const idFuncionario = req.params.idFuncionario;
+
+
+    funcionarioModel.verNomePorId(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao nome.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function listar(req, res) {
     funcionarioModel.listar()
         .then(function (resultado) {
@@ -308,5 +327,6 @@ module.exports = {
     testar,
     verfuncionario,
     entrarE,
-    verfuncionarioTec
+    verfuncionarioTec,
+    verNomePorId
 }

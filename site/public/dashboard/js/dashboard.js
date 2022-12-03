@@ -6,6 +6,32 @@ function chart() {
 
 }
 
+function exibirFuncPorId(idFuncionario) {
+
+    fetch(`/funcionarios/verNomePorId/${idFuncionario}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    nFuncionario = json
+                    var nomet = document.createTextNode(nFuncionario[0].nome);
+                    funcDash= document.getElementById("funcDash");
+                    funcDash.appendChild(nomet);
+                  });
+
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+exibirFuncPorId(idFuncionario);
 // Atualizando gráficos em tempo real
 let proximaAtualizacao;
 

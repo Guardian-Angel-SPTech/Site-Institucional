@@ -11,6 +11,10 @@ router.get("/listar", function (req, res) {
     funcionarioController.listar(req, res);
 });
 
+router.get("/verNomePorId/:idFuncionario", function (req, res) {
+    funcionarioController.verNomePorId(req, res);
+});
+
 //Recebendo os dados do html e direcionando para a função cadastrar de funcionaricontroller.js
 router.post("/cadastrar", function (req, res) {
     funcionarioController.cadastrar(req, res);
