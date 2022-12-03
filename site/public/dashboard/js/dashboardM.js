@@ -114,13 +114,21 @@ function obterDadosGraficoCPU(idFuncionario) {
         });
 }
 
-function obterDadosGraficoDiscos(idFuncionario) {
+function obterDadosGraficoDisco(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimasDisco/${idFuncionario}`, {
-            cache: 'no-store'
+    fetch(`/medidas/ultimasDiscom/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                funcionarioServer: sessionStorage.ID_FUNCIONARIO
+            })
         }).then(function (response) {
             if (response.ok) {
                 console.log("Obtendo dados: Resposta Ok")
