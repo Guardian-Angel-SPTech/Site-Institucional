@@ -255,6 +255,28 @@ function buscarMedidasEmTempoRealCPU(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+function buscarMedidasEmTempoRealCPU(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    funcionario ON idFuncionario = ${idFuncionario} and componente = 2 order by idRegistro desc`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 2
+      ORDER BY idRegistro desc LIMIT 1;`;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
 
 function buscarMedidasEmTempoRealDisco(idFuncionario) {
   instrucaoSql = "";
@@ -285,11 +307,11 @@ function pegarProcessos(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
-function mediaCPUDiaria(fkMaquina) {
+function mediaCPUDiaria(idMaquina) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = ` SELECT AVG(registroComponente),FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 2 and fkMaquina = ${fkMaquina} group by dataRegistro`;
+    instrucaoSql = ` SELECT AVG(registroComponente) as registroComponente,FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 2 and fkMaquina = ${idMaquina} group by dataRegistro order by dataRegistro `;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
       `;
@@ -299,6 +321,103 @@ function mediaCPUDiaria(fkMaquina) {
     );
     return;
   }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+function pegarCPUDiariaTempoReal(idMaquina) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = ` SELECT AVG(registroComponente) as 'registroComponente' ,FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 2 and fkMaquina = ${idMaquina} group by dataRegistro order by dataRegistro desc`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
+function mediaRAMDiaria(idMaquina) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = ` SELECT AVG(registroComponente) as registroComponente,FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 1 and fkMaquina = ${idMaquina} group by dataRegistro order by dataRegistro `;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+function pegarRAMDiariaTempoReal(idMaquina) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = ` SELECT AVG(registroComponente) as 'registroComponente' ,FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 1 and fkMaquina = ${idMaquina} group by dataRegistro order by dataRegistro desc`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+
+function mediaDiscoDiaria(idMaquina) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = ` SELECT AVG(registroComponente) as registroComponente,FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 3 and fkMaquina = ${idMaquina} group by dataRegistro order by dataRegistro `;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+function pegarDiscoDiariaTempoReal(idMaquina) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = ` SELECT AVG(registroComponente) as 'registroComponente' ,FORMAT(dataRegistro, 'dd-MM-yy')  as 'dataRegistro'  FROM registro  where componente = 3 and fkMaquina = ${idMaquina} group by dataRegistro order by dataRegistro desc`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -414,6 +533,11 @@ module.exports = {
   atualizarBateria,
   pegarProcessos,
   mediaCPUDiaria,
+  pegarCPUDiariaTempoReal,
+  mediaRAMDiaria,
+  pegarRAMDiariaTempoReal,
+  mediaDiscoDiaria,
+  pegarDiscoDiariaTempoReal,
   pegarDownload,
   pegarUpload,
   pegarDownloadTempoReal,

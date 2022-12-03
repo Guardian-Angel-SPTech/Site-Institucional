@@ -487,8 +487,9 @@ input[type=number] {
 }
 
 .area-contato .container{
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .contato-esq{
@@ -500,7 +501,7 @@ input[type=number] {
 
 }
 .contato-esq img{
-    width: 25px;
+    width: 400px;
 }
 
 

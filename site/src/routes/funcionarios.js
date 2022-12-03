@@ -26,9 +26,15 @@ router.post("/registrarfuncionario", function (req, res) {
 router.post("/listarfuncionario", function (req, res) {
     funcionarioController.listarfuncionario(req, res);
 })
+router.post("/listarMaquina", function (req, res) {
+    funcionarioController.listarMaquina(req, res);
+})
 
 router.post("/verfuncionario", function (req, res) {
     funcionarioController.verfuncionario(req, res);
+})
+router.post("/verMaquina", function (req, res) {
+    funcionarioController.verMaquina(req, res);
 })
 
 router.post("/verfuncionarioTec", function (req, res) {

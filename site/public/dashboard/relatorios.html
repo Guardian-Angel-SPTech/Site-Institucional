@@ -41,6 +41,7 @@
             </div>
 
             <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+            
 
             <div class="botaoMenu">
               <a href="index.html#banner"
@@ -55,7 +56,7 @@
               <button class="button sair" onclick="limparSessao()">
                 <a href="../index.html">Sair</a>
               </button>
-              <button class="button"><a href="relatorios.html">Relatórios</a></button>
+              <button class="button"><a href="Maquina.html">Relatórios</a></button>
             </div>
           </div>
 
@@ -71,23 +72,23 @@
 
     <section class="dashboard" id="1">
       <div class="top-message">
-        <p>Bem vindo a dashboard</p>
+        <p>Relatórios mês :<span id="mes"></span></p>
       </div>
 
       <div>
         <div class="botoesGrafico">
-          <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
+          <button id="buttonRAM" onclick="obterDadosMediaRAM(idMaquina), esconder1()">
             RAM
           </button>
-          <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
+          <button id="buttonCPU" onclick="obterDadosMediaCPU(idMaquina), esconder2()">
             CPU
           </button>
           <button
-            id="buttonDisco"
-            onclick="obterDadosGraficoDiscos(idFuncionario), esconder3()"
+            id="buttonDisco" onclick="obterDadosMediaDisco(idMaquina), esconder3()"
           >
             Disco
           </button>
+   
         </div>
         <div class="graficos">
           <div style="display: flex; flex-direction: column; margin-top: 3rem">
@@ -101,8 +102,10 @@
             <div class="chart-container">
               <canvas id="chart2"></canvas>
             </div>
-            <div class="chart-container teste">
+            <div class="chart-container">
               <canvas id="chart3"></canvas>
+            </div>
+        
             </div>
           </div>
         </div>
@@ -115,70 +118,74 @@
 </html>
 
 <script>
-  function gerarpdf(){
-    fetch('/utilitarios/gerarpdf/').then(function(response) {
-     alert("PDF gerado com sucesso!");
-    }).catch(function(err) {
-      alert("Erro ao gerar PDF!");
-    });
-  }
-const date = new Date();
-var month = date.getMonth()+1;
-
-console.log(month);
-
-    if(month == 1){
-        document.getElementById('mes').innerHTML = 'Janeiro';
-    } else if(month == 2){
-        document.getElementById('mes').innerHTML = 'Fevereiro';
-    } else if(month == 3){
-        document.getElementById('mes').innerHTML = 'Março';
-    } else if(month == 4){
-        document.getElementById('mes').innerHTML = 'Abril';
-    } else if(month == 5){
-        document.getElementById('mes').innerHTML = 'Maio';
-    } else if(month == 6){
-        document.getElementById('mes').innerHTML = 'Junho';
-    } else if(month == 7){
-        document.getElementById('mes').innerHTML = 'Julho';
-    } else if(month == 8){
-        document.getElementById('mes').innerHTML = 'Agosto';
-    } else if(month == 9){
-        document.getElementById('mes').innerHTML = 'Setembro';
-    } else if(month == 10){
-        document.getElementById('mes').innerHTML = 'Outubro';
-    } else if(month == 11){
-        document.getElementById('mes').innerHTML = 'Novembro';
-    } else if(month == 12){
-        document.getElementById('mes').innerHTML = 'Dezembro';
-    }
-   
-
+  function verificarURL() {
+    
+    const url = document.URL;
+    
+      if(url != 'http://localhost:8080/dashboard/index.html#banner'){
+        var imported = document.createElement('script');
+        imported.src = 'js/dashboard.js';
+        document.head.appendChild(imported); 
+      } else{
+        var imported = document.createElement('script');
+        imported.src = 'js/dashboardM.js';
+        document.head.appendChild(imported); 
+      }
+}
 </script>
-
-
-
 
 <script>
   const URL = new URLSearchParams(window.location.search);
-  var idFuncionario = URL.get("idFuncionario");
+  var idMaquina = URL.get("idMaquina");
+  var nomeFunc = URL.get("nomeFuncionario");
+
 
   function esconder1(){
     document.getElementById("chart1").style.display = "block";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
-    document.getElementById("chart4").style.display = "none";
+
   }
   function esconder2(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "block";
     document.getElementById("chart3").style.display = "none";
-    document.getElementById("chart4").style.display = "none";
+  
   }
   function esconder3(){
     document.getElementById("chart1").style.display = "none";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "block";
-    document.getElementById("chart4").style.display = "none";
+
   }
+    var mes = document.getElementById("mes");
+    var data = new Date();
+    var mesAtual = data.getMonth();
+    var mesExibido = mesAtual + 1;
+    if(mesExibido == 1){
+      mes.innerHTML = "Janeiro";
+    }else if(mesExibido == 2){  
+      mes.innerHTML = "Fevereiro";
+    }else if(mesExibido == 3){
+      mes.innerHTML = "Março";
+    }else if(mesExibido == 4){
+      mes.innerHTML = "Abril";
+    }else if(mesExibido == 5){
+      mes.innerHTML = "Maio";
+    }else if(mesExibido == 6){
+      mes.innerHTML = "Junho";
+    }else if(mesExibido == 7){
+      mes.innerHTML = "Julho";
+    }else if(mesExibido == 8){
+      mes.innerHTML = "Agosto";
+    }else if(mesExibido == 9){
+      mes.innerHTML = "Setembro";
+    }else if(mesExibido == 10){
+      mes.innerHTML = "Outubro";
+    }else if(mesExibido == 11){
+      mes.innerHTML = "Novembro";
+    }else if(mesExibido == 12){
+      mes.innerHTML = "Dezembro";
+    }
 </script>
+

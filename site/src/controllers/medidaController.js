@@ -389,9 +389,101 @@ function pegarProcessos(req, res) {
 }
 function mediaCPUDiaria(req, res) {
 
-    const idFuncionario = req.params.idFuncionario;
+    const idMaquina = req.params.idMaquina;
 
-    medidaModel.mediaCPUDiaria(idFuncionario).then(function (resultado) {
+    medidaModel.mediaCPUDiaria(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarCPUDiariatempoReal(req, res) {
+
+    const idMaquina = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarCPUDiariatempoReal(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
+function mediaRAMDiaria(req, res) {
+
+    const idMaquina = req.params.idMaquina;
+
+    medidaModel.mediaRAMDiaria(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarRAMDiariatempoReal(req, res) {
+
+    const idMaquina = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarRAMDiariatempoReal(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
+function mediaDiscoDiaria(req, res) {
+
+    const idMaquina = req.params.idMaquina;
+
+    medidaModel.mediaDiscoDiaria(idMaquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarDiscoDiariatempoReal(req, res) {
+
+    const idMaquina = req.body.funcionarioServer;
+  
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarDiscoDiariatempoReal(idMaquina).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -502,6 +594,11 @@ module.exports = {
     buscarMedidasEmTempoRealDiscom,
 
     mediaCPUDiaria,
+    buscarCPUDiariatempoReal,
+    mediaRAMDiaria,
+    buscarRAMDiariatempoReal,
+    mediaDiscoDiaria,
+    buscarDiscoDiariatempoReal,
     pegarDownload,
     pegarUpload,
     pegarDownloadTempoReal,

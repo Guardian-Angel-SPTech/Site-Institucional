@@ -9,6 +9,7 @@ function listar() {
     return database.executar(instrucao);
 }
 
+
 function entrar(cnpj, senha) {
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", cnpj, senha)
     const instrucao = `
@@ -78,6 +79,15 @@ function listar(cnpj){
     return database.executar(instrucao);
 }
 
+function listarMaquina(cnpj){
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+       SELECT idMaquina ,sistOp FROM maquina JOIN empresa ON cnpj = ${cnpj} and maquina.fkempresa = empresa.idEmpresa;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarTec(cnpj, cpf){
     console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
@@ -105,6 +115,7 @@ module.exports = {
     cadastrar,
     registrarfuncionario,
     listarfuncionario,
+    listarMaquina,
     excluirfuncionario,
     listar,
     entrarE,

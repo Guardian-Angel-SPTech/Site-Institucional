@@ -138,35 +138,7 @@ function cadastrar(req, res) {
     }
 }
 
-function registrarMaquina(req, res) {
-    const sisOP = req.body.sisOpServer;
-    const fkEmpresa = req.body.fkEmpresaServer;
 
-    // Faça as validações dos valores
-    if (sisOp == undefined) {
-        res.status(400).send("Sistema Operacional Indefinido");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Empresa pode não estar logada");
-    } else {     
-        // senhae os valores como parâmetro e vá para o arquivo funcionarioModel.js
-        funcionarioModel.registrarfuncionario(sisOP, fkEmpresa)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                   
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
-    }
-}
 function registrarfuncionario(req, res) {
     const nomeUser = req.body.nomeUserServer;
     const cpf = req.body.cpfServer;
@@ -234,10 +206,52 @@ function listarfuncionario(req, res) {
             );
     }
 }
+function listarMaquina(req, res) {
+    const idEmpresa = req.body.idEmpresa;
+
+    if (idEmpresa == undefined) {
+        res.status(400).send("Seu idEmpresa está undefined!");
+    } else {
+        funcionarioModel.listarMaquina(idEmpresa)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    console.log(resultado);
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao listar usuários! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 
 function verfuncionario(req, res){
     const cnpj = req.body.cnpjServer;
     funcionarioModel.listar(cnpj)
+    .then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(
+        function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+}
+function verMaquina(req, res){
+    const cnpj = req.body.cnpjServer;
+    funcionarioModel.listarMaquina(cnpj)
     .then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
@@ -303,10 +317,12 @@ module.exports = {
     cadastrar,
     registrarfuncionario,
     listarfuncionario,
+    listarMaquina,
     excluirfuncionario,
     listar,
     testar,
     verfuncionario,
+    verMaquina,
     entrarE,
     verfuncionarioTec
 }
