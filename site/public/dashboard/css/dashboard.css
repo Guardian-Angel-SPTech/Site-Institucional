@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;400;700&family=Jost&display=swap');
 
 
-.top-message{
+.top-message {
     font: 700 1.85rem "inria Sans";
-   color:  #0a2342;
+    color: #0a2342;
 }
 
-.status-check{
+.status-check {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -15,43 +15,46 @@
     position: relative;
 }
 
-.status-check img{
+.status-check img {
     height: 50%;
 }
 
 /* ---------------------------- INÍCIO - DASHBOARD ---------------------------- */
 
-.dashboard{
+.dashboard {
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-width: 100%;
+    width: 100%;
 
-margin-top:2rem;
+    margin-top: 2rem;
 }
 
 
 
 
-#process{
+#process {
     margin-top: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 80%;
 }
-.graficos{
+
+.graficos {
     width: min-content;
 }
-#chart{
+
+#chart {
     width: 80vw;
-    
+
 }
+
 /* ---------------------------- FIM - DASHBOARD ---------------------------- */
 
 /* ---------------------------- INICIO - MODAL ---------------------------- */
-.modal{
+.modal {
     position: absolute;
     background-color: #e7e7e7;
     height: 200px;
@@ -59,15 +62,17 @@ margin-top:2rem;
     z-index: 1;
 }
 
-.modal, .modal-input{
+.modal,
+.modal-input {
     display: flex;
 }
 
-.chart-container{
-    position: relative;  
-    width:80vw;
+.chart-container {
+    position: relative;
+    width: 80vw;
 }
-#funcionarios{
+
+#funcionarios {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -75,14 +80,16 @@ margin-top:2rem;
     width: 100%;
     height: 100%;
 }
-.botoesGrafico{
+
+.botoesGrafico {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     margin-top: 5rem;
 }
-.botoesGrafico button{
+
+.botoesGrafico button {
     font: 400 1.25rem "Inria Sans";
     padding: .2rem 1.5rem;
     width: min-content;
@@ -91,34 +98,41 @@ margin-top:2rem;
     border-radius: 7px;
     margin-left: 30px;
 }
-.botoesGrafico button:first-child{
+
+.botoesGrafico button:first-child {
     background-color: rgb(238, 81, 81);
-    border:solid 1px rgba(255, 63, 63, 0.845);
+    border: solid 1px rgba(255, 63, 63, 0.845);
 }
-.botoesGrafico button:nth-child(2n){
-    background-color:  #38cd4b;
-    border : solid 1px #16be2c;
+
+.botoesGrafico button:nth-child(2n) {
+    background-color: #38cd4b;
+    border: solid 1px #16be2c;
 }
-.botoesGrafico button:nth-child(3n){
-    background-color:  #0086d3;
-    border : solid 1px #0278bd;
+
+.botoesGrafico button:nth-child(3n) {
+    background-color: #0086d3;
+    border: solid 1px #0278bd;
 }
-.botoesGrafico button:nth-child(4n){
-    background-color:  #ffd000;
-    border : solid 1px #cc9d02;
+
+.botoesGrafico button:nth-child(4n) {
+    background-color: #ffd000;
+    border: solid 1px #cc9d02;
 }
-.botoesGrafico button:nth-child(5n){
-    background-color:  #02a2ff;
-    border : solid 1px #008ada;
+
+.botoesGrafico button:nth-child(5n) {
+    background-color: #02a2ff;
+    border: solid 1px #008ada;
 }
-.botoesGrafico button:nth-child(6n){
-    background-color:  #3de553;
-    border : solid 1px #38cd4b;;
+
+.botoesGrafico button:nth-child(6n) {
+    background-color: #3de553;
+    border: solid 1px #38cd4b;
+    ;
 }
 
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
-.funcionario{
+.funcionario {
     background-color: #e2e0e0;
     border: none;
     outline: none;
@@ -130,31 +144,45 @@ margin-top:2rem;
     cursor: pointer;
 }
 
+#Titulo_NET {
+    font: 700 1.85rem "inria Sans";
+    color: #0a2342;
+    width: max-content;
+    padding-bottom: 25%;
+}
+
+
+
 @media (min-width: 992px) {
-    .top-message{
+    .top-message {
         height: 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-       visibility: visible;
-      margin-top: 2rem;
-     
+        visibility: visible;
+        margin-top: 2rem;
+
 
 
     }
-    .chart-container{
-        position: relative;  
-        width:40vw;
-        
+
+    .chart-container {
+        position: relative;
+        width: 40vw;
+
     }
-.graficos{
-   
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
-}
-    .dashboard{
+
+    .graficos {
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+
+    .dashboard {
         margin: 0;
         width: 80%;
         display: flex;
@@ -163,10 +191,10 @@ margin-top:2rem;
         justify-content: center;
         align-items: center;
     }
- 
 
-    #process{
-       width: 20%;
+
+    #process {
+        width: 20%;
         margin-left: 2rem;
         display: flex;
         flex-direction: row;

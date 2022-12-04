@@ -817,8 +817,21 @@ function pegarMediaUpload(idFuncionario) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    
+                    document.getElementById("Textos_NET").style.display = "flex";
+                    document.getElementById("Textos_NET").style.flexDirection = "column";
+                    document.getElementById("Textos_NET").style.alignItems = "center";
+                    document.getElementById("Textos_NET").style.justifyContent = "center";
+                    document.getElementById("Textos_NET").style.width = "100%";
+                    document.getElementById("Textos_NET").style.height = "100%";
+                    document.getElementById("Textos_NET").style.marginLeft = "25%";
+
+                    document.getElementById("mediaUP").style.font = "700 1.85rem inria Sans";
+                    document.getElementById("mediaUP").style.color = "#0a2342";
+                    document.getElementById("mediaUP").style.width = "max-content";
+
+                    Titulo_NET.innerHTML = "Média de Upload" + "<br>";
                     mediaUP.innerHTML = resposta[0].registroComponente.toFixed(2) + ' Mbps';
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -909,7 +922,20 @@ function pegarMediaDownload(idFuncionario) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    
+                    document.getElementById("Textos_NET").style.display = "flex";
+                    document.getElementById("Textos_NET").style.flexDirection = "column";
+                    document.getElementById("Textos_NET").style.alignItems = "center";
+                    document.getElementById("Textos_NET").style.justifyContent = "center";
+                    document.getElementById("Textos_NET").style.width = "100%";
+                    document.getElementById("Textos_NET").style.height = "100%";
+                    document.getElementById("Textos_NET").style.marginLeft = "25%";
+
+                    document.getElementById("mediaDOWN").style.font = "700 1.85rem inria Sans";
+                    document.getElementById("mediaDOWN").style.color = "#0a2342";
+                    document.getElementById("mediaDOWN").style.width = "max-content";
+
+
+                    Titulo_NET.innerHTML = "Média de Download" + "<br>";
                     mediaDOWN.innerHTML = resposta[0].registroComponente.toFixed(2) + ' Mbps';
                 });
             } else {

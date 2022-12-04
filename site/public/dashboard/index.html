@@ -77,7 +77,8 @@
           Upload
         </button>
 
-        <button id="buttonDownload" onclick="pegarDownload(idFuncionario), pegarMediaDownload(idFuncionario), esconder6()">
+        <button id="buttonDownload"
+          onclick="pegarDownload(idFuncionario), pegarMediaDownload(idFuncionario), esconder6()">
           Download
         </button>
       </div>
@@ -107,11 +108,13 @@
             <canvas id="chart3"></canvas>
           </div>
         </div>
-        <div id="Textos_NET" style="display: none;">
+        <div class="TextosNET" id="Textos_NET" style="display: none;">
+          <span id="Titulo_NET"></span> 
           <span id="mediaUP"></span>
           <span id="mediaDOWN"></span>
         </div>
       </div>
+
     </div>
   </section>
 </body>
@@ -195,7 +198,7 @@
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart6").style.display = "block";
     document.getElementById("chart7").style.display = "none";
-    document.getElementById("Textos_NET").style.display = "block";
+    document.getElementById("Textos_NET").style.display = "flex";
     document.getElementById("mediaUP").style.display = "block";
     document.getElementById("mediaDOWN").style.display = "none";
   }
@@ -207,7 +210,7 @@
     document.getElementById("chart4").style.display = "none";
     document.getElementById("chart7").style.display = "block";
     document.getElementById("chart6").style.display = "none";
-    document.getElementById("Textos_NET").style.display = "block";
+    document.getElementById("Textos_NET").style.display = "flex";
     document.getElementById("mediaDOWN").style.display = "block";
     document.getElementById("mediaUP").style.display = "none";
   }
