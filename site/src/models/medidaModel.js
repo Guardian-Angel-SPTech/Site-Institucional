@@ -166,7 +166,7 @@ function atualizarBateria(idFuncionario) {
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       ORDER BY idRegistro desc;`;
-      
+
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
       SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
@@ -255,6 +255,7 @@ function buscarMedidasEmTempoRealCPU(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 function buscarMedidasEmTempoRealCPU(idFuncionario) {
   instrucaoSql = "";
 
@@ -325,6 +326,7 @@ function mediaCPUDiaria(idMaquina) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 function pegarCPUDiariaTempoReal(idMaquina) {
   instrucaoSql = "";
 
@@ -364,6 +366,7 @@ function mediaRAMDiaria(idMaquina) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 function pegarRAMDiariaTempoReal(idMaquina) {
   instrucaoSql = "";
 
@@ -403,6 +406,7 @@ function mediaDiscoDiaria(idMaquina) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 function pegarDiscoDiariaTempoReal(idMaquina) {
   instrucaoSql = "";
 
@@ -472,6 +476,7 @@ function pegarMediaUpload(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 
 function pegarDownload(idFuncionario) {
   instrucaoSql = "";
@@ -584,8 +589,8 @@ module.exports = {
   pegarRAMDiariaTempoReal,
   mediaDiscoDiaria,
   pegarDiscoDiariaTempoReal,
-  
-  
+
+
   pegarDownload,
   pegarUpload,
   pegarDownloadTempoReal,

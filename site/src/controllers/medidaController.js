@@ -535,9 +535,7 @@ function pegarUploadTempoReal(req, res) {
 }
 
 function pegarMediaUpload(req, res) {
-    const idFuncionario = req.body.funcionarioServer;
-  
-    console.log(`Recuperando medidas em tempo real`);
+    const idFuncionario = req.params.idFuncionario;
 
     medidaModel.pegarMediaUpload(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
@@ -551,6 +549,7 @@ function pegarMediaUpload(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
 
 function pegarDownload(req, res) {
     const idFuncionario = req.params.idFuncionario;
@@ -587,7 +586,7 @@ function pegarDownloadTempoReal(req, res) {
 }
 
 function pegarMediaDownload(req, res) {
-    const idFuncionario = req.body.funcionarioServer;
+    const idFuncionario = req.params.idFuncionario;
   
     console.log(`Recuperando medidas em tempo real`);
 

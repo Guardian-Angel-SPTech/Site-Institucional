@@ -817,7 +817,7 @@ function pegarMediaUpload(idFuncionario) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    console.log("Indo plotar gráfico")
+                    
                     mediaUP.innerHTML = resposta[0].registroComponente.toFixed(2) + ' Mbps';
                 });
             } else {
@@ -909,7 +909,7 @@ function pegarMediaDownload(idFuncionario) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    console.log("Indo plotar gráfico")
+                    
                     mediaDOWN.innerHTML = resposta[0].registroComponente.toFixed(2) + ' Mbps';
                 });
             } else {
