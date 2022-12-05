@@ -130,6 +130,11 @@
     ;
 }
 
+.botoesGrafico button:nth-child(7n) {
+    background-color: #216020;
+    border: solid 1px #59ef6c;
+}
+
 /* ---------------------------- FIM - MODAL ---------------------------- */
 
 .funcionario {
