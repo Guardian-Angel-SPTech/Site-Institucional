@@ -62,6 +62,41 @@ function obterDadosGraficoRAM(idFuncionario) {
         });
 }
 
+function obterDadosGraficoBrasil(idFuncionario) {
+    if (proximaAtualizacao != undefined) {
+        clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/ultimasBrasil/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                funcionarioServer: sessionStorage.ID_FUNCIONARIO
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    plotarGraficoRAM(resposta, idFuncionario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
 function obterDadosGraficoSwap(idFuncionario) {
     if (proximaAtualizacao != undefined) {
         clearTimeout(proximaAtualizacao);
