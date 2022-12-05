@@ -89,6 +89,25 @@ function buscarUltimasMedidasRAMm(req, res) {
     });
 }
 
+function buscarUltimasMedidasBrasil(req, res) {
+
+
+    const idFuncionario = req.body.funcionarioServer;
+
+
+    medidaModel.buscarUltimasMedidasBrasil(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasSwapm(req, res) {
 
 
@@ -607,6 +626,7 @@ module.exports = {
     buscarBateria,
     buscarBateriaMesAnterior,
     buscarUltimasMedidasRAM,
+    buscarUltimasMedidasBrasil,
     buscarUltimasMedidasSwap,
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasDisco,
