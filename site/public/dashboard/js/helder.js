@@ -127,7 +127,7 @@ function obterDadosBateriaMesAnterior(idFuncionario) {
     fetch(`/medidas/buscarBateriaMesAnterior/${idFuncionario}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                console.log(`Dados recebidos (): ${JSON.stringify(resposta)}`);
                 resposta.reverse();
 
                 plotarGraficoBateriaMesAnterior(resposta, idFuncionario);
@@ -141,7 +141,7 @@ function obterDadosBateriaMesAnterior(idFuncionario) {
         });
 }
 
-function plotarGraficoBateriaMesAnterior(resposta, idFuncionario) {
+function plotarGraficoBateriaMesAnterior(resposta) {
     let labels1 = [];
     let dados1 = {
         labels: labels1,
@@ -155,7 +155,7 @@ function plotarGraficoBateriaMesAnterior(resposta, idFuncionario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
 
-        var horario = registro.horaRegistro;
+        var horario = registro.data;
         dados1.datasets[0].data.push(registro.registroComponente);
 
         labels1.push(horario);
@@ -167,17 +167,23 @@ function plotarGraficoBateriaMesAnterior(resposta, idFuncionario) {
         data: dados1,
         options: {
             scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 20
+                    }
+                }],
                 yAxes: [{
                     display: true,
                     ticks: {
                         suggestedMin: 0,
                         suggestedMax: 100
                     }
-                }],
+                },],
             },
             indexAxis: 'y'
         }
     };
     var ctx1 = document.getElementById("chart2").getContext("2d");
-    let myChart = new Chart(ctx1, config);
+    new Chart(ctx1, config);
 }

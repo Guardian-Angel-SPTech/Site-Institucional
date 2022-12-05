@@ -5,14 +5,14 @@ function buscarBateria(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 5 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    SELECT TOP 5 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     ORDER BY idRegistro desc;`
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     ORDER BY idRegistro desc
@@ -34,7 +34,7 @@ function buscarBateriaMesAnterior(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro', FORMAT(dataRegistro, 'dd:MM:yyyy')  as 'dataRegistro'
+    SELECT registroComponente, FORMAT(dataRegistro, 'dd') AS 'data'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     AND  dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
@@ -43,7 +43,7 @@ function buscarBateriaMesAnterior(idFuncionario) {
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro', FORMAT(dataRegistro, 'dd:MM:yyyy')  as 'dataRegistro'
+    SELECT registroComponente, CONCAT(FORMAT(dataRegistro, 'dd/MM/yy '), FORMAT(horaRegistro, 'hh:mm:ss')) AS 'data'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     AND  dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
@@ -165,14 +165,14 @@ function atualizarBateria(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-      SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       ORDER BY idRegistro desc;`;
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+      SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       ORDER BY idRegistro desc

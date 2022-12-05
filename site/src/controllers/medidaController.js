@@ -19,7 +19,7 @@ function buscarBateria(req, res) {
 function buscarBateriaMesAnterior(req, res) {
     const idFuncionario = req.params.idFuncionario;
 
-    medidaModel.buscarBateria(idFuncionario).then(function (resultado) {
+    medidaModel.buscarBateriaMesAnterior(idFuncionario).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
