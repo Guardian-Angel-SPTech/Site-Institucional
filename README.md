@@ -1,6 +1,6 @@
 # Site-Institucional
 Repositório do Sistema do Guardian Angel <br>
-Link temporário: https://guardian-angel-sptech.github.io/Site-Institucional/site/public/
+Link do site: https://guardianangel.azurewebsites.net/index.html
 
 # Sistema
 <p> Repositório destinado a organização de todos os arquivos relacionados ao sitemas <br> 
