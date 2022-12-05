@@ -132,7 +132,7 @@
 
     const url = document.URL;
 
-    if (url != 'http://localhost:8080/dashboard/index.html#banner') {
+    if (url != 'http://localhost:8080/dashboard/index.html#banner' || url != 'https://guardianangel.azurewebsites.net/dashboard/Funcionarios.html') {
       var imported = document.createElement('script');
       imported.src = 'js/dashboard.js';
       document.head.appendChild(imported);

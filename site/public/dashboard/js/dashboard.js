@@ -144,9 +144,7 @@ function obterDadosGraficoDisco(idFuncionario) {
 }
 
 function obterDadosMediaCPU(idMaquina) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+
 
     fetch(`/medidas/mediaCPUDiaria/${idMaquina}`, {
             cache: 'no-store'
@@ -172,9 +170,7 @@ function obterDadosMediaCPU(idMaquina) {
 
 
 function obterDadosMediaRAM(idMaquina) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+  
 
     fetch(`/medidas/mediaRAMDiaria/${idMaquina}`, {
             cache: 'no-store'
@@ -200,9 +196,6 @@ function obterDadosMediaRAM(idMaquina) {
 
 
 function obterDadosMediaDisco(idMaquina) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
 
     fetch(`/medidas/mediaDiscoDiaria/${idMaquina}`, {
             cache: 'no-store'
@@ -823,7 +816,7 @@ function pegarMediaUpload(idFuncionario) {
                     document.getElementById("Textos_NET").style.justifyContent = "center";
                     document.getElementById("Textos_NET").style.width = "100%";
                     document.getElementById("Textos_NET").style.height = "100%";
-                    document.getElementById("Textos_NET").style.marginLeft = "25%";
+                    document.getElementById("Textos_NET").style.marginLeft = "5%";
 
                     document.getElementById("mediaUP").style.font = "700 1.85rem inria Sans";
                     document.getElementById("mediaUP").style.color = "#0a2342";
@@ -928,7 +921,7 @@ function pegarMediaDownload(idFuncionario) {
                     document.getElementById("Textos_NET").style.justifyContent = "center";
                     document.getElementById("Textos_NET").style.width = "100%";
                     document.getElementById("Textos_NET").style.height = "100%";
-                    document.getElementById("Textos_NET").style.marginLeft = "25%";
+                    document.getElementById("Textos_NET").style.marginLeft = "5%";
 
                     document.getElementById("mediaDOWN").style.font = "700 1.85rem inria Sans";
                     document.getElementById("mediaDOWN").style.color = "#0a2342";

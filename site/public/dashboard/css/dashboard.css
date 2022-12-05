@@ -178,7 +178,7 @@
     }
 
     .graficos {
-
+        margin-left:4rem;
         display: flex;
         flex-direction: row;
         align-items: center;
