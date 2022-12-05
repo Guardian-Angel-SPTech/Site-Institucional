@@ -65,66 +65,6 @@ function buscarBateriaMesAnterior(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-
-function kpiMediaBateriaDia(idFuncionario) {
-    instrucaoSql = "";
-  
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-      instrucaoSql = `
-      SELECT AVG(registroComponente) AS 'media'
-      FROM registro
-      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-      AND dataRegistro >= DATEADD(DAY,-1,GETDATE()) 
-      AND dataRegistro <= GETDATE();`
-  
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-      instrucaoSql = `
-      SELECT AVG(registroComponente) AS 'media'
-      FROM registro
-      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-      AND dataRegistro >= DATEADD(DAY,-1,GETDATE()) 
-      AND dataRegistro <= GETDATE();`
-  
-    } else {
-      console.log(
-        "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
-      );
-      return;
-    }
-  
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-  
-function kpiMediaBateriaMesAnterior(idFuncionario) {
-    instrucaoSql = "";
-  
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-      instrucaoSql = `
-      SELECT AVG(registroComponente) AS 'media'
-      FROM registro
-      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-      AND dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
-      AND dataRegistro <= GETDATE();`
-  
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-      instrucaoSql = `
-      SELECT AVG(registroComponente) AS 'media'
-      FROM registro
-      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-      AND dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
-      AND dataRegistro <= GETDATE();`
-  
-    } else {
-      console.log(
-        "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
-      );
-      return;
-    }
-  
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
   
 function buscarUltimasMedidasRAM(idFuncionario) {
   instrucaoSql = "";
@@ -641,8 +581,6 @@ function pegarDownloadTempoReal(idFuncionario) {
 module.exports = {
   buscarBateria,
   buscarBateriaMesAnterior,
-  kpiMediaBateriaDia,
-  kpiMediaBateriaMesAnterior,
   buscarUltimasMedidasRAM,
   buscarUltimasMedidasSwap,
   buscarUltimasMedidasCPU,

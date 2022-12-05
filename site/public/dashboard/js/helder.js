@@ -6,7 +6,8 @@ let proximaAtualizacao;
 window.onload = obterDadosBateria(1);
 window.onload = obterDadosBateriaMesAnterior(1);
 
-// Grafico 1 - Ultimos consumos
+
+// Grafico 1 - Consumo das ultimas 24hrs
 function obterDadosBateria(idFuncionario) {
 
     if (proximaAtualizacao != undefined) {
@@ -56,6 +57,12 @@ function plotarGraficoBateria(resposta, idFuncionario) {
         data: dados1,
         options: {
             scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15
+                    }
+                }],
                 yAxes: [{
                     display: true,
                     ticks: {
@@ -69,49 +76,49 @@ function plotarGraficoBateria(resposta, idFuncionario) {
     };
     var ctx1 = document.getElementById("chart1").getContext("2d");
     let myChart = new Chart(ctx1, config);
-    setTimeout(() => atualizarGraficoBateria(idFuncionario, myChart, dados1), 2000);
+    setTimeout(() => atualizarGraficoBateria(idFuncionario, myChart, dados1), 5000);
 }
 
 function atualizarGraficoBateria(idFuncionario, myChart1, dados1) {
     // console.log("Indo atualizar gráfico")
 
     fetch(`/medidas/atualizarBateria/${idFuncionario}`, {
-            cache: 'no-store',
-            method: "POST",
-            headers: {
+        cache: 'no-store',
+        method: "POST",
+        headers: {
             "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/funcionario.js
-                funcionarioServer: 1
-            })
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico: ${dados1}`);
-
-                    // tirando e colocando valores no gráfico
-                    dados1.labels.shift(); // apagar o primeiro
-                    dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
-
-                    dados1.datasets[0].data.shift(); // apagar o primeiro de ram
-                    dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
-
-
-                    myChart1.update();
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoBateria(idFuncionario, myChart1, dados1), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoBateria(idFuncionario, myChart1, dados1), 2000);
-            }
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/funcionario.js
+            funcionarioServer: 1
         })
+    }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+
+                console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                console.log(`Dados atuais do gráfico: ${dados1}`);
+
+                // tirando e colocando valores no gráfico
+                dados1.labels.shift(); // apagar o primeiro
+                dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
+
+                dados1.datasets[0].data.shift(); // apagar o primeiro de ram
+                dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
+
+
+                myChart1.update();
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGraficoBateria(idFuncionario, myChart1, dados1), 5000);
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizarGraficoBateria(idFuncionario, myChart1, dados1), 5000);
+        }
+    })
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
         });
@@ -170,7 +177,7 @@ function plotarGraficoBateriaMesAnterior(resposta) {
                 xAxes: [{
                     ticks: {
                         autoSkip: true,
-                        maxTicksLimit: 20
+                        maxTicksLimit: 10
                     }
                 }],
                 yAxes: [{
