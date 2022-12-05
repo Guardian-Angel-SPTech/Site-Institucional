@@ -5,18 +5,23 @@ function buscarBateria(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 5 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
+    SELECT registroComponente
+    ,FORMAT(horaRegistro, 'hh:mm') AS 'horaRegistro'
     FROM registro
-    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    WHERE componente = 4
+    AND fkMaquina = ${idFuncionario}
+    AND dataRegistro >= DATEADD(DAY,-1,GETDATE())
     ORDER BY idRegistro desc;`
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
+    SELECT registroComponente
+    ,FORMAT(horaRegistro, 'hh:mm') AS 'horaRegistro'
     FROM registro
-    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-    ORDER BY idRegistro desc
-    LIMIT 5;`
+    WHERE componente = 4
+    AND fkMaquina = ${idFuncionario}
+    AND dataRegistro >= DATEADD(DAY,-1,GETDATE())
+    ORDER BY idRegistro desc;`
 
   } else {
     console.log(
@@ -34,7 +39,7 @@ function buscarBateriaMesAnterior(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT registroComponente, FORMAT(dataRegistro, 'dd') AS 'data'
+    SELECT registroComponente, FORMAT(dataRegistro, 'dd/MM') AS 'data'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     AND  dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
@@ -43,7 +48,7 @@ function buscarBateriaMesAnterior(idFuncionario) {
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente, CONCAT(FORMAT(dataRegistro, 'dd/MM/yy '), FORMAT(horaRegistro, 'hh:mm:ss')) AS 'data'
+    SELECT registroComponente, FORMAT(dataRegistro, 'dd/MM') AS 'data'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
     AND  dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
@@ -61,6 +66,66 @@ function buscarBateriaMesAnterior(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function kpiMediaBateriaDia(idFuncionario) {
+    instrucaoSql = "";
+  
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+      instrucaoSql = `
+      SELECT AVG(registroComponente)
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      AND dataRegistro >= DATEADD(DAY,-1,GETDATE()) 
+      AND dataRegistro <= GETDATE();`
+  
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+      instrucaoSql = `
+      SELECT AVG(registroComponente)
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      AND dataRegistro >= DATEADD(DAY,-1,GETDATE()) 
+      AND dataRegistro <= GETDATE();`
+  
+    } else {
+      console.log(
+        "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+      );
+      return;
+    }
+  
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+  
+function kpiMediaBateriaMesAnterior(idFuncionario) {
+    instrucaoSql = "";
+  
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+      instrucaoSql = `
+      SELECT AVG(registroComponente)
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      AND dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
+      AND dataRegistro <= GETDATE();`
+  
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+      instrucaoSql = `
+      SELECT AVG(registroComponente)
+      FROM registro
+      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+      AND dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
+      AND dataRegistro <= GETDATE();`
+  
+    } else {
+      console.log(
+        "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+      );
+      return;
+    }
+  
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+  
 function buscarUltimasMedidasRAM(idFuncionario) {
   instrucaoSql = "";
 
@@ -165,7 +230,7 @@ function atualizarBateria(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-      SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss') AS 'horaRegistro'
+      SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm') AS 'horaRegistro'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       ORDER BY idRegistro desc;`;
@@ -576,6 +641,8 @@ function pegarDownloadTempoReal(idFuncionario) {
 module.exports = {
   buscarBateria,
   buscarBateriaMesAnterior,
+  kpiMediaBateriaDia,
+  kpiMediaBateriaMesAnterior,
   buscarUltimasMedidasRAM,
   buscarUltimasMedidasSwap,
   buscarUltimasMedidasCPU,
@@ -592,8 +659,6 @@ module.exports = {
   pegarRAMDiariaTempoReal,
   mediaDiscoDiaria,
   pegarDiscoDiariaTempoReal,
-
-
   pegarDownload,
   pegarUpload,
   pegarDownloadTempoReal,
