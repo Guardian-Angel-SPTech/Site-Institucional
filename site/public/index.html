@@ -1,194 +1,229 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guardian Angel - Home</title>
-    <link rel="stylesheet" href="css/styleGuardian.css">
-    <link rel="shortcut icon" href="assets/imgs/logo_v4.png" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <title>Guardian Angel</title>
 </head>
 
-<body>
-    <nav class="navbar" id="navbar">
+<body onload="funcionarioTecnico(), verificarURL(),nomeFunc()" style="overflow-y: hidden;">
+  <!-- Barra de navegação lateral -->
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
+        </div>
 
-        <div class="container">
-            <div class="menu-inferior">
-                <div class="cont-esq">
-                    <a href="index.html"><img src="assets/imgs/logo_v3.png" class="logo-menu"></a>
-                </div>
-                <div class="cont-mei">
-                    <ul class="nav-list">
-                        <li class="nav-item">
-                            <a href="#software">Nosso Produto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#empresa">Quem Somos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#requisitos">Requisitos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#contato">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#contato">Download</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="cont-dir">
-                    <a href="login.html">
-                        <button class="btn-download">Login</button>
-                    </a>
-                    <img src="assets/imgs/icon-menu.png" class="icon-menu" id="btn-menu" onclick="clicarBotao()">
-                </div>
-            </div>
-        </div>
-        <div class="container dropdown" id="dropdown">
-            <div>
-                <ul class="nav-list dropdown" id="lista-dropdown">
-                    <li class="nav-item">
-                        <a href="#software">Nosso Produto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#empresa">Quem Somos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#requisitos">Requisitos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#contato">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="banner">
-        <div class="banner-esq">
+        <div class="menu">
+          <div class="logoMenuPequeno">
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+          </div>
 
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+
+
+          <div class="botaoMenu">
+            <a href="index.html#banner"><button class="button" onclick="obterDadosGraficoRAMpc()">Meu
+                Computador</button></a>
+            <a href="Funcionarios.html"><button class="button">Funcionários</button></a>
+            <a href="callCenter.html">
+              <button class="button ativo">Informações Call Center</button>
+            </a>
+          </div>
+
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="Maquina.html">Relatórios</a></button>
+          </div>
         </div>
-        <div class="banner-dir">
-            <h1 class="frase-banner">Levando o suporte além</h1>
+
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
         </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
+    </section>
+  </aside>
+
+  <section class="dashboard" id="1">
+    <div class="top-message">
+      <p>Dashboard do funcionário: <span id="funcDash"></span></p>
     </div>
 
-    <div class="corpo">
-        <!-- <div class="container"> -->
-        <div class="area-cards" id="software">
-            <!-- <img src="assets/imgs/wafe-software.svg"> -->
-            <h1>Conheça nosso Software</h1>
-            <div class="cont-cards">
-                <div class="card">
-                    <img src="assets/imgs/call-center.png">
-                    <h1>Satisfação</h1>
-                    <p>Com nosso software sua empresa terá um atendimento com continuidade, facilitando a vida do seu
-                        funcionário.</p>
-                </div>
-                <div class="card">
-                    <img src="assets/imgs/shield.png">
-                    <h1>Segurança</h1>
-                    <p>Garantimos que as informações das máquinas da sua empresa estarão em segurança durante a
-                        utilização do nosso programa.</p>
-                </div>
-                <div class="card">
-                    <img src="assets/imgs/clock.png">
-                    <h1>Produtividade</h1>
-                    <p>Com um menor tempo de Downtime das máquinas, seus funcionários poderão fazer mais por sua empresa
-                        na mesma quantidade de tempo.</p>
-                </div>
-            </div>
-        </div>
-        <img class="wave" src="assets/imgs/wave-software.svg">
+    <div>
+      <div class="botoesGrafico">
+        <button id="buttonRAM" onclick="obterDadosGraficoRAM(idFuncionario) , esconder1()">
+          RAM
+        </button>
+        <button id="buttonCPU" onclick="obterDadosGraficoCPU(idFuncionario), esconder2()">
+          CPU
+        </button>
+        <button id="buttonDisco" onclick="obterDadosGraficoDisco(idFuncionario), esconder3()">
+          Disco
+        </button>
+        <button id="buttonSwap" onclick="obterDadosGraficoSwap(idFuncionario), esconder4()">
+          Swap
+        </button>
 
-        <!-- </div> -->
-        <!-- <div class="container"> -->
-        <div class="area-empresa" id="empresa">
-            <div class="container">
-                <div class="empresa-esq">
-                    <img src="assets/imgs/logo_v3.png">
-                </div>
-                <div class="empresa-dir">
-                    <h1>Nossa Empresa</h1>
-                    <p>Fundada em 2022, criamos a Guardian Angel com o propósito de garantir que os Call Centers possam
-                        ter seus computadores com o menor Downtime possível, garantindo que o suporte de TI da empresa
-                        possa atuar com antecedência e maior eficiência nos problemas encontrados nas máquinas.</p>
-                    <p>Nosso sistema busca ser o maior aliado do setor de TI de sua empresa, com a ajuda de nosso
-                        software você terá acesso as informações das máquinas dos seus operadores, permitindo a
-                        identificação de possíveis falhas com antecedência, e com relatórios mais completos com
-                        informações gerais sobre o funcionamento das máquinas.</p>
-                </div>
-            </div>
-        </div>
-        <!-- </div> -->
+        <button id="buttonUpload" onclick="pegarUpload(idFuncionario), pegarMediaUpload(idFuncionario), esconder5()">
+          Upload
+        </button>
 
-        <img class="wave" src="assets/imgs/wave-requisitos.svg">
-        <div class="area-requisitos" id="requisitos">
-            <div class="container">
-                <h1 class="req-titulo">Requisitos do Software</h1>
-                <p class="req-texto">Nosso software foi pensado para funcionar em máquinas comuns, aumentando assim o
-                    seu alcance, confira abaixo se suas máquinas são capazes de rodar nosso programa.</p>
-                <div class="cards-requisitos">
-                    <div class="requisitos-esq">
-                        <img src="assets/imgs/monitor.png">
-                        <h1>Requisitos Mínimos</h1>
-                        <ul class="lista-req-min">
-                            <li class="li-lista-min">Processador i3 3500</li>
-                            <li class="li-lista-min">2 GB RAM</li>
-                            <li class="li-lista-min">100 MB de Memória</li>
-                        </ul>
-                    </div>
-                    <div class="requisitos-mei">
+        <button id="buttonDownload"
+          onclick="pegarDownload(idFuncionario), pegarMediaDownload(idFuncionario), esconder6()">
+          Download
+        </button>
+        <button id="buttonBateria">
+          <a href="helder.html">Bateria</a>
+        </button>
+      </div>
 
-                    </div>
-                    <div class="requisitos-dir">
-                        <img src="assets/imgs/monitor.png">
-                        <h1>Requisitos Recomendados</h1>
-                        <ul class="lista-req-rec">
-                            <li class="li-lista-rec">Processador i3 6100</li>
-                            <li class="li-lista-rec">4 GB RAM</li>
-                            <li class="li-lista-rec">260 MB de Memória</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img class="wave" src="assets/imgs/wave-software.svg">
+      <div class="graficos">
+        <div style="display: flex; flex-direction: column; margin-top: 3rem">
+          <div class="process-container">
+            <span id="process" style="height: 100%; width: 100%"></span>
+          </div>
 
-        <div class="area-contato" id="contato">
-            <h1>Contato</h1>
-            <div class="container">
-                <div class="contato-esq">
-                    <img src="assets/imgs/arte4.jpg">
-                </div>
-                <div class="contato-dir">
-                    <div class="telefone">
-                        <img src="assets/imgs/icon-phone.png">
-                        <p>4002-8922</p>
-                    </div>
-                    <div class="email">
-                        <img src="assets/imgs/icon-email.png">
-                        <p>guardianangel@gmail.com</p>
-                    </div>
-                    <iframe class="mapa"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.2874820179036!2d-46.6638026853467!3d-23.55811636735678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f663%3A0xc567c0d16d0bc582!2sS%C3%A3o%20Paulo%20Tech%20School!5e0!3m2!1spt-BR!2sbr!4v1660504772416!5m2!1spt-BR!2sbr"
-                        width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+          <div class="chart-container">
+            <canvas id="chart1"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart2"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart4"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart6"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart7"></canvas>
+          </div>
+          <div class="chart-container teste">
+            <canvas id="chart3"></canvas>
+          </div>
         </div>
+        <div class="TextosNET" id="Textos_NET" style="display: none;">
+          <span id="Titulo_NET"></span> 
+          <span id="mediaUP"></span>
+          <span id="mediaDOWN"></span>
+        </div>
+      </div>
+
     </div>
-
-    <!-- <img class="wave" src="assets/imgs/wave-requisitos.svg"> -->
-    <footer>
-        <img class="wave" src="assets/imgs/wave-requisitos.svg">
-        <div class="container">
-            <h1>Guardian Angel | Pesquisa e Inovação SPTech 2022</h1>
-        </div>
-    </footer>
-
+  </section>
 </body>
+
+<script src="exibirFunc.js"></script>
+<script src="js/global.js"></script>
 
 </html>
 
-<script src="js/menu-dropdown.js"></script>
+<script>
+  function verificarURL() {
+
+    const url = document.URL;
+
+    if (url != 'http://localhost:8080/dashboard/index.html#banner' && url != 'https://guardianangel.azurewebsites.net/dashboard/Funcionarios.html') {
+      var imported = document.createElement('script');
+      imported.src = 'js/dashboard.js';
+      document.head.appendChild(imported);
+    } else {
+      var imported = document.createElement('script');
+      imported.src = 'js/dashboardM.js';
+      document.head.appendChild(imported);
+      document.getElementsByClassName("top-message")[0].style.display = "none";
+      document.getElementById("buttonUpload").style.display = "none";
+      document.getElementById("buttonSwap").style.display = "none";
+      document.getElementById("buttonDownload").style.display = "none";
+      document.getElementById("buttonBateria").style.display = "none";
+    }
+  }
+
+  if (sessionStorage.ACESSO_FUNCIONARIO != 1) {
+    document.getElementById('infoCall').style.display = 'none'
+  } else{
+  }
+</script>
+
+<script>
+  const URL = new URLSearchParams(window.location.search);
+  var idFuncionario = URL.get("idFuncionario");
+  var nomeFunc = URL.get("nomeFuncionario");
+
+
+  function esconder1() {
+    document.getElementById("chart1").style.display = "block";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
+  }
+
+  function esconder2() {
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "block";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
+  }
+
+  function esconder3() {
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "block";
+    document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
+  }
+
+  function esconder4() {
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "block";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "none";
+  }
+
+  function esconder5() {
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart6").style.display = "block";
+    document.getElementById("chart7").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "flex";
+    document.getElementById("mediaUP").style.display = "block";
+    document.getElementById("mediaDOWN").style.display = "none";
+  }
+
+  function esconder6() {
+    document.getElementById("chart1").style.display = "none";
+    document.getElementById("chart2").style.display = "none";
+    document.getElementById("chart3").style.display = "none";
+    document.getElementById("chart4").style.display = "none";
+    document.getElementById("chart7").style.display = "block";
+    document.getElementById("chart6").style.display = "none";
+    document.getElementById("Textos_NET").style.display = "flex";
+    document.getElementById("mediaDOWN").style.display = "block";
+    document.getElementById("mediaUP").style.display = "none";
+  }
+</script>
