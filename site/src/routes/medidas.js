@@ -11,14 +11,6 @@ router.get("/buscarBateriaMesAnterior/:idFuncionario", function (req, res) {
     medidaController.buscarBateriaMesAnterior(req, res);
 });
 
-router.get("/kpiMediaBateriaDia/:idFuncionario", function (req, res) {
-    medidaController.kpiMediaBateriaDia(req, res);
-});
-
-router.get("/kpiMediaBateriaMesAnterior/:idFuncionario", function (req, res) {
-    medidaController.kpiMediaBateriaMesAnterior(req, res);
-});
-
 router.get("/ultimasRAM/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasRAM(req, res);
 });
@@ -41,6 +33,10 @@ router.get("/ultimasCPU/:idFuncionario", function (req, res) {
 
 router.post("/ultimasCPUm", function (req, res) {
     medidaController.buscarUltimasMedidasCPUm(req, res);
+});
+
+router.post("/ultimasBrasil", function (req, res) {
+    medidaController.buscarUltimasMedidasBrasil(req, res);
 });
 
 router.get("/ultimasDisco/:idFuncionario", function (req, res) {
