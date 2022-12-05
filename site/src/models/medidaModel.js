@@ -34,18 +34,21 @@ function buscarBateriaMesAnterior(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-    SELECT TOP 1 registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
+    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro', FORMAT(dataRegistro, 'dd:MM:yyyy')  as 'dataRegistro'
     FROM registro
     WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-    ORDER BY idRegistro desc;`
+    AND  dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
+    AND   dataRegistro <= GETDATE()
+    ORDER BY idRegistro DESC;`
 
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'
-      FROM registro
-      WHERE componente = 4 AND fkMaquina = ${idFuncionario}
-      ORDER BY idRegistro desc
-      LIMIT 1;`
+    SELECT registroComponente, FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro', FORMAT(dataRegistro, 'dd:MM:yyyy')  as 'dataRegistro'
+    FROM registro
+    WHERE componente = 4 AND fkMaquina = ${idFuncionario}
+    AND  dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
+    AND   dataRegistro <= GETDATE()
+    ORDER BY idRegistro DESC`
 
   } else {
     console.log(

@@ -54,6 +54,18 @@ function plotarGraficoBateria(resposta, idFuncionario) {
     const config = {
         type: 'line',
         data: dados1,
+        options: {
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }],
+            },
+            indexAxis: 'y'
+        }
     };
     var ctx1 = document.getElementById("chart1").getContext("2d");
     let myChart = new Chart(ctx1, config);
@@ -153,6 +165,18 @@ function plotarGraficoBateriaMesAnterior(resposta, idFuncionario) {
     const config = {
         type: 'line',
         data: dados1,
+        options: {
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }],
+            },
+            indexAxis: 'y'
+        }
     };
     var ctx1 = document.getElementById("chart2").getContext("2d");
     let myChart = new Chart(ctx1, config);
