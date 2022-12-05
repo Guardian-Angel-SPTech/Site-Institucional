@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
+  <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+  <title>Guardian Angel</title>
+</head>
+
+<body onload="funcionarioTecnico(),nomeFunc()" style="overflow-y: hidden;">
+  <!-- Barra de navegação lateral -->
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
+        </div>
+
+        <div class="menu">
+          <div class="logoMenuPequeno">
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+          </div>
+
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+
+
+          <div class="botaoMenu">
+            <a href="index.html#banner"><button class="button" onclick="obterDadosGraficoRAMpc()">Meu
+                Computador</button></a>
+            <a href="Funcionarios.html"><button class="button">Funcionários</button></a>
+            <a href="callCenter.html" id="infoCall"><button class="button">Informações Call Center</button></a>
+          </div>
+
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="Maquina.html">Relatórios</a></button>
+          </div>
+        </div>
+
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
+    </section>
+  </aside>
+
+  <section class="dashboard" id="1">
+
+    <div>
+      <div class="botoesGrafico">
+        <button id="buttonBrasil" onclick="obterDadosGraficoBrasil(idFuncionario) , esconder1()">
+          Brasil
+        </button>
+      </div>
+    </div>
+  </section>
+</body>
+
+<script src="exibirFunc.js"></script>
+<script src="js/global.js"></script>
+<script src="js/dashboard.js"></script>
+</html>
+<script>
+  if (sessionStorage.ACESSO_FUNCIONARIO != 1) {
+    document.getElementById('infoCall').style.display = 'none'
+  } else{
+  }
+  const URL = new URLSearchParams(window.location.search);
+  var idFuncionario = URL.get("idFuncionario");
+  var nomeFunc = URL.get("nomeFuncionario");
+</script>
