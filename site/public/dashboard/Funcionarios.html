@@ -1,87 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/dashboard.css" />
-    <link
-      rel="shortcut icon"
-      href="../assets/imgs/icone-aba.jpg"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="css/global.css" />
-  
-    <title>Cadastro</title>
-  </head>
 
-  <body onload="funcionario()">
-    <aside class="l-side-bar" id="header">
-      <section class="wrapper">
-        <nav class="container">
-          <div class="logo">
-            <img
-              src="../assets/imgs/logo_v3.png"
-              alt="Logotipo da Guardian Angel"
-              class="logo"
-            />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
+  <link rel="stylesheet" href="css/global.css" />
+
+  <title>Cadastro</title>
+</head>
+
+<body onload="funcionario()">
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
+        </div>
+
+        <div class="menu" style="width: 400px;">
+          <div class="logoMenuPequeno">
+            <a href="index.html">
+              <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+            </a>
           </div>
 
-          <div class="menu" style="width: 400px;">
-            <div class="logoMenuPequeno">
-              <a href="index.html">
-                <img
-                  src="../assets/imgs/logo_v3.png"
-                  alt="Logotipo da Guardian Angel"
-                  class="logoMenor"
-                />
-              </a>
-            </div>
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
 
-            <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
-
-            <div class="botaoMenu">
-              <a href="index.html#banner">
-                <button class="button">Meu Computador</button>
-              </a>
-              <a href="Funcionarios.html">
-                <button class="button ativo">Funcionários</button>
-              </a>
-            </div>
-
-            <div class="areaBotao">
-              <button class="button sair" onclick="limparSessao()">
-                <a href="../index.html">Sair</a>
-              </button>
-              <button class="button"><a href="maquina.html">Relatórios</a></button>
-            </div>
+          <div class="botaoMenu">
+            <a href="index.html#banner">
+              <button class="button">Meu Computador</button>
+            </a>
+            <a href="Funcionarios.html">
+              <button class="button ativo">Funcionários</button>
+            </a>
           </div>
 
-          <div class="toggle iconMenu">
-            <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
-          </div>
-          <div class="toggle icon-close">
-            <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-          </div>
-        </nav>
-      </section>
-    </aside>
-
-    <section id="funcionarios">
-      <div class="container">
-        <h1>Funcionarios</h1>
-        <div class="botoesFuncionario">
-          <div id="listaFunc">
-          
-          </div>
-          <div id="botoes"> 
-  
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="maquina.html">Relatórios</a></button>
           </div>
         </div>
-     
-      </div>
+
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
     </section>
-  </body>
+  </aside>
+
+  <section id="funcionarios">
+    <div class="container">
+      <h1>Funcionarios</h1>
+      <a id="btn_cadastrar_func" href="novoFuncionario.html"><button>Cadastrar novo funcionario</button></a>
+      <div class="botoesFuncionario">
+
+        <div id="listaFunc">
+
+        </div>
+        <div id="botoes">
+          
+        </div>
+      </div>
+
+    </div>
+  </section>
+</body>
+
 </html>
 <script src="js/novoCadastro.js"></script>
 <script src="exibirFunc.js"></script>
