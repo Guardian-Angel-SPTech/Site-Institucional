@@ -71,7 +71,7 @@ function kpiMediaBateriaDia(idFuncionario) {
   
     if (process.env.AMBIENTE_PROCESSO == "producao") {
       instrucaoSql = `
-      SELECT AVG(registroComponente)
+      SELECT AVG(registroComponente) AS 'media'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       AND dataRegistro >= DATEADD(DAY,-1,GETDATE()) 
@@ -79,7 +79,7 @@ function kpiMediaBateriaDia(idFuncionario) {
   
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
       instrucaoSql = `
-      SELECT AVG(registroComponente)
+      SELECT AVG(registroComponente) AS 'media'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       AND dataRegistro >= DATEADD(DAY,-1,GETDATE()) 
@@ -101,7 +101,7 @@ function kpiMediaBateriaMesAnterior(idFuncionario) {
   
     if (process.env.AMBIENTE_PROCESSO == "producao") {
       instrucaoSql = `
-      SELECT AVG(registroComponente)
+      SELECT AVG(registroComponente) AS 'media'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       AND dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
@@ -109,7 +109,7 @@ function kpiMediaBateriaMesAnterior(idFuncionario) {
   
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
       instrucaoSql = `
-      SELECT AVG(registroComponente)
+      SELECT AVG(registroComponente) AS 'media'
       FROM registro
       WHERE componente = 4 AND fkMaquina = ${idFuncionario}
       AND dataRegistro >= DATEADD(DAY,-30,GETDATE()) 
