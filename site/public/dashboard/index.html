@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/dashboard.css" />
   <link rel="stylesheet" href="css/global.css" />
-  <link rel="shortcut icon" href="../assets/imgs/logo_v3.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="../assets/imgs/icone-aba.jpg" type="image/x-icon" />
   <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
   <title>Guardian Angel</title>
 </head>
@@ -33,6 +33,9 @@
             <a href="index.html#banner"><button class="button" onclick="obterDadosGraficoRAMpc()">Meu
                 Computador</button></a>
             <a href="Funcionarios.html"><button class="button">Funcionários</button></a>
+            <a href="callCenter.html">
+              <button class="button ativo">Informações Call Center</button>
+            </a>
           </div>
 
           <div class="areaBotao">
@@ -132,7 +135,7 @@
 
     const url = document.URL;
 
-    if (url != 'http://localhost:8080/dashboard/index.html#banner' || url != 'https://guardianangel.azurewebsites.net/dashboard/Funcionarios.html') {
+    if (url != 'http://localhost:8080/dashboard/index.html#banner' && url != 'https://guardianangel.azurewebsites.net/dashboard/Funcionarios.html') {
       var imported = document.createElement('script');
       imported.src = 'js/dashboard.js';
       document.head.appendChild(imported);
@@ -144,7 +147,13 @@
       document.getElementById("buttonUpload").style.display = "none";
       document.getElementById("buttonSwap").style.display = "none";
       document.getElementById("buttonDownload").style.display = "none";
+      document.getElementById("buttonBateria").style.display = "none";
     }
+  }
+
+  if (sessionStorage.ACESSO_FUNCIONARIO != 1) {
+    document.getElementById('infoCall').style.display = 'none'
+  } else{
   }
 </script>
 
