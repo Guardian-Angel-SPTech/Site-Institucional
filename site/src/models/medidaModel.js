@@ -476,7 +476,7 @@ function pegarUpload(idFuncionario) {
       SELECT registroComponente FROM registro 
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 6
-      ORDER BY idRegistro desc LIMIT 10;`
+      ORDER BY idRegistro desc LIMIT 7;`
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -523,7 +523,7 @@ function pegarDownload(idFuncionario) {
       SELECT registroComponente FROM registro 
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 7
-      ORDER BY idRegistro desc LIMIT 10;`
+      ORDER BY idRegistro desc LIMIT 7;`
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
