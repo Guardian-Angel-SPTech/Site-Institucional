@@ -96,14 +96,14 @@ function buscarUltimasMedidasBrasil(idFuncionario) {
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
     instrucaoSql = `
-      SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro' FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+      SELECT TOP 7 registroComponente,FORMAT(dataRegistro, 'yyyy/MM/dd')  as 'dataRegistro' FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
       and componente = 9 order by idRegistro desc;`
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `
-      SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro' FROM registro INNER JOIN     maquina ON fkMaquina = idMaquina 
-      INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
-      and componente = 9 order by idRegistro desc;`
+      SELECT registroComponente,FORMAT(dataRegistro, 'yyyy/MM/dd')  as 'dataRegistro' FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+      INNER JOIN funcionario ON idFuncionario = 1
+      and componente = 9 order by idRegistro desc limit 7;`
   } else {
     console.log(
       "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
@@ -245,7 +245,7 @@ function buscarMedidasEmTempoRealBrasil(idFuncionario) {
   instrucaoSql = "";
 
   if (process.env.AMBIENTE_PROCESSO == "producao") {
-    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(dataRegistro, 'yyyy/MM/dd')  as 'dataRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
     funcionario ON idFuncionario = ${idFuncionario} and componente = 9 order by idRegistro desc`;
   } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
     instrucaoSql = `

@@ -305,10 +305,10 @@ function plotarGraficoBrasil(resposta, idFuncionario) {
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
         
-        var horario = registro.horaRegistro;
+        var date = registro.dataRegistro;
         dados1.datasets[0].data.push(registro.registroComponente);
         
-        labels1.push(horario);
+        labels1.push(date);
         dados1.datas
     }
 
@@ -631,7 +631,7 @@ function atualizarGraficoBrasil(idFuncionario, mychart, dados1) {
 
                     // tirando e colocando valores no gráfico
                     dados1.labels.shift(); // apagar o primeiro
-                    dados1.labels.push(novoRegistro[0].horaRegistro); // incluir um novo momento
+                    dados1.labels.push(novoRegistro[0].dataRegistro); // incluir um novo momento
 
                     dados1.datasets[0].data.shift(); // apagar o primeiro de ram
                     dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
