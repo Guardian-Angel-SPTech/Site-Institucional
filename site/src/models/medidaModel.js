@@ -91,6 +91,30 @@ function buscarUltimasMedidasRAM(idFuncionario) {
   return database.executar(instrucaoSql);
 }
 
+function buscarUltimasMedidasBrasil(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+      SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro' FROM registro INNER JOIN maquina ON fkMaquina = idMaquina 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+      and componente = 9 order by idRegistro desc;`
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT TOP 7 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro' FROM registro INNER JOIN     maquina ON fkMaquina = idMaquina 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario}
+      and componente = 9 order by idRegistro desc;`
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 function buscarUltimasMedidasSwap(idFuncionario) {
   instrucaoSql = "";
 
@@ -204,6 +228,30 @@ function buscarMedidasEmTempoRealRAM(idFuncionario) {
       SELECT registroComponente FROM registro 
       INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
       INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 1
+      ORDER BY idRegistro desc LIMIT 1;
+      `;
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoRealBrasil(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `SELECT TOP 1 registroComponente,FORMAT(horaRegistro, 'hh:mm:ss')  as 'horaRegistro'  FROM registro INNER JOIN maquina ON fkMaquina = idMaquina INNER JOIN 
+    funcionario ON idFuncionario = ${idFuncionario} and componente = 9 order by idRegistro desc`;
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+      SELECT registroComponente FROM registro 
+      INNER JOIN maquina ON fkMaquina = idMaquina and fkMaquina = (select idFuncionario from funcionario where idFuncionario = ${idFuncionario}) 
+      INNER JOIN funcionario ON idFuncionario = ${idFuncionario} and componente = 9
       ORDER BY idRegistro desc LIMIT 1;
       `;
   } else {
@@ -602,5 +650,7 @@ module.exports = {
   pegarDownloadTempoReal,
   pegarUploadTempoReal,
   pegarMediaDownload,
-  pegarMediaUpload
+  pegarMediaUpload,
+  buscarUltimasMedidasBrasil,
+  buscarMedidasEmTempoRealBrasil
 };

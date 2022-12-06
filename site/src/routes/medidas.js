@@ -75,6 +75,10 @@ router.post("/tempo-realCPUm", function (req, res) {
     medidaController.buscarMedidasEmTempoRealCPUm(req, res);
 });
 
+router.post("/tempo-realBrasil", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealBrasil(req, res);
+});
+
 router.get("/tempo-realDisco/:idFuncionario", function (req, res) {
     medidaController.buscarMedidasEmTempoRealDisco(req, res);
 })

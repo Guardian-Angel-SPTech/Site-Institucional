@@ -164,7 +164,7 @@ function plotarGraficoRAM(resposta, idFuncionario) {
     };
     for (i = 0; i < resposta.length; i++) {
         var registro = resposta[i];
-        var horario = registro.dataRegistro;
+        var horario = registro.horaRegistro;
         dados1.datasets[0].data.push(registro.registroComponente);
         
         labels1.push(horario);

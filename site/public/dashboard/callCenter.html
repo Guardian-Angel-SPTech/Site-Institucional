@@ -33,7 +33,7 @@
             <a href="index.html#banner"><button class="button" onclick="obterDadosGraficoRAMpc()">Meu
                 Computador</button></a>
             <a href="Funcionarios.html"><button class="button">Funcionários</button></a>
-            <a href="callCenter.html" id="infoCall"><button class="button">Informações Call Center</button></a>
+            <a href="callCenter.html" id="infoCall"><button class="button ativo">Informações Call Center</button></a>
           </div>
 
           <div class="areaBotao">
@@ -58,9 +58,19 @@
 
     <div>
       <div class="botoesGrafico">
-        <button id="buttonBrasil" onclick="obterDadosGraficoBrasil(idFuncionario) , esconder1()">
+        <button id="buttonBrasil" onclick="obterDadosGraficoBrasil(idFuncionario) , esconder8()">
           Brasil
         </button>
+      </div>
+    </div>
+    <div class="graficos">
+      <div style="display: flex; flex-direction: column; margin-top: 3rem">
+        <div class="process-container">
+          <span id="process" style="height: 100%; width: 100%"></span>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart8"></canvas>
+        </div>
       </div>
     </div>
   </section>
@@ -78,4 +88,8 @@
   const URL = new URLSearchParams(window.location.search);
   var idFuncionario = URL.get("idFuncionario");
   var nomeFunc = URL.get("nomeFuncionario");
+
+  function esconder8() {
+    document.getElementById("chart8").style.display = "block";
+  }
 </script>
