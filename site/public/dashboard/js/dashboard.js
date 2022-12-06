@@ -64,9 +64,6 @@ function obterDadosGraficoRAM(idFuncionario) {
 }
 
 function obterDadosGraficoBrasil(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
 
     fetch(`/medidas/ultimasBrasil/`, {
             method: "POST",
@@ -318,7 +315,6 @@ function plotarGraficoBrasil(resposta, idFuncionario) {
     };
     var ctx = document.getElementById("chart8").getContext("2d");
     let myChart = new Chart(ctx, config);
-    setTimeout(() => atualizarGraficoBrasil(idFuncionario, myChart, dados1), 2000);
 }
 
 function plotarGraficoSwap(resposta, idFuncionario) {
@@ -601,51 +597,6 @@ function atualizarGraficoRAM(idFuncionario, myChart, dados1) {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
                 proximaAtualizacao = setTimeout(() => atualizarGraficoRAM(idFuncionario, myChart, dados1), 2000);
-            }
-        })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-}
-
-function atualizarGraficoBrasil(idFuncionario, mychart, dados1) {
-    // console.log("Indo atualizar gráfico")
-
-    fetch(`/medidas/tempo-realBrasil/`, {
-            cache: 'no-store',
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/funcionario.js
-                funcionarioServer: sessionStorage.ID_FUNCIONARIO
-            })
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico: ${dados1}`);
-
-                    // tirando e colocando valores no gráfico
-                    dados1.labels.shift(); // apagar o primeiro
-                    dados1.labels.push(novoRegistro[0].dataRegistro); // incluir um novo momento
-
-                    dados1.datasets[0].data.shift(); // apagar o primeiro de ram
-                    dados1.datasets[0].data.push(novoRegistro[0].registroComponente); // incluir uma nova medida de ram
-
-
-                    mychart.update();
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGraficoBrasil(idFuncionario, mychart, dados1), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGraficoBrasil(idFuncionario, mychart, dados1), 2000);
             }
         })
         .catch(function (error) {
