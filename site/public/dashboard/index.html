@@ -30,9 +30,9 @@
 
 
           <div class="botaoMenu">
-            <a href="index.html#banner"><button class="button ativo" onclick="obterDadosGraficoRAMpc()">Meu
+            <a href="index.html#banner"><button class="button ativo" id = "meuPC" onclick="obterDadosGraficoRAMpc()">Meu
                 Computador</button></a>
-            <a href="Funcionarios.html"><button class="button">Funcionários</button></a>
+            <a href="Funcionarios.html"><button class="button" id = func>Funcionários</button></a>
             <a href="callCenter.html">
               <button class="button">Informações Call Center</button>
             </a>
@@ -139,6 +139,10 @@
       var imported = document.createElement('script');
       imported.src = 'js/dashboard.js';
       document.head.appendChild(imported);
+      let buttonPC = document.getElementsByClassName("button ativo")[0].classList;
+      buttonPC.replace("ativo", "button");
+      let buttonFunc = document.getElementById("func").classList;
+      buttonFunc.add("ativo");
     } else {
       var imported = document.createElement('script');
       imported.src = 'js/dashboardM.js';

@@ -50,7 +50,7 @@ function login() {
                         
             
                         setTimeout(() => {
-                            window.location = "dashboard/index.html";
+                            window.location = "dashboard/index.html#banner";
                             
                         }, 1000);
                     });
