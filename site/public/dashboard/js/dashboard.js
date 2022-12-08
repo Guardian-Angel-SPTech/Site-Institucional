@@ -13,7 +13,7 @@ function chart() {
 
 
 function exibirFuncPorId(idFuncionario) {
-
+    console.log(idFuncionario)
     fetch(`/funcionarios/verNomePorId/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {

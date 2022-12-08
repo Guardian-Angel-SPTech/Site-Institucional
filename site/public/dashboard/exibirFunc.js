@@ -19,7 +19,9 @@ fetch("../funcionarios/verfuncionario", {
 
     console.log("resposta: ", resposta);
     if (resposta.ok) {
+        console.log('oi');
         resposta.json().then(json => {
+            console.log('oi');
             console.log(json);
             console.log(JSON.stringify(json));
             vFuncionario = json
@@ -40,6 +42,33 @@ return false;
 
 
 }
+
+function exibirFuncPorId(idFuncionario) {
+    console.log(idFuncionario)
+    fetch(`/funcionarios/verNomePorId/${idFuncionario}`, {
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    nFuncionario = json
+                    var nomet = document.createTextNode(nFuncionario[0].nome);
+                    funcDash= document.getElementById("funcDash");
+                    funcDash.appendChild(nomet);
+                  });
+
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
 
 var divNomeFunc = document.getElementById("funcDash")
 function listaFuncionario(){
@@ -93,7 +122,7 @@ function voltar(id){
             })
         }).then(function (resposta) {
         
-            console.log("resposta: ", resposta);
+            console.log("resposta teste: ", resposta);
             if (resposta.ok) {
                 resposta.json().then(json => {
                     console.log(json);
