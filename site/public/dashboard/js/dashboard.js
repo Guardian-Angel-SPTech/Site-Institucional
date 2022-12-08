@@ -1012,9 +1012,9 @@ function atualizarMediaDisco(idMaquina, myChart, dados1) {
     // console.log("Indo atualizar gráfico")
     canvasImage = contextoDisco.toDataURL('image')
     doc.addPage('A4','portrait')
-    doc.text(30, 20, `Relatório RAM - maquina ${idMaquina} - mês ${mes2} `);
+    doc.text(30, 20, `Relatório Disco - maquina ${idMaquina} - mês ${mes2} `);
     doc.addImage(canvasImage, 'JPEG', 15, 30, 185, 100)
-    doc.save(`RelatórioMaquina`)
+    doc.save(`RelatórioMaquina${mes2}`)
 
     
 
