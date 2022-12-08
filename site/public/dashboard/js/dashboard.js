@@ -1,5 +1,9 @@
 chart()
 
+var contextoRAM
+var contextoCPU
+var contextoDisco
+var doc = new jsPDF();
 
 // Gráficos
 function chart() {
@@ -492,8 +496,8 @@ function plotarGraficoMediaRAM(resposta, idMaquina) {
         type: 'line',
         data: dados1,
     };
-    var ctx = document.getElementById("chart1").getContext("2d");
-    let myChart = new Chart(ctx, config);
+     contextoRAM = document.getElementById("chart1");
+    let myChart = new Chart(contextoRAM, config);
     setTimeout(() => atualizarMediaRAM(idMaquina, myChart, dados1), 2000);
 }
 
@@ -523,8 +527,8 @@ function plotarGraficoMediaCPU(resposta, idMaquina) {
         type: 'line',
         data: dados1,
     };
-    var ctx = document.getElementById("chart2").getContext("2d");
-    let myChart = new Chart(ctx, config);
+    contextoCPU = document.getElementById("chart2");
+    let myChart = new Chart(contextoCPU, config);
     setTimeout(() => atualizarMediaCPU(idMaquina, myChart, dados1), 2000);
 }
 
@@ -555,8 +559,8 @@ function plotarGraficoMediaDisco(resposta, idMaquina) {
         type: 'line',
         data: dados1,
     };
-    var ctx = document.getElementById("chart3").getContext("2d");
-    let myChart = new Chart(ctx, config);
+    contextoDisco = document.getElementById("chart3");
+    let myChart = new Chart(contextoDisco, config);
     setTimeout(() => atualizarMediaDisco(idMaquina, myChart, dados1), 2000);
 }
 
@@ -780,6 +784,11 @@ function atualizarGraficoDisco(idFuncionario, mychart, dados1) {
 
 function atualizarMediaRAM(idMaquina, myChart, dados1) {
     // console.log("Indo atualizar gráfico")
+    canvasImage = contextoRAM.toDataURL('image')
+            doc.text(30, 20, `Relatório RAM - maquina ${idMaquina} - mês ${mes2} `);
+            doc.addImage(canvasImage, 'JPEG', 15, 30, 185, 100)
+            
+            
 
     fetch(`/medidas/mediaRAMDiariaTempoReal/${idMaquina}`, {
             cache: 'no-store'
@@ -817,6 +826,12 @@ function atualizarMediaRAM(idMaquina, myChart, dados1) {
 
 
 function atualizarMediaCPU(idMaquina, myChart, dados1) {
+    canvasImage = contextoCPU.toDataURL('image')
+            doc.text(30, 150, `Relatório da CPU - maquina ${idMaquina} - mês ${mes2} `);
+            doc.addImage(canvasImage, 'JPEG', 15, 160, 185, 100)
+            
+    
+
     // console.log("Indo atualizar gráfico")
 
     fetch(`/medidas/mediaCPUDiariaTempoReal/${idMaquina}`, {
@@ -855,6 +870,13 @@ function atualizarMediaCPU(idMaquina, myChart, dados1) {
 
 function atualizarMediaDisco(idMaquina, myChart, dados1) {
     // console.log("Indo atualizar gráfico")
+    canvasImage = contextoDisco.toDataURL('image')
+    doc.addPage('A4','portrait')
+    doc.text(30, 20, `Relatório RAM - maquina ${idMaquina} - mês ${mes2} `);
+    doc.addImage(canvasImage, 'JPEG', 15, 30, 185, 100)
+    doc.save(`RelatórioMaquina`)
+
+    
 
     fetch(`/medidas/mediaDiscoDiariaTempoReal/${idMaquina}`, {
             cache: 'no-store'
