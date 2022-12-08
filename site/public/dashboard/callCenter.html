@@ -58,10 +58,10 @@
 
     <div>
       <div class="botoesGrafico">
-        <button id="buttonBrasil" onclick="obterDadosGraficoBrasil(idFuncionario) , esconder8()">
+        <button id="buttonBrasil" onclick="obterDadosGraficoBrasil(idFuncionario),obterDadosProcessosGraficoBrasil(idFuncionario) , esconder8()">
           Brasil
         </button>
-        <button id="buttonEUA" onclick="obterDadosGraficoEUA(idFuncionario) , esconder9()">
+        <button id="buttonEUA" onclick="obterDadosGraficoEUA(idFuncionario) ,obterDadosProcessosGraficoEUA(idFuncionario) , esconder9()">
           EUA
         </button>
       </div>
@@ -71,11 +71,17 @@
         <div class="process-container">
           <span id="process" style="height: 100%; width: 100%"></span>
         </div>
-        <div class="chart-container">
+        <div class="chart-container10">
           <canvas id="chart8"></canvas>
         </div>
-        <div class="chart-container">
+        <div class="chart-container10">
           <canvas id="chart9"></canvas>
+        </div>
+        <div class="chart-container10">
+          <canvas id="chart10"></canvas>
+        </div>
+        <div class="chart-container10">
+          <canvas id="chart11"></canvas>
         </div>
       </div>
     </div>
@@ -98,9 +104,13 @@
   function esconder8() {
     document.getElementById("chart8").style.display = "block";
     document.getElementById("chart9").style.display = "none";
+    document.getElementById("chart10").style.display = "Block";
+    document.getElementById("chart11").style.display = "none";
   }
   function esconder9() {
     document.getElementById("chart8").style.display = "none";
+    document.getElementById("chart10").style.display = "none";
     document.getElementById("chart9").style.display = "block";
+    document.getElementById("chart11").style.display = "block";
   }
 </script>
