@@ -10,7 +10,7 @@ function chart() {
 
 }
 
-let proximaAtualizacao;
+
 
 function exibirFuncPorId(idFuncionario) {
 
@@ -41,9 +41,6 @@ exibirFuncPorId(idFuncionario);
 // Atualizando gráficos em tempo real
 
 function obterDadosGraficoRAM(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
 
     fetch(`/medidas/ultimasRAM/${idFuncionario}`, {
             cache: 'no-store'
@@ -196,10 +193,7 @@ function obterDadosGraficoEUA(idFuncionario) {
 }
 
 function obterDadosGraficoSwap(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
-
+   
     fetch(`/medidas/ultimasSwap/${idFuncionario}`, {
             cache: 'no-store'
         }).then(function (response) {
@@ -223,9 +217,7 @@ function obterDadosGraficoSwap(idFuncionario) {
 }
 
 function obterDadosGraficoCPU(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+
 
     fetch(`/medidas/ultimasCPU/${idFuncionario}`, {
             cache: 'no-store'
@@ -250,9 +242,7 @@ function obterDadosGraficoCPU(idFuncionario) {
 }
 
 function obterDadosGraficoDisco(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+  
 
     fetch(`/medidas/ultimasDisco/${idFuncionario}`, {
             cache: 'no-store'
@@ -1056,9 +1046,7 @@ function atualizarMediaDisco(idMaquina, myChart, dados1) {
 
 
 function pegarUpload(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+  
 
     fetch(`/medidas/pegarUpload/${idFuncionario}`, {
             cache: 'no-store'
@@ -1083,9 +1071,7 @@ function pegarUpload(idFuncionario) {
 }
 
 function pegarMediaUpload(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+  
 
     fetch(`/medidas/pegarMediaUpload/${idFuncionario}`, {
             cache: 'no-store'
@@ -1161,9 +1147,7 @@ function atualizarGraficoUpload(idFuncionario, mychart, dados1) {
 
 
 function pegarDownload(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+  
 
     fetch(`/medidas/pegarDownload/${idFuncionario}`, {
             cache: 'no-store'
@@ -1188,9 +1172,7 @@ function pegarDownload(idFuncionario) {
 }
 
 function pegarMediaDownload(idFuncionario) {
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
+  
 
     fetch(`/medidas/pegarMediaDownload/${idFuncionario}`, {
             cache: 'no-store'
