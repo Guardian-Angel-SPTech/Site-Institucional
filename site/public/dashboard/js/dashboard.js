@@ -391,7 +391,7 @@ function plotarGraficoBrasil(resposta, idFuncionario) {
         datasets: [{
             label: 'Brasil',
             data: [],
-            borderColor: 'green',
+            borderColor: '#993399',
             tension: 0.1
         }],
     };
