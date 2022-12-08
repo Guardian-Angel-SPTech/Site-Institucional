@@ -128,6 +128,10 @@
     border: solid 1px #59ef6c;
 }
 .botoesGrafico #buttonBrasil{
+    background-color: #00752f;
+    border: solid 1px #cc9d02;
+}
+.botoesGrafico #buttonEUA{
     background-color: #0044ff;
     border: solid 1px #cc9d02;
 }

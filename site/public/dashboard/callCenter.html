@@ -61,6 +61,9 @@
         <button id="buttonBrasil" onclick="obterDadosGraficoBrasil(idFuncionario) , esconder8()">
           Brasil
         </button>
+        <button id="buttonEUA" onclick="obterDadosGraficoEUA(idFuncionario) , esconder9()">
+          EUA
+        </button>
       </div>
     </div>
     <div class="graficos">
@@ -70,6 +73,9 @@
         </div>
         <div class="chart-container">
           <canvas id="chart8"></canvas>
+        </div>
+        <div class="chart-container">
+          <canvas id="chart9"></canvas>
         </div>
       </div>
     </div>
@@ -91,5 +97,10 @@
 
   function esconder8() {
     document.getElementById("chart8").style.display = "block";
+    document.getElementById("chart9").style.display = "none";
+  }
+  function esconder9() {
+    document.getElementById("chart8").style.display = "none";
+    document.getElementById("chart9").style.display = "block";
   }
 </script>

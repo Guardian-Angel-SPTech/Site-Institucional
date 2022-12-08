@@ -39,6 +39,10 @@ router.post("/ultimasBrasil", function (req, res) {
     medidaController.buscarUltimasMedidasBrasil(req, res);
 });
 
+router.post("/ultimasEUA", function (req, res) {
+    medidaController.buscarUltimasMedidasEUA(req, res);
+});
+
 router.get("/ultimasDisco/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasDisco(req, res);
 });
@@ -109,8 +113,6 @@ router.get("/mediaDiscoDiaria/:idMaquina", function (req, res) {
 router.get("/mediaRAMDiariaTempoReal/", function (req, res) {
     medidaController.buscarDiscoDiariatempoReal(req, res);
 });
-
-// INDIVIDUAL MIGUEL
 
 router.get("/pegarUpload/:idFuncionario", function (req, res) {
     medidaController.pegarUpload(req, res);
