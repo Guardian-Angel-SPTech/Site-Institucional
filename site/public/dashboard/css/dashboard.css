@@ -53,6 +53,10 @@
     position: relative;
     width: 80vw;
 }
+.chart-container10 {
+    position: relative;
+    width:36vw;
+}
 #funcionarios {
     display: flex;
     flex-direction: column;

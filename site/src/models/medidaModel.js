@@ -65,7 +65,7 @@ function buscarBateriaMesAnterior(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
-  
+
 function buscarUltimasMedidasRAM(idFuncionario) {
   instrucaoSql = "";
 
@@ -113,6 +113,46 @@ function buscarUltimasMedidasBrasil(idFuncionario) {
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
+function buscarUltimasProcessosBrasil(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    SELECT TOP 5 usoCpu,nomeProcesso as processo FROM [dbo].[processo] INNER JOIN maquina ON fkMaquina = idMaquina
+    and fkMaquina = 23 order by usoCpu desc;`
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+    Select top 5 nomeProcesso, usoCpu from [dbo].[processo] where fkMaquina = 23 order by usoCpu desc;`
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarUltimasProcessosEUA(idFuncionario) {
+  instrucaoSql = "";
+
+  if (process.env.AMBIENTE_PROCESSO == "producao") {
+    instrucaoSql = `
+    Select top 5 nomeProcesso, usoCpu from processo where fkMaquina = 21 order by usoCpu desc;`
+  } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    instrucaoSql = `
+    Select top 5 nomeProcesso, usoCpu from [dbo].[processo] where fkMaquina = 21 order by usoCpu desc;`
+  } else {
+    console.log(
+      "\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n"
+    );
+    return;
+  }
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 
 function buscarUltimasMedidasEUA(idFuncionario) {
   instrucaoSql = "";
@@ -651,4 +691,6 @@ module.exports = {
   pegarMediaUpload,
   buscarUltimasMedidasEUA,
   buscarUltimasMedidasBrasil,
+  buscarUltimasProcessosBrasil,
+  buscarUltimasProcessosEUA,
 };

@@ -108,6 +108,43 @@ function buscarUltimasMedidasBrasil(req, res) {
     });
 }
 
+function buscarUltimasProcessosBrasil(req, res) {
+
+
+    const idFuncionario = req.body.funcionarioServer;
+
+
+    medidaModel.buscarUltimasProcessosBrasil(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function buscarUltimasProcessosEUA(req, res) {
+
+
+    const idFuncionario = req.body.funcionarioServer;
+
+
+    medidaModel.buscarUltimasProcessosEUA(idFuncionario).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarUltimasMedidasEUA(req, res) { 
 
 
@@ -686,6 +723,8 @@ module.exports = {
     buscarBateriaMesAnterior,
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasBrasil,
+    buscarUltimasProcessosBrasil,
+    buscarUltimasProcessosEUA,
     buscarUltimasMedidasEUA,
     buscarMedidasEmTempoRealEUA,
     buscarUltimasMedidasSwap,
@@ -706,6 +745,7 @@ module.exports = {
     buscarMedidasEmTempoRealSwapm,
     buscarMedidasEmTempoRealCPUm,
     buscarMedidasEmTempoRealDiscom,
+    
 
     mediaCPUDiaria,
     buscarCPUDiariatempoReal,

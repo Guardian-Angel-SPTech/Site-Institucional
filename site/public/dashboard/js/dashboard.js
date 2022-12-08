@@ -99,6 +99,70 @@ function obterDadosGraficoBrasil(idFuncionario) {
         });
 }
 
+function obterDadosProcessosGraficoBrasil(idFuncionario) {
+
+    fetch(`/medidas/ProcessosBrasil/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                funcionarioServer: sessionStorage.ID_FUNCIONARIO
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    plotarGraficoProcessosBrasil(resposta, idFuncionario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
+function obterDadosProcessosGraficoEUA(idFuncionario) {
+
+    fetch(`/medidas/ProcessosEUA/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                funcionarioServer: sessionStorage.ID_FUNCIONARIO
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                console.log("Obtendo dados: Resposta Ok")
+
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    console.log("Indo plotar gráfico")
+                    plotarGraficoProcessosEUA(resposta, idFuncionario);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        });
+}
+
 function obterDadosGraficoEUA(idFuncionario) {
 
     fetch(`/medidas/ultimasEUA/`, {
@@ -331,7 +395,7 @@ function plotarGraficoBrasil(resposta, idFuncionario) {
         datasets: [{
             label: 'Brasil',
             data: [],
-            borderColor: '#993399',
+            borderColor: 'green',
             tension: 0.1
         }],
     };
@@ -353,6 +417,82 @@ function plotarGraficoBrasil(resposta, idFuncionario) {
     let myChart = new Chart(ctx, config);
 }
 
+function plotarGraficoProcessosBrasil(resposta, idFuncionario) {
+    
+    let labels1 = [];
+    let dados1 = {
+        labels: labels1,
+        datasets: [{
+            label: 'Estados do Brasil com maior numero de pesquisas',
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 60)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+                'rgba(54, 162, 235)',
+              ],
+            borderColor: '#993399',
+            tension: 0.1
+        }],
+    };
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        
+        var processo = registro.processo;
+        dados1.datasets[0].data.push(registro.usoCpu);
+        
+        labels1.push(processo);
+        dados1.datas
+    }
+
+    const config = {
+        type: 'bar',
+        data: dados1,
+    };
+    var ctx = document.getElementById("chart10").getContext("2d");
+    let myChart = new Chart(ctx, config);
+}
+
+function plotarGraficoProcessosEUA(resposta, idFuncionario) {
+    
+    let labels1 = [];
+    let dados1 = {
+        labels: labels1,
+        datasets: [{
+            label: 'Estados do EUA com maior numero de pesquisas',
+            data: [],
+            backgroundColor: [
+                'rgba(255, 99, 132)',
+                'rgba(255, 159, 64)',
+                'rgba(255, 205, 86)',
+                'rgba(75, 192, 192)',
+                'rgba(54, 162, 235)',
+                'rgba(153, 102, 255)',
+                'rgba(201, 203, 207)'
+              ],
+            borderColor: '#993399',
+            tension: 0.1
+        }],
+    };
+    for (i = 0; i < resposta.length; i++) {
+        var registro = resposta[i];
+        
+        var processo = registro.nomeProcesso;
+        dados1.datasets[0].data.push(registro.usoCpu);
+        
+        labels1.push(processo);
+        dados1.datas
+    }
+
+    const config = {
+        type: 'bar',
+        data: dados1,
+    };
+    var ctx = document.getElementById("chart11").getContext("2d");
+    let myChart = new Chart(ctx, config);
+}
+
 function plotarGraficoEUA(resposta, idFuncionario) {
     
     let labels1 = [];
@@ -361,7 +501,7 @@ function plotarGraficoEUA(resposta, idFuncionario) {
         datasets: [{
             label: 'EUA',
             data: [],
-            borderColor: '#ff0000',
+            borderColor: 'blue',
             tension: 0.1
         }],
     };

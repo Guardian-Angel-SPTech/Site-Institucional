@@ -43,6 +43,14 @@ router.post("/ultimasEUA", function (req, res) {
     medidaController.buscarUltimasMedidasEUA(req, res);
 });
 
+router.post("/ProcessosBrasil", function (req, res) {
+    medidaController.buscarUltimasProcessosBrasil(req, res);
+});
+
+router.post("/ProcessosEUA", function (req, res) {
+    medidaController.buscarUltimasProcessosEUA(req, res);
+});
+
 router.get("/ultimasDisco/:idFuncionario", function (req, res) {
     medidaController.buscarUltimasMedidasDisco(req, res);
 });
