@@ -17,20 +17,22 @@
 
 <body>
     <!-- Barra de navegação lateral -->
-    <aside class="l-side-bar" id="header">
-        <section class="wrapper">
-            <nav class="container">
-                <div class="logo">
-                    <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
-                </div>
+    <!-- Barra de navegação lateral -->
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
+        </div>
 
-                <div class="menu">
-                    <div class="logoMenuPequeno">
-                        <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
-                    </div>
+        <div class="menu">
+          <div class="logoMenuPequeno">
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
+          </div>
 
-                    <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
-
+<<<<<<< HEAD
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
+=======
                     <div class="botaoMenu">
                         <a href="index.html#banner">
                             <button class="button" onclick="obterDadosGraficoRAMpc()">Meu Computador</button>
@@ -42,26 +44,36 @@
                             <button class="button">Informações Call Center</button>
                           </a>
                     </div>
+>>>>>>> 17fad4939a6a756e0c15d4be7aee8ac2f5825de3
 
-                    <div class="areaBotao">
-                        <button class="button sair" onclick="limparSessao()">
-                            <a href="../index.html">Sair</a>
-                        </button>
 
-                        <button class="button"><a href="relatorios.html">Relatórios</a></button>
-                    </div>
-                </div>
+          <div class="botaoMenu">
+            <a href="index.html#banner"><button class="button ativo" id = "meuPC" onclick="obterDadosGraficoRAMpc()">Meu
+                Computador</button></a>
+            <a href="Funcionarios.html"><button class="button" id = func>Funcionários</button></a>
+            <a href="callCenter.html">
+              <button class="button">Informações Call Center</button>
+            </a>
+          </div>
 
-                <div class="toggle iconMenu">
-                    <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
-                </div>
-                <div class="toggle icon-close">
-                    <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-                </div>
-            </nav>
-        </section>
-    </aside>
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="Maquina.html">Relatórios</a></button>
+          </div>
+        </div>
 
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
+    </section>
+  </aside>
+  
     <main>
         <h1 class="title">Monitoramento do Nobreak: <span id="funcName">miguel schrempp</span></h1>
         

@@ -87,14 +87,10 @@
     color: white;
     outline: none;
     border: none;
-    width: 100px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
+    width: 150px;
+    padding: .3rem 1.5rem;
     cursor: pointer;
-    position: absolute;
-    left: 43%;
-    margin-top: 15px;
+ 
 
 }
 #buttonPDF:hover{

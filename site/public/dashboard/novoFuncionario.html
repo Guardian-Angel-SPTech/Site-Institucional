@@ -15,57 +15,49 @@
     <title>Cadastro</title>
   </head>
   <body onload="funcionario()">
-    <aside class="l-side-bar" id="header">
-      <section class="wrapper">
-        <nav class="container">
-          <div class="logo">
-            <img
-              src="../assets/imgs/logo_v3.png"
-              alt="Logotipo da Guardian Angel"
-              class="logo"
-            />
+     <!-- Barra de navegação lateral -->
+  <aside class="l-side-bar" id="header">
+    <section class="wrapper">
+      <nav class="container">
+        <div class="logo">
+          <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logo" />
+        </div>
+
+        <div class="menu">
+          <div class="logoMenuPequeno">
+            <img src="../assets/imgs/logo_v3.png" alt="Logotipo da Guardian Angel" class="logoMenor" />
           </div>
 
-          <div class="menu">
-            <div class="logoMenuPequeno">
-              <a href="index.html">
-                <img
-                  src="../assets/imgs/logo_v3.png"
-                  alt="Logotipo da Guardian Angel"
-                  class="logoMenor"
-                />
-              </a>
-            </div>
+          <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
 
-            <p class="ola">Seja bem-vindo, <span id="nomeFunc"></span></p>
 
-            <div class="botaoMenu">
-              <button class="button ativo">
-                <a href="index.html#banner">Meu Computador</a>
-              </button>
-              <button class="button">
-                <a href="Funcionarios.html">Funcionários</a>
-              </button>
-            </div>
-
-            <div class="areaBotao">
-              <button class="button sair" onclick="limparSessao()">
-                <a href="../index.html">Sair</a>
-              </button>
-              <button class="button"><a href="Maquina.html">Relatórios</a></button>
-            </div>
+          <div class="botaoMenu">
+            <a href="index.html#banner"><button class="button ativo" id = "meuPC" onclick="obterDadosGraficoRAMpc()">Meu
+                Computador</button></a>
+            <a href="Funcionarios.html"><button class="button" id = func>Funcionários</button></a>
+            <a href="callCenter.html">
+              <button class="button">Informações Call Center</button>
+            </a>
           </div>
 
-          <div class="toggle iconMenu">
-            <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+          <div class="areaBotao">
+            <button class="button sair" onclick="limparSessao()">
+              <a href="../index.html">Sair</a>
+            </button>
+            <button class="button"><a href="Maquina.html">Relatórios</a></button>
           </div>
-          <div class="toggle icon-close">
-            <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
-          </div>
-        </nav>
-      </section>
-    </aside>
-    <div class="cadastro-dir" id="CadastroDash">
+        </div>
+
+        <div class="toggle iconMenu">
+          <img src="../assets/svg/menu-svgrepo-com.svg" alt="" />
+        </div>
+        <div class="toggle icon-close">
+          <img src="../assets/svg/x-svgrepo-com.svg" alt="" />
+        </div>
+      </nav>
+    </section>
+  </aside>
+  <div class="cadastro-dir" id="CadastroDash">
       <div class="form-cadastro n">
         <p class="dados-quem">Dados do Usuário:</p>
         <label for="inp_nome">Nome e sobrenome:</label>
