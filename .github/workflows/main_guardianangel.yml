@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'GuardianAngel'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B9D32ED5F60042C0A8B4BE5A35E6F096 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0309BB1813754982BBFC55D14C86EB8D }}
           package: .
